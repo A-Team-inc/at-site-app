@@ -1,0 +1,44 @@
+.pre-loader {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+
+  background: black;
+  opacity: 0;
+  animation: 4s cubic-bezier(0.001, 0.11, 0.64, 0.64) move_eye;
+}
+
+.first-part,
+.second-part {
+  font-size: 8em;
+  color: white;
+  font-family: monospace;
+}
+
+@keyframes move_eye { 
+  0% { 
+    opacity: 1; 
+    transform: scale(1);
+  } 
+
+  30% { 
+    opacity: 1;
+    transform: scale(1);
+  } 
+
+  95% {
+    opacity: 1;
+    transform: scale(2);
+  }
+  
+  100% { 
+    opacity: 0;
+    transform: scale(4.5);
+  }  
+}
+
