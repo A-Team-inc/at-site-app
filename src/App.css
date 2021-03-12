@@ -1,3 +1,19 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  overflow: hidden;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
 .A-Team {
   height: 100vh;
 }
@@ -9,7 +25,7 @@
 .name {
   position: absolute;
   top: 3%;
-  left:3%;
+  left: 3%;
   font-size: 45px;
   font-family: monospace;
   color: white;
@@ -38,13 +54,11 @@ h2 {
   width: 100%;
 }
 
-
-
 /* Google Fonts */
 @import url(https://fonts.googleapis.com/css?family=Anonymous+Pro);
 
 /* Global */
-.line-1{
+.line-1 {
   width: 100%;
   margin-left: auto;
   margin-right: auto;
@@ -54,20 +68,66 @@ h2 {
   text-align: center;
   white-space: nowrap;
   overflow: hidden;
-  transform: translateY(-50%);    
+  transform: translateY(-50%);
 }
 
 /* Animation */
-.anim-typewriter{
+.anim-typewriter {
   animation: typewriter 4s steps(45) 1s 1 normal both,
-  blinkTextCursor 500ms steps(45) infinite normal;
+    blinkTextCursor 500ms steps(45) infinite normal;
   animation-delay: 6s;
 }
-@keyframes typewriter{
-  from{width: 0;}
-  to{width: 24.6em;}
+@keyframes typewriter {
+  from {
+    width: 0;
+  }
+  to {
+    width: 24.6em;
+  }
 }
-@keyframes blinkTextCursor{
-  from{border-right-color: black;}
-  to{border-right-color: transparent;}
+@keyframes blinkTextCursor {
+  from {
+    border-right-color: black;
+  }
+  to {
+    border-right-color: transparent;
+  }
+}
+
+/* media-queries */
+
+@media screen and (max-width: 501px) {
+  .line-1 {
+    font-size: 16px;
+  }
+
+  h2 {
+    font-size: 30px;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .name {
+    font-size: 30px;
+  }
+
+  .line-1 {
+    font-size: 14px;
+  }
+
+  h2 {
+    font-size: 26px;
+  }
+}
+
+@media screen and (max-width: 376px) {
+  .line-1 {
+    font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 321px) {
+  h2 {
+    font-size: 20px;
+  }
 }
