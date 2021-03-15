@@ -37,7 +37,7 @@ export default function Home() {
           <Text textClassName="line-1 anim-typewriter">
             We can everything you want and do it good
           </Text>
-          <Title size="2">
+          <Title size="1">
             We are a small but super talented company with the high level IT
             specialists.
           </Title>
