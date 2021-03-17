@@ -1,6 +1,6 @@
 import React from "react"
 
-const ImageAtom = ({ imgClassName = " ", Url, imgWidth }) => {
+const ImageAtom = ({ imgClassName = " ", Url, imgWidth = " " }) => {
   return (
     <img
       className={imgClassName}

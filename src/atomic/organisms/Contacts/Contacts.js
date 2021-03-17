@@ -29,9 +29,6 @@ const Contacts = () => {
         <Text textClassName="contacts_info-title">Messengers:</Text>
         <div>
           <Anchor Url="#">
-            <ImageAtom imgClassName="contacts-icon" Url={Telegram} />
-          </Anchor>
-          <Anchor Url="#">
             <ImageAtom imgClassName="contacts-icon" Url={Viber} />
           </Anchor>
           <Anchor Url="#">
