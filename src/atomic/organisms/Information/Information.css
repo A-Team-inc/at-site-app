@@ -3,6 +3,7 @@
   width: 100%;
   background-color: #f6f6f6;
   display: flex;
+  margin: 0 0 400px;
 }
 
 .information-img {
@@ -22,7 +23,7 @@
   overflow-y: auto;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
 }
 
@@ -31,6 +32,7 @@
 @media screen and (max-width: 1025px) {
   .information {
     flex-direction: column;
+    margin: 0;
   }
 
   .information-img,

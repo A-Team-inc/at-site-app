@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react"
+import { Helmet } from "react-helmet"
 import Loader from "../Loader/Loader"
 import Information from "../atomic/organisms/Information/Information"
 import Technology from "../atomic/organisms/Technology/Technology"
 import Contacts from "../atomic/organisms/Contacts/Contacts"
+import SEO from "../atomic/organisms/SEO/SEO"
 import reportWebVitals from "../reportWebVitals"
 import ScrollMagic from "scrollmagic"
+import { resizeWidthOnly } from "../utilities/index"
 
 import Title from "../atomic/atoms/Title/Title"
 import Text from "../atomic/atoms/Text/Text"
@@ -21,6 +24,10 @@ export default function Home() {
 
   const { controller } = scrollMagic
 
+  resizeWidthOnly(function () {
+    window.location.reload()
+  })
+
   useEffect(() => {
     window.onload = () => {
       window.scrollTo(0, 0)
@@ -33,21 +40,27 @@ export default function Home() {
       setLoaderState(false)
     }, 5000)
 
-    const sections = document.querySelectorAll("section")
-    console.log(sections)
+    let viewportWidth = window.innerWidth
 
-    for (let i = 0; i < sections.length; i++) {
-      new ScrollMagic.Scene({
-        triggerElement: sections[i],
-      })
-        .setPin(sections[i], { pushFollowers: false })
-        .addIndicators() // add indicators (requires plugin)
-        .addTo(controller)
+    console.log(viewportWidth)
+
+    if (viewportWidth >= 1025) {
+      const sections = document.querySelectorAll("section")
+      console.log(sections)
+
+      for (let i = 0; i < sections.length; i++) {
+        new ScrollMagic.Scene({
+          triggerElement: sections[i],
+        })
+          .setPin(sections[i], { pushFollowers: false })
+          .addTo(controller)
+      }
     }
   }, [])
 
   return (
     <div className="A-Team">
+      <SEO />
       {loaderState && <Loader />}
       <div className="content">
         <section style={{ height: "100vh" }}>

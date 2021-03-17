@@ -3,15 +3,13 @@
   font-family: monospace;
   min-height: 100vh;
   width: 100%;
-  height: fit-content;
-  margin: 0;
-  padding: 0 0 50px;
+  margin: 0 0 400px;
   background-color: white;
 }
 
 .technology h2 {
   font-size: 45px;
-  padding: 50px;
+  padding: 30px;
 }
 
 .technology-content {
@@ -44,6 +42,11 @@
 /* media-queries */
 
 @media screen and (max-width: 1025px) {
+  .technology {
+    margin: 0;
+    padding: 0 0 50px;
+  }
+
   .technology-content {
     grid-template-columns: 1fr 1fr 1fr;
     margin: 0 20px;
