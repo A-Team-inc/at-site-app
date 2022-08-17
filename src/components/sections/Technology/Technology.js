@@ -1,7 +1,7 @@
 import React from "react"
 
-import Title from "../../atoms/Title/Title"
-import ImgBlock from "../../molecules/ImgBlock/ImgBlock"
+import Title from "../../globals/Title/Title"
+import ImgBlock from "../../globals/ImgBlock/ImgBlock"
 import {
   Css,
   Gatsby,
