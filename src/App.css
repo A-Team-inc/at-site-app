@@ -10,7 +10,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 code {
@@ -18,9 +18,9 @@ code {
     monospace;
 }
 
-::-webkit-scrollbar {
+/* ::-webkit-scrollbar {
   width: 0;
-}
+} */
 
 .A-Team {
   height: 100vh;
@@ -46,7 +46,7 @@ code {
   font-size: 40px;
   text-align: center;
   white-space: nowrap;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 .name {

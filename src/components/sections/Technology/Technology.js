@@ -1,98 +1,72 @@
-import React from "react"
-
-import Title from "../../globals/Title/Title"
-import ImgBlock from "../../globals/ImgBlock/ImgBlock"
-import {
-  Css,
-  Gatsby,
-  Graphql,
-  Html,
-  Js,
-  Mongodb,
-  Nextjs,
-  Nodejs,
-  Reactjs,
-  Scss,
-  TypeScript,
-} from "../../../assets/icons/index"
-import "./Technology.css"
+import React, { useRef, useEffect } from "react"
+import "./Technology.scss"
 
 const Technology = () => {
-  let imgData = [
+  const data = [
     {
-      url: Js,
+      url: require('../../../assets/icons/technology/react.png'),
+      subtitle: "React JS",
+    },
+    {
+      url: require('../../../assets/icons/technology/js.png'),
       subtitle: "JavaScript",
-      width: 100,
     },
     {
-      url: Reactjs,
-      subtitle: "React.js",
-      width: 100,
-    },
-    {
-      url: TypeScript,
+      url: require('../../../assets/icons/technology/ts.png'),
       subtitle: "TypeScript",
-      width: 100,
     },
     {
-      url: Nodejs,
+      url: require('../../../assets/icons/technology/nodejs.png'),
       subtitle: "Node.js",
-      width: 100,
     },
     {
-      url: Nextjs,
-      subtitle: "Next.js",
-      width: 150,
-    },
-    {
-      url: Gatsby,
+      url: require('../../../assets/icons/technology/gatsby.png'),
       subtitle: "Gatsby",
-      width: 100,
     },
     {
-      url: Mongodb,
+      url: require('../../../assets/icons/technology/mongodb.png'),
       subtitle: "MongoDB",
-      width: 100,
     },
     {
-      url: Graphql,
-      subtitle: "Graphql",
-      width: 200,
+      url: require('../../../assets/icons/technology/graphql.png'),
+      subtitle: "GraphQL",
     },
     {
-      url: Html,
-      subtitle: "Html",
-      width: 100,
+      url: require('../../../assets/icons/technology/nextjs.png'),
+      subtitle: "Next.js",
     },
     {
-      url: Css,
-      subtitle: "Css",
-      width: 100,
+      url: require('../../../assets/icons/technology/html.png'),
+      subtitle: "HTML",
     },
     {
-      url: Scss,
-      subtitle: "Scss/Sass",
-      width: 100,
+      url: require('../../../assets/icons/technology/css.png'),
+      subtitle: "CSS",
+    },
+    {
+      url: require('../../../assets/icons/technology/sass.png'),
+      subtitle: "Scss/Sass.js",
     },
   ]
 
+  const scrollContainer = useRef()
+  useEffect(() => {
+    scrollContainer.current.addEventListener("wheel", event => {
+      event.preventDefault();
+      scrollContainer.current.scrollLeft += event.deltaY;
+    })
+  }, [])
+
   return (
     <section className="technology">
-      <Title size="2">Technology</Title>
-      <div className="technology-content">
-        {imgData.map(item => {
-          return (
-            <ImgBlock
-              className="img-block"
-              imgClassName="technology_img"
-              textClassName="technology_text"
-              content={item.subtitle}
-              imgWidth={item.width}
-              Url={item.url}
-              key={item.url}
-            />
-          )
-        })}
+      <h2 className="technology__title">Worked and supported by many International-famous finance services</h2>
+      <div className="technology__content" ref={scrollContainer}>
+        {data.map((item, index) =>
+          <div className="technology__section" key={index}>
+            <img className="technology__image" src={item.url.default} />
+            <p className="technology__subtitle">{item.subtitle}</p>
+          </div>
+        )}
       </div>
     </section>
   )
