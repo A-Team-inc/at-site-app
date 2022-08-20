@@ -2,6 +2,7 @@ import React from "react"
 import SEO from "../components/sections/SEO/SEO"
 import Header from "../components/sections/Header/Header"
 import Technology from "../components/sections/Technology/Technology"
+import Services from "../components/sections/Services/Services"
 import reportWebVitals from "../reportWebVitals"
 
 import "../App.css"
@@ -14,6 +15,7 @@ export default function Home() {
       <Header />
       <div className="content">
         <Technology />
+        <Services />
       </div>
     </div>
   )
