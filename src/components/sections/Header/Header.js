@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { Link } from "gatsby"
 
 import SocialBlock from "../../globals/SocialBlock/SocialBlock"
@@ -9,6 +9,7 @@ import {
 } from "../../../assets/icons/social/index"
 import A_TEAM from "../../../assets/A-TEAM.png"
 import "./Header.scss"
+import cn from "classnames"
 
 const Header = () => {
   const [ menuIsOpened, setMenuIsOpened ] = useState(false)
@@ -28,8 +29,43 @@ const Header = () => {
     }
   ])
 
+  const useScrollDirection = () => {
+    const [scrollState, setScrollState] = useState({ direction: 'down', offset: 0 });
+  
+    const handleScroll = () => {
+      if (typeof window === undefined) {
+        return;
+      }
+  
+      const topOffset = window.pageYOffset;
+
+      console.log("topOffset", topOffset)
+  
+      setScrollState(last => ({
+        direction: last.offset > topOffset ? 'up' : 'down',
+        offset: topOffset,
+      }));
+    };
+  
+    useEffect(() => {
+      handleScroll();
+  
+      window.addEventListener('scroll', handleScroll);
+      return () => {
+        window.removeEventListener('scroll', handleScroll);
+      };
+    }, []);
+  
+    return scrollState;
+  }
+
+  const scroll = useScrollDirection()
+
   return(
-    <section className="header">
+    <section className={cn("header", {
+      active: !scroll.offset || scroll.offset < 30,
+      activeScrolled: scroll.direction === 'up' && scroll.offset >= 30,
+    })}>
       <div className="header_item">
       <Link to="/"><img className={"header_logo"} src={A_TEAM} width={123} /></Link>
         <menu className="header_menu">

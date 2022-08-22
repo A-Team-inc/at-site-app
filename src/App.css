@@ -10,7 +10,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  overflow: hidden;
+  overflow: auto;
 }
 
 code {
@@ -22,15 +22,9 @@ code {
   width: 0;
 }
 
-.A-Team {
-  height: 100vh;
-  overflow: auto;
-}
-
 .content_max_width {
   max-width: 1440px;
   margin: 0 auto;
-  height: 100%;
 }
 
 .content {
@@ -60,4 +54,8 @@ code {
 h2,
 h1 {
   margin: 20px 30px;
+}
+
+input, textarea {
+  outline: none;
 }
