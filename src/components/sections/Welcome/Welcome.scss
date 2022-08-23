@@ -86,11 +86,16 @@
     height: 100%;
     width: 46vw;
     max-width: 720px;
-    padding: 30px 41px;
 
     @media screen and (max-width: 1023px) {
       width: 100vw;
       max-width: none;
+    }
+
+    &-subtitle, &-title {
+      @media screen and (max-width: 1023px) {
+        text-align: start;
+      }
     }
 
     &-subtitle {
@@ -117,6 +122,10 @@
       padding: 0 0 25px;
 
       @media screen and (max-width: 1023px) {
+        width: 50%;
+      }
+
+      @media screen and (max-width: 768px) {
         width: 100%;
       }
     }
@@ -162,12 +171,16 @@
 .swiper {
   position: initial !important;
 
-  @media screen and (max-width: 1023px) {
-    max-width: 50vw;
-  }
-
   @media screen and (max-width: 768px) {
     max-width: 100vw;
+  }
+
+  &-slide {
+    padding: 30px 41px 35px;
+
+    @media screen and (max-width: 1023px) {
+      text-align: center;
+    }
   }
 }
 

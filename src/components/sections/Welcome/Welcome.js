@@ -1,13 +1,14 @@
 import React, { useState } from "react"
-import { Scrollbar, Mousewheel } from 'swiper'
+import { Scrollbar, Mousewheel, Autoplay } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
 import Title from "../../globals/Title/Title"
 import phoneSlide from "../../../assets/phone_slide.png"
 import blackPhoneSlide from "../../../assets/black_phone_slide.png"
 import "./Welcome.scss"
-import 'swiper/scss'
-import 'swiper/scss/scrollbar'
+import "swiper/scss"
+import "swiper/scss/scrollbar"
+import "swiper/scss/autoplay"
 
 const Welcome = () => {
   const [slides, setSlides] = useState([phoneSlide, blackPhoneSlide, phoneSlide, blackPhoneSlide])
@@ -24,11 +25,15 @@ const Welcome = () => {
       </div>
       <div className="welcome_slider">
         <Swiper
-          modules={[Scrollbar, Mousewheel]}
+          modules={[Scrollbar, Mousewheel, Autoplay]}
           mousewheel={{ mousewheelControl: true }}
           scrollbar={{ draggable: true }}
           speed={500}
           slidesPerView={1}
+          autoplay={{
+            delay: 3000,
+            disableOnInteraction: false
+          }}
         >
           {slides.map((item, index) => {
             return (
