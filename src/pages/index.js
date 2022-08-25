@@ -3,7 +3,7 @@ import SEO from "../components/sections/SEO/SEO"
 import Header from "../components/sections/Header/Header"
 import Footer from "../components/sections/Footer/Footer"
 import Welcome from "../components/sections/Welcome/Welcome"
-import Technology from "../components/sections/Technology/Technology"
+import OurWorks from "../components/sections/OurWorks/OurWorks"
 import reportWebVitals from "../reportWebVitals"
 
 import "../App.css"
@@ -17,7 +17,7 @@ export default function Home() {
         <Header />
         <div className="content">
           <Welcome />
-          <Technology />
+          <OurWorks />
         </div>
       </div>
       <Footer />
