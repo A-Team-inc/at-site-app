@@ -16,5 +16,17 @@ module.exports = {
     twitterUsername: " ",
   },
 
-  plugins: [`gatsby-plugin-react-helmet`],
+  plugins: [
+    `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-sass`,
+    {
+      resolve: `gatsby-plugin-google-fonts`,
+      options: {
+        fonts: [
+          `Poppins`
+        ],
+        display: 'swap'
+      }
+    }
+  ],
 }
