@@ -4,6 +4,7 @@ import Header from "../components/sections/Header/Header"
 import Technology from "../components/sections/Technology/Technology"
 import Services from "../components/sections/Services/Services"
 import Offers from "../components/sections/Offers/Offers"
+import Process from "../components/sections/Process/Process"
 import reportWebVitals from "../reportWebVitals"
 
 import "../App.css"
@@ -18,6 +19,7 @@ export default function Home() {
         <Technology />
         <Services />
         <Offers />
+        <Process />
       </div>
     </div>
   )
