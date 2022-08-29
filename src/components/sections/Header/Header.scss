@@ -3,16 +3,57 @@
   width: 100%;
   background-color: transparent;
   justify-content: space-between;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+
+  transform: translate3d(0, -100%, 0);
+  transition: transform 200ms linear;
 
   @media screen and (max-width: 1023px) {
     padding: 70px;
+    position: inherit;
   }
 
   @media screen and (max-width: 768px) {
     padding: 34px 16px;
   }
 
-  &, &_item, &_menu, &_social-links {
+  &.active {
+    transform: none;
+  }
+
+  &.activeScrolled {
+    color: #333333;
+    transform: none;
+    background: #ffffff;
+  }
+
+  &.activeScrolled &__background {
+    opacity: 1;
+
+    &::after {
+      transform: none;
+    }
+  }
+
+  &_desctop-wrapper {
+    justify-content: space-between;
+    max-width: 1440px;
+    margin: 0 auto;
+
+    @media screen and (min-width: 1720px) {
+      padding: 0 135px;
+    }
+
+    @media screen and (max-width: 1023px) {
+      margin: 0;
+    }
+  }
+
+   &_desctop-wrapper, &_item, &_menu, &_social-links {
     display: flex;
     align-items: center;
   }
@@ -51,7 +92,7 @@
     justify-content: center;
     align-items: center;
     width: 44px;
-    @media screen and (min-width: 1024px) {
+    @media screen and (min-width: 1023px) {
       display: none;
     }
   }
@@ -84,8 +125,8 @@
   bottom: 0;
   border-radius: 20px 20px 0 0;
   overflow-y: auto;
-  z-index: 1;
-  @media screen and (min-width: 1024px) {
+  z-index: 10;
+  @media screen and (min-width: 1023px) {
     display: none;
   }
 
