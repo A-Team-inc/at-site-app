@@ -82,6 +82,7 @@ const Process = () => {
               handleClick={() => handleClick(step, index)}
               isActive={index === currentIndex}
               index={`0${index + 1}`}
+              key={index}
             />
           ))}
           <progress
@@ -94,8 +95,11 @@ const Process = () => {
           {currentStep.description}
         </div>
         <div className="abilities">
-          {data.abilities.map(item => (
-            <div className="abilities__item">
+          {data.abilities.map((item, index) => (
+            <div
+              className="abilities__item"
+              key={index}
+            >
               <h6 className="abilities__title">{item.title}</h6>
               <p className="abilities__content">{item.content}</p>
             </div>

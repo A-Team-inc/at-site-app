@@ -52,8 +52,10 @@ const Technology = () => {
   const scrollContainer = useRef()
   useEffect(() => {
     scrollContainer.current.addEventListener("wheel", event => {
-      event.preventDefault();
-      scrollContainer.current.scrollLeft += event.deltaY;
+      if (window.innerWidth < 1024) {
+        event.preventDefault();
+        scrollContainer.current.scrollLeft += event.deltaY;
+      }
     })
   }, [])
 
