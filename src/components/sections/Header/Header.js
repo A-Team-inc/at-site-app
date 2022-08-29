@@ -38,8 +38,6 @@ const Header = () => {
       }
   
       const topOffset = window.pageYOffset;
-
-      console.log("topOffset", topOffset)
   
       setScrollState(last => ({
         direction: last.offset > topOffset ? 'up' : 'down',

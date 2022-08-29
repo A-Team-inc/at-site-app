@@ -78,6 +78,7 @@
 
       @media screen and (max-width: 1023px) {
         display: block;
+        margin: 0 auto;
       }
     }
   }
@@ -112,11 +113,20 @@
     }
     .right_item {
 
+      @media screen and (max-width: 374px) {
+        flex-direction: column;
+        text-align: center;
+      }
+
       &-img {
         object-fit: cover;
         margin-right: 25px;
         width: 100%;
         max-width: 160px;
+
+        @media screen and (max-width: 374px) {
+          margin: 0;
+        }
       }
 
       &-subtitle {
@@ -162,7 +172,11 @@
 
         img {
           margin: 0 0 0 15px;
-         }
+        }
+
+        @media screen and (max-width: 374px) {
+          justify-content: center;
+        }
       }
 
       &.top {

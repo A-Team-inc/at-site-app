@@ -18,7 +18,7 @@ const OurWorks = () => {
       </div>
       <div className="our_works_title-wrapper">
         <Title className="our_works_title" size="1">The Projects recent <br />We do</Title>
-        <button className="our_works_btn">Show all projects</button>
+        <button onClick={() => window.location.pathname = "/our-works"} className="our_works_btn">Show all projects</button>
       </div>
       <div className="our_works_main">
         <div className="left_item">
@@ -52,7 +52,7 @@ const OurWorks = () => {
       <Title className="bottom-subtitle" size="5">Development <span>| Javascript gatsby</span></Title>
       <Title className="bottom-title" size="4">Website for Agency “Logofo”</Title>
       <Link className="bottom-link" to="/">View the project <img src={ArrowRight} /></Link>
-      <button className="our_works_btn mobile">Show all projects</button>
+      <button onClick={() => window.location.pathname = "/our-works"} className="our_works_btn mobile">Show all projects</button>
     </section>
   )
 }
