@@ -11,7 +11,7 @@ import "./OurWorks.scss"
 
 const OurWorks = () => {
   return(
-    <section className="our_works">
+    <section className="our_works content_max_width">
       <div className="our_works_subtitle-wrapper">
         <div className="subtitle_line" />
         <Title className="our_works_subtitle" size="4">our works</Title>

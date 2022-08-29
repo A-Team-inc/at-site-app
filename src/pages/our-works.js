@@ -6,7 +6,7 @@ import Footer from "../components/sections/Footer/Footer"
 import Project from "../components/sections/Project/Project"
 import reportWebVitals from "../reportWebVitals"
 
-import "../App.css"
+import "../App.scss"
 
 export default function OurWorks() {
 

@@ -2,16 +2,12 @@
   padding: 120px 135px;
   background: url("../../../assets/footer_back_img.png") 0% 0% no-repeat, #D3D8FE;
 
-  @media screen and (max-width: 1400px) {
-    padding: 100px;
+  @media screen and (max-width: 1440px) {
+    padding: 120px 9vw;
   }
 
-  @media screen and (max-width: 1240px) {
-    padding: 70px;
-  }
-
-  @media screen and (max-width: 768px) {
-    padding: 45px 16px;
+  @media screen and (max-width: 1023px) {
+    padding: 45px 4.267vw;
   }
 
   .content_max_width {
@@ -276,7 +272,6 @@
 
   &_radio-group {
     display: flex;
-    justify-content: space-between;
 
     @media screen and (max-width: 374px) {
       flex-direction: column;

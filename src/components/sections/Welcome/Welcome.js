@@ -14,7 +14,7 @@ const Welcome = () => {
   const [slides, setSlides] = useState([phoneSlide, blackPhoneSlide, phoneSlide, blackPhoneSlide])
 
   return(
-    <section className="welcome">
+    <section className="welcome content_max_width">
       <div className="welcome_subscribe-wrapper">
         <Title className={"welcome_title"} size={1}>Are you looking for <br /> super talented software <br /> development <br /> specialists?</Title>
         <p className="welcome_subtitle">Our experts will help your business to grow.<br /> Let's do it together!</p>
