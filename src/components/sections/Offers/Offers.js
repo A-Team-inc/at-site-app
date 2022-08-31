@@ -42,7 +42,7 @@ const Offers = () => {
 
   return (
     <section className="offers">
-      <div className="offers__container">
+      <div className="offers__container content_max_width">
         <div className="offers__text-block">
           <div className="offers__subtitle-block">
             <div className="offers__line" />

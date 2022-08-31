@@ -6,7 +6,7 @@ import SocialBlock from "../../globals/SocialBlock/SocialBlock"
 import "./Header.scss"
 import cn from "classnames"
 
-const Header = () => {
+const Header = ({ positionStyle = "" }) => {
   const data = useHeaderQuery()
   const [ menuIsOpened, setMenuIsOpened ] = useState(false)
 
@@ -41,9 +41,10 @@ const Header = () => {
   const scroll = useScrollDirection()
 
   return(
-    <section className={cn("header", {
+    <section className={cn("header content_max_width", {
       active: !scroll.offset || scroll.offset < 30,
       activeScrolled: scroll.direction === 'up' && scroll.offset >= 30,
+      positionStyle: positionStyle === "positionStyle"
     })}>
       <div className="header_desctop-wrapper">
         <div className="header_item">

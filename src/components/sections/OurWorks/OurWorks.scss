@@ -1,12 +1,12 @@
 .our_works {
-  padding: 100px 135px;
+  padding: 0 100px 170px;
 
-  @media screen and (max-width: 1440px) {
-    padding: 100px 9vw;
+  @media screen and (max-width: 1439px) {
+    padding: 100px 5vw;
   }
 
   @media screen and (max-width: 1023px) {
-    padding: 0 4.267vw;
+    padding: 0 4.267vw 80px;
   }
 
   &_subtitle-wrapper, &_title-wrapper, &_main .right_item, .right_item-link {
@@ -75,10 +75,8 @@
     &.mobile {
       display: none;
 
-
       @media screen and (max-width: 1023px) {
         display: block;
-        margin: 0 auto;
       }
     }
   }
