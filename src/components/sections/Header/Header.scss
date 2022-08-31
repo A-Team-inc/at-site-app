@@ -12,13 +12,13 @@
   transform: translate3d(0, -100%, 0);
   transition: transform 200ms linear;
 
-  @media screen and (max-width: 1023px) {
-    padding: 70px;
-    position: inherit;
+  @media screen and (max-width: 1439px) {
+    padding: 44px 5vw;
   }
 
-  @media screen and (max-width: 768px) {
-    padding: 34px 16px;
+  @media screen and (max-width: 1023px) {
+    padding: 24px 4.267vw;
+    position: inherit;
   }
 
   &.active {
@@ -44,10 +44,6 @@
     max-width: 1440px;
     margin: 0 auto;
 
-    @media screen and (min-width: 1720px) {
-      padding: 0 135px;
-    }
-
     @media screen and (max-width: 1023px) {
       margin: 0;
     }
@@ -60,7 +56,11 @@
 
   &_logo {
     object-fit: contain;
-    margin: 0 62px 0 0;
+    margin: 0 2vw 0 0;
+
+    @media screen and (min-width: 1440px) {
+      margin: 0 62px 0 0;
+    }
   }
 
   &_menu {
@@ -72,7 +72,11 @@
     }
 
     &-item {
-      margin: 0 35px 0 0;
+      margin: 0 1.5vw 0 0;
+
+      @media screen and (min-width: 1440px) {
+        margin: 0 35px 0 0;
+      }
 
       & a {
         text-decoration: none;
@@ -92,7 +96,7 @@
     justify-content: center;
     align-items: center;
     width: 44px;
-    @media screen and (min-width: 1023px) {
+    @media screen and (min-width: 1024px) {
       display: none;
     }
   }
@@ -126,7 +130,7 @@
   border-radius: 20px 20px 0 0;
   overflow-y: auto;
   z-index: 10;
-  @media screen and (min-width: 1023px) {
+  @media screen and (min-width: 1024px) {
     display: none;
   }
 

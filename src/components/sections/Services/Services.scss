@@ -1,6 +1,6 @@
 .services {
   background: #181818;
-  @media screen and (min-width: 1023px) {
+  @media screen and (min-width: 1024px) {
     padding: 170px 0;
   }
 
@@ -44,14 +44,14 @@
     width: 450px;
     height: 626px;
     background: url('../../../assets/back.png');
-    @media screen and (max-width: 1024px) {
+    @media screen and (max-width: 1023px) {
       display: none;
     }
   }
 
   &__text-block {
     padding: 50px 0;
-    @media screen and (min-width: 1023px) {
+    @media screen and (min-width: 1024px) {
       max-width: 570px;
       margin-left: 8vw;
     }
@@ -90,11 +90,11 @@
   margin: 0 auto;
   padding-left: 135px;
   padding-right: 135px;
-  @media screen and (max-width: 1440px) {
-    padding-left: 9vw;
-    padding-right: 9vw;
+  @media screen and (max-width: 1439px) {
+    padding-left: 5vw;
+    padding-right: 5vw;
   }
-  @media screen and (max-width: 1024px) {
+  @media screen and (max-width: 1023px) {
     padding-left: 4.267vw;
     padding-right: 4.267vw;
   }

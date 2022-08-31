@@ -11,7 +11,7 @@ import "swiper/scss/scrollbar"
 import "swiper/scss/autoplay"
 
 const Welcome = () => {
-  const [slides, setSlides] = useState([phoneSlide, blackPhoneSlide, phoneSlide, blackPhoneSlide])
+  const [slides, setSlides] = useState([phoneSlide, phoneSlide, phoneSlide, phoneSlide])
 
   return(
     <section className="welcome content_max_width">

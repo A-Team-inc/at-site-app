@@ -1,24 +1,16 @@
 .offers {
   background: #181818;
-  @media screen and (min-width: 1023px) {
+  @media screen and (min-width: 1024px) {
     padding: 0 0 170px;
   }
 
   &__container {
-    max-width: 1440px;
-    margin: 0 auto;
-    padding-left: 135px;
-    padding-right: 135px;
-    @media screen and (max-width: 1440px) {
-      padding-left: 9vw;
-      padding-right: 9vw;
+    padding: 0 135px;
+    @media screen and (max-width: 1439px) {
+      padding: 0 5vw;
     }
-    @media screen and (max-width: 1024px) {
-      padding-left: 4.267vw;
-      padding-right: 4.267vw;
-    }
-    @media screen and (max-width: 1024px) {
-      padding-right: 0;
+    @media screen and (max-width: 1023px) {
+      padding: 0 0 48px 4.267vw;
     }
   }
 
@@ -65,13 +57,12 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 5.208vw;
-    padding-bottom: 10px;
-    @media screen and (max-width: 1024px) {
+    @media screen and (max-width: 1023px) {
       overflow-x: scroll!important;
       grid-auto-flow: column;
       grid-gap: 24px;
     }
-    @media screen and (min-width: 1439px) {
+    @media screen and (min-width: 1440px) {
       grid-gap: 75px;
     }
 
@@ -100,13 +91,13 @@
     position: relative;
     overflow: hidden;
     height: 353px;
-    @media screen and (min-width: 1023px) {
+    @media screen and (min-width: 1024px) {
       height: 32.153vw;
     }
-    @media screen and (max-width: 1024px) {
+    @media screen and (max-width: 1023px) {
       width: 269px;
     }
-    @media screen and (min-width: 1439px) {
+    @media screen and (min-width: 1440px) {
       height: 463px;
     }
 
