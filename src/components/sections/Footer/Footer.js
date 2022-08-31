@@ -30,7 +30,7 @@ const Footer = () => {
   return(
     <section>
       <div className="footer">
-        <div className="content_max_width">
+        <div className="footer_content content_max_width">
           <div className="left_block">
             <div className="footer_subtitle-wrapper">
               <div className="subtitle_line" />
@@ -88,7 +88,7 @@ const Footer = () => {
         </div>
       </div>
       <div className="underfooter">
-        <div className="content_max_width">
+        <div className="underfooter_content content_max_width">
           <div className="logo_wrapper">
             <Link to="/"><img className={"underfooter_logo"} src={A_TEAM_white} width={123} /></Link>
             <p className="copyright">Copyright © 2021 A-Team inc.</p>

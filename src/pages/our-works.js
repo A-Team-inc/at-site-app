@@ -14,7 +14,7 @@ export default function OurWorks() {
     <>
       <SEO />
       <div className="content_max_width">
-        <Header />
+        <Header positionStyle="positionStyle" />
         <div className="content">
           <Project />
         </div>

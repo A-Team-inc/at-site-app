@@ -11,7 +11,7 @@ import A_TEAM from "../../../assets/A-TEAM.png"
 import "./Header.scss"
 import cn from "classnames"
 
-const Header = () => {
+const Header = ({ positionStyle = "" }) => {
   const [ menuIsOpened, setMenuIsOpened ] = useState(false)
   const [ headerMenuItem, setHeaderMenuItem ] = useState(["About us", "Services", "Our works", "Contacts"])
   const [ socialData, setSocialData ] = useState([
@@ -60,9 +60,10 @@ const Header = () => {
   const scroll = useScrollDirection()
 
   return(
-    <section className={cn("header", {
+    <section className={cn("header content_max_width", {
       active: !scroll.offset || scroll.offset < 30,
       activeScrolled: scroll.direction === 'up' && scroll.offset >= 30,
+      positionStyle: positionStyle === "positionStyle"
     })}>
       <div className="header_desctop-wrapper">
         <div className="header_item">
