@@ -29,6 +29,10 @@ const Header = ({ positionStyle = "" }) => {
     }
   ])
 
+  useEffect(() => {
+    document.body.classList[menuIsOpened ? 'add' : 'remove']('scroll-disabled')
+  }, [menuIsOpened])
+
   const useScrollDirection = () => {
     const [scrollState, setScrollState] = useState({ direction: 'down', offset: 0 });
   
