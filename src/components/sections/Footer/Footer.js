@@ -3,30 +3,12 @@ import { Link } from "gatsby"
 
 import SocialBlock from "../../globals/SocialBlock/SocialBlock"
 import Title from "../../globals/Title/Title"
-import {
-  Facebook,
-  Instagram,
-  LinkedIn
-} from "../../../assets/icons/social/index"
 import A_TEAM_white from "../../../assets/A-TEAM_white.png"
 import "./Footer.scss"
 
 const Footer = () => {
   const [ underfooterData, setUnderfooterData ] = useState(["privacy policy", "terms of use"])
-  const [ socialData, setSocialData ] = useState([
-    {
-      img: Facebook,
-      href: "https://www.facebook.com/"
-    },
-    {
-      img: Instagram,
-      href: "https://www.instagram.com/"
-    },
-    {
-      img: LinkedIn,
-      href: "https://www.linkedin.com/"
-    }
-  ])
+
   return(
     <section>
       <div className="footer">
@@ -38,7 +20,7 @@ const Footer = () => {
             </div>
             <Title className={"footer_title"} size="1">Let’s <br/> collaborate</Title>
             <p className="footer_email">consulting@ateam-inc.com</p>
-            <SocialBlock SocialBlockClassName={"footer_social-links"} data={socialData} />
+            <SocialBlock SocialBlockClassName={"footer_social-links"} />
           </div>
           <div className="footer_form-wrapper">
             <form className="footer_form form" action="" method="get">
@@ -103,7 +85,7 @@ const Footer = () => {
           <div className="underfooter-menu__link underfooter_email">
             <p>consulting@ateam-inc.com</p>
           </div>
-          <SocialBlock SocialBlockClassName={"footer_social-links underfooter_social-links"} data={socialData} />
+          <SocialBlock SocialBlockClassName={"footer_social-links underfooter_social-links"} />
           <p className="copyright mobile_copyright">Copyright © 2021 A-Team inc.</p>
         </div>
       </div>
