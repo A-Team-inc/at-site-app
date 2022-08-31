@@ -1,8 +1,9 @@
-import React, { useState } from "react"
+import React from "react"
 import { Scrollbar, Mousewheel, Autoplay } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
 import useWelcomeQuery from "../../../graphql/welcome"
+import { addLineBreaks } from "../../../utilities/index"
 import Title from "../../globals/Title/Title"
 import "./Welcome.scss"
 import "swiper/scss"
@@ -11,10 +12,6 @@ import "swiper/scss/autoplay"
 
 const Welcome = () => {
   const data = useWelcomeQuery()
-
-  const addLineBreaks = (text) => text.split('\n').reduce((children, textSegment, index) => {
-    return [...children, index > 0 && <br key={index} />, textSegment];
-  }, []);
 
   return(
     <section className="welcome content_max_width">

@@ -7,7 +7,7 @@ const useServicesQuery = () => {
         title,
         subtitle,
         description {
-          description
+          raw
         },
         image {
           url
