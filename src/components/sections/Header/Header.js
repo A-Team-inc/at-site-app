@@ -63,8 +63,8 @@ const Header = ({ positionStyle = "" }) => {
 
   const scroll = useScrollDirection()
 
-  return(
-    <section className={cn("header content_max_width", {
+  return (
+    <section className={cn("header", {
       active: !scroll.offset || scroll.offset < 30,
       activeScrolled: scroll.direction === 'up' && scroll.offset >= 30,
       positionStyle: positionStyle === "positionStyle"
