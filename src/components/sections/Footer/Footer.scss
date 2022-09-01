@@ -369,19 +369,22 @@
   }
 
   &_submit {
+    display: flex;
+    justify-content: center;
+    border: none;
+    -webkit-appearance: none;
     color: #FFFFFF;
     background: #181818;
     border-radius: 45px;
-    padding: 17px 87px;
     margin: 0 0 19px;
+    padding: 17px;
 
      @media screen and (max-width: 1023px) {
-      max-width: 355px;
-      width: 100%;
+      width: min(355px, 100%);
      }
 
-     @media screen and (max-width: 374px) {
-      padding: 17px;
+     @media screen and (max-width: 519px) {
+      width: 100%;
      }
   }
 
