@@ -9,7 +9,7 @@ const Services = () => {
   const data = useServicesQuery()
 
   return (
-    <section className="services">
+    <section className="services" id="services">
       <div className="container">
         <div className="services__content">
           <div className="services__image-block">

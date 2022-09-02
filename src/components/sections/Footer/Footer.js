@@ -11,7 +11,7 @@ const Footer = () => {
 
   return(
     <section>
-      <div className="footer">
+      <div className="footer" id="contacts">
         <div className="footer_content content_max_width">
           <div className="left_block">
             <div className="footer_subtitle-wrapper">

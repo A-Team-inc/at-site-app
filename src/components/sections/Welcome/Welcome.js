@@ -14,7 +14,7 @@ const Welcome = () => {
   const data = useWelcomeQuery()
 
   return(
-    <section className="welcome content_max_width">
+    <section className="welcome content_max_width" id="about-us">
       <div className="welcome_subscribe-wrapper">
         <Title className={"welcome_title"} size={1}>{data?.contentfulWelcome.title}</Title>
         <p className="welcome_subtitle">{addLineBreaks(data?.contentfulWelcome.description.description)}</p>
