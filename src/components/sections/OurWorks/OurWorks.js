@@ -23,6 +23,9 @@ const OurWorks = () => {
       <div className="our_works_main">
         <div className="left_item">
           <img className="left_item-img" src={OurWorksLeftImg} />
+          <Title className="bottom-subtitle" size="5">Development <span>| Javascript gatsby</span></Title>
+          <Title className="bottom-title" size="4">Website for Agency “Logofo”</Title>
+          <Link className="bottom-link" to="/">View the project <img src={ArrowRight} /></Link>
         </div>
         <div className="right_item top">
           <img className="right_item-img" src={OurWorksRightImg1} />
@@ -49,9 +52,6 @@ const OurWorks = () => {
           </div>
         </div>
       </div>
-      <Title className="bottom-subtitle" size="5">Development <span>| Javascript gatsby</span></Title>
-      <Title className="bottom-title" size="4">Website for Agency “Logofo”</Title>
-      <Link className="bottom-link" to="/">View the project <img src={ArrowRight} /></Link>
       <button onClick={() => window.location.pathname = "/our-works"} className="our_works_btn mobile">Show all projects</button>
     </section>
   )

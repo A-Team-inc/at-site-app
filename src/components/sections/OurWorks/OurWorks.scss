@@ -98,6 +98,7 @@
 
     .left_item {
       grid-area: 1 / 1 / 4 / 2;
+      max-height: 570px;
 
       @media screen and (max-width: 1023px) {
         display: none;
