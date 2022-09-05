@@ -20,8 +20,8 @@ const OurWorks = () => {
         <button onClick={() => window.location.pathname = "/our-works"} className="our_works_btn">{data?.contentfulOurWorks.cta}</button>
       </div>
       <div className="project-cards">
-        {data?.contentfulOurWorks.projects.map(project =>
-          <Card project={project} />
+        {data?.contentfulOurWorks.projects.map((project, index) =>
+          <Card project={project} key={index} />
         )}
       </div>
       <button onClick={() => window.location.pathname = "/our-works"} className="our_works_btn mobile">Show all projects</button>
