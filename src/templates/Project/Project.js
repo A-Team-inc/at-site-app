@@ -8,24 +8,25 @@ import "./Project.scss"
 
 const Project = ({ data }) => {
   const projectData = data?.allContentfulProject.nodes[0]
+  console.log("projectData", projectData)
 
   return(
     <Layout>
       <section className="project">
         <div className="project_subtitle-wrapper">
           <div className="subtitle_line" />
-          <Title className="project_subtitle" size="4">{ projectData?.subtitle }</Title>
+          <Title className="project_subtitle" size="4">{ projectData?.subtitle && projectData?.subtitle }</Title>
         </div>
         <div className="project_title-wrapper">
-          <Title className="project_title" size="1">{ projectData?.title }</Title>
-          <button className="project_btn">{ projectData?.cta }</button>
+          <Title className="project_title" size="1">{ projectData?.title && projectData?.title }</Title>
+          <button className="project_btn">{ projectData?.cta && projectData?.cta }</button>
         </div>
         <p className="project_description">
-          {addLineBreaks(projectData?.description.description)}
+          {projectData?.description?.description && addLineBreaks(projectData?.description.description)}
         </p>
         <div className="project_main">
           <div className="project_cards">
-            {projectData?.abilities.map((item, index) => {
+            {projectData?.abilities && projectData?.abilities.map((item, index) => {
               return(
                 <div key={item + index}>
                   <Title className="project_cards-title" size="5">{ item.title }</Title>
@@ -35,7 +36,7 @@ const Project = ({ data }) => {
             })}
           </div>
           <div className="project_images">
-            {projectData?.images.map((image, index) => {
+            {projectData?.images && projectData?.images.map((image, index) => {
               if(index < 3) {
                 return <img className="main_img" key={image.url + index} src={image.url} />
               }

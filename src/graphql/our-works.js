@@ -4,12 +4,13 @@ const useOurWorksQuery = () => {
   return useStaticQuery(graphql`
     query OurWorks {
       contentfulOurWorks {
-        cta
-        title
-        subtitle
+        cta,
+        title,
+        subtitle,
         projects {
-          title
-          subtitle
+          title,
+          slug,
+          subtitle,
           cover {
             file {
               url

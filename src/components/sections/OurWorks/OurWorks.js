@@ -35,7 +35,7 @@ const Card = ({ project }) => (
     <div className="project-card__content">
       <Title className="project-card__subtitle" size="5">{project.subtitle}</Title>
       <Title className="project-card__title" size="4">{project.title}</Title>
-      <Link className="project-card__link" to="/">View the project <img src={ArrowRight} /></Link>
+      <Link className="project-card__link" to={project.slug}>View the project <img src={ArrowRight} /></Link>
     </div>
   </div>
 )
