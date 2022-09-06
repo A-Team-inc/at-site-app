@@ -18,7 +18,7 @@ const OurWorks = () => {
       </div>
       <div className="our_works_title-wrapper">
         <Title className="our_works_title" size="1">The Projects recent <br />We do</Title>
-        <button onClick={() => window.location.pathname = "/our-works"} className="our_works_btn">Show all projects</button>
+        <button onClick={() => window.location.pathname = "/website-1"} className="our_works_btn">Show all projects</button>
       </div>
       <div className="our_works_main">
         <div className="left_item">

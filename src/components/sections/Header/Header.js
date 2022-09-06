@@ -58,7 +58,7 @@ const Header = ({ positionStyle = "" }) => {
           </menu>
         </div>
         <div className="header_item">
-          <SocialBlock SocialBlockClassName={"header_social-links"} />
+          <SocialBlock SocialBlockClassName={"header_social-links"} data={data?.contentfulHeader.socialLinks} />
         </div>
 
         <div className="header__mobile-menu">

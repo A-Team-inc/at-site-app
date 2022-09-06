@@ -1,7 +1,6 @@
 import React from "react"
 
 import useServicesQuery from "../../../graphql/services"
-// import { addLineBreaks } from "../../../utilities/index"
 import RichText from "../../globals/RichText/RichText"
 import "./Services.scss"
 
