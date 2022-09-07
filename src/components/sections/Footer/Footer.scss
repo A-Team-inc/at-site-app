@@ -234,10 +234,15 @@
   &_email {
     color: #D3D8FE;
     justify-content: flex-end;
+    cursor: pointer;
 
     @media screen and (max-width: 1023px) {
       justify-content: center;
       margin: 0;
+    }
+
+    &:hover {
+      color: #4B5BD7;
     }
   }
 
@@ -384,14 +389,20 @@
     border-radius: 45px;
     margin: 0 0 19px;
     padding: 17px;
+    cursor: pointer;
 
-     @media screen and (max-width: 1023px) {
-      width: min(355px, 100%);
-     }
+    @media screen and (max-width: 1023px) {
+    width: min(355px, 100%);
+    }
 
-     @media screen and (max-width: 519px) {
-      width: 100%;
-     }
+    @media screen and (max-width: 519px) {
+    width: 100%;
+    }
+
+    &:hover {
+      color: #333333;
+      background: linear-gradient(68deg, #BEB3F5 -0.66%, #E4F2EE 70.67%);
+    }
   }
 
   &_is-authorize {
