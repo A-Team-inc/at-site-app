@@ -1,34 +1,11 @@
 import React, {useEffect, useRef} from "react"
+
+import useOfferQuery from "../../../graphql/offer"
 import "./Offers.scss"
 import BackgroundLogo from '../../../components/globals/BackgroundLogo/BackgroundLogo'
 
 const Offers = () => {
-  const cards = [
-    {
-      image: require('../../../assets/cards/mobile-app.png').default,
-      text: "Mobile App",
-      backgroundColor: "#E7F0E1",
-      logoColor: "#84AE67",
-      rotateAngle: 0,
-      backgroundLogoPosition: 'bottom'
-    },
-    {
-      image: require('../../../assets/cards/web-app.png').default,
-      text: "Web App",
-      backgroundColor: "#FAF4E8",
-      logoColor: "#CCA350",
-      rotateAngle: 75,
-      backgroundLogoPosition: 'bottom'
-    },
-    {
-      image: require('../../../assets/cards/website-development.png').default,
-      text: "Website development",
-      backgroundColor: "#D3D8FE",
-      logoColor: "#6C78D2",
-      rotateAngle: 0,
-      backgroundLogoPosition: 'top'
-    },
-  ]
+  const data = useOfferQuery()
 
   const scrollContainer = useRef()
   useEffect(() => {
@@ -46,17 +23,17 @@ const Offers = () => {
         <div className="offers__text-block">
           <div className="offers__subtitle-block">
             <div className="offers__line" />
-            <h6 className="offers__subtitle">what we offer</h6>
+            <h6 className="offers__subtitle">{ data?.contentfulOffer.subtitle }</h6>
           </div>
-          <h2 className="offers__title">Unlock Revenue Growth for Your Business</h2>
+          <h2 className="offers__title">{ data?.contentfulOffer.title }</h2>
         </div>
         <div className="offers__cards" ref={scrollContainer}>
-          {cards.map((card, index) =>
+          {data?.contentfulOffer.images.map((card, index) =>
             <Card
-              image={card.image}
+              image={card.img?.url}
               text={card.text}
-              backgroundColor={card.backgroundColor}
-              logoColor={card.logoColor}
+              backgroundColor={`#${card.backgroundColor}`}
+              logoColor={`#${card.logoColor}`}
               rotateAngle={card.rotateAngle}
               backgroundLogoPosition={card.backgroundLogoPosition}
               topOffset={card.topOffset}

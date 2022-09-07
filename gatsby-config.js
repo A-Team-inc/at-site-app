@@ -1,8 +1,8 @@
-/**
- * Configure your Gatsby site with this file.
- *
- * See: https://www.gatsbyjs.com/docs/gatsby-config/
- */
+require('dotenv').config(
+  {
+    path: `.env`,
+  }
+);
 
 module.exports = {
   /* Your site config here */
@@ -19,6 +19,14 @@ module.exports = {
   plugins: [
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-sass`,
+    `gatsby-plugin-image`,
+    {
+      resolve: `gatsby-source-contentful`,
+      options: {
+        "spaceId": process.env.CONTENTFUL_SPACE,
+        "accessToken": process.env.CONTENTFUL_DELIVERY_TOKEN,
+      },
+    },
     {
       resolve: `gatsby-plugin-google-fonts`,
       options: {

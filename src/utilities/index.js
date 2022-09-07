@@ -1,3 +1,5 @@
+import React from "react"
+
 export function resizeWidthOnly(a, b) {
   var c = [window.innerWidth]
   return (
@@ -13,3 +15,7 @@ export function resizeWidthOnly(a, b) {
     a
   )
 }
+
+export const addLineBreaks = (text) => text.split('\n').reduce((children, textSegment, index) => {
+  return [...children, index > 0 && <br key={index} />, textSegment];
+}, []);

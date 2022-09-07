@@ -1,33 +1,14 @@
 import React, { useState, useEffect } from "react"
 import { Link } from "gatsby"
 
+import useHeaderQuery from "../../../graphql/header"
 import SocialBlock from "../../globals/SocialBlock/SocialBlock"
-import {
-  Facebook,
-  Instagram,
-  LinkedIn
-} from "../../../assets/icons/social/index"
-import A_TEAM from "../../../assets/A-TEAM.png"
 import "./Header.scss"
 import cn from "classnames"
 
 const Header = ({ positionStyle = "" }) => {
+  const data = useHeaderQuery()
   const [ menuIsOpened, setMenuIsOpened ] = useState(false)
-  const [ headerMenuItem, setHeaderMenuItem ] = useState(["About us", "Services", "Our works", "Contacts"])
-  const [ socialData, setSocialData ] = useState([
-    {
-      img: Facebook,
-      href: "https://www.facebook.com/"
-    },
-    {
-      img: Instagram,
-      href: "https://www.instagram.com/"
-    },
-    {
-      img: LinkedIn,
-      href: "https://www.linkedin.com/"
-    }
-  ])
 
   useEffect(() => {
     document.body.classList[menuIsOpened ? 'add' : 'remove']('scroll-disabled')
@@ -71,13 +52,13 @@ const Header = ({ positionStyle = "" }) => {
     })}>
       <div className="header_desctop-wrapper">
         <div className="header_item">
-        <Link to="/"><img className={"header_logo"} src={A_TEAM} width={123} /></Link>
+        <Link to="/"><img className={"header_logo"} src={data?.contentfulHeader.logo.url} width={123} /></Link>
           <menu className="header_menu">
-            {headerMenuItem.map((item, index) => <li key={index} className="header_menu-item"><Link to={`/#${item.split(' ').join('-').toLowerCase()}`}>{item}</Link></li>)}
+            {data?.contentfulHeader.menu.map((item, index) => <li key={index} className="header_menu-item"><Link to={`/#${item.split(' ').join('-').toLowerCase()}`}>{item}</Link></li>)}
           </menu>
         </div>
         <div className="header_item">
-          <SocialBlock SocialBlockClassName={"header_social-links"} data={socialData} />
+          <SocialBlock SocialBlockClassName={"header_social-links"} data={data?.contentfulHeader.socialLinks} />
         </div>
 
         <div className="header__mobile-menu">
@@ -89,7 +70,7 @@ const Header = ({ positionStyle = "" }) => {
         </div>
         <div className={`mobile-menu ${menuIsOpened ? 'mobile-menu--opened' : 'mobile-menu--closed'}`}>
           <menu>
-            {headerMenuItem.map((item, index) =>
+            {data?.contentfulHeader.menu.map((item, index) =>
               <li className="mobile-menu__link" key={index}>
                 <Link to={`/#${item.split(' ').join('-').toLowerCase()}`} onClick={() => setMenuIsOpened(false)}>{item}</Link>
               </li>
@@ -97,7 +78,7 @@ const Header = ({ positionStyle = "" }) => {
           </menu>
           <div className="social-links-wrapper">
             <p>consulting@ateam-inc.com</p>
-            <SocialBlock SocialBlockClassName={"mobile-menu__social-links"} data={socialData} />
+            <SocialBlock SocialBlockClassName={"mobile-menu__social-links"} />
           </div>
         </div>
       </div>

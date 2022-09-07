@@ -1,26 +1,26 @@
-import React, { useState } from "react"
+import React from "react"
 import { Scrollbar, Mousewheel, Autoplay } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
+import useWelcomeQuery from "../../../graphql/welcome"
+import { addLineBreaks } from "../../../utilities/index"
 import Title from "../../globals/Title/Title"
-import phoneSlide from "../../../assets/phone_slide.png"
-import blackPhoneSlide from "../../../assets/black_phone_slide.png"
 import "./Welcome.scss"
 import "swiper/scss"
 import "swiper/scss/scrollbar"
 import "swiper/scss/autoplay"
 
 const Welcome = () => {
-  const [slides, setSlides] = useState([phoneSlide, phoneSlide, phoneSlide, phoneSlide])
+  const data = useWelcomeQuery()
 
   return(
     <section className="welcome content_max_width" id="about-us">
       <div className="welcome_subscribe-wrapper">
-        <Title className={"welcome_title"} size={1}>Are you looking for <br /> super talented software <br /> development <br /> specialists?</Title>
-        <p className="welcome_subtitle">Our experts will help your business to grow.<br /> Let's do it together!</p>
-        <form className="welcome_form" action="" method="get">
+        <Title className={"welcome_title"} size={1}>{data?.contentfulWelcome.title}</Title>
+        <p className="welcome_subtitle">{addLineBreaks(data?.contentfulWelcome.description.description)}</p>
+        <form className="welcome_form" action={data?.contentfulWelcome.formAction} method="get">
           <input className="welcome_form-email" type="email" placeholder="Enter your email" />
-          <input className="welcome_form-submit" type="submit" value="Let’s talk" />
+          <input className="welcome_form-submit" type="submit" value={data?.contentfulWelcome.formButtonValue} />
         </form>
       </div>
       <div className="welcome_slider">
@@ -35,18 +35,18 @@ const Welcome = () => {
             disableOnInteraction: false
           }}
         >
-          {slides.map((item, index) => {
+          {data?.contentfulWelcome.slider.slides.map((item, index) => {
             return (
               <SwiperSlide key={index}>
-                <p className="welcome_slider-subtitle">We OFFER</p>
-                <Title className={"welcome_slider-title"} size={3}>Mobile Solutions</Title>
-                <img className="slider-image" src={item} alt="" />
+                <p className="welcome_slider-subtitle">{item.subtitle}</p>
+                <Title className={"welcome_slider-title"} size={3}>{item.title}</Title>
+                <img className="slider-image" src={item.slide.url} alt="" />
               </SwiperSlide>
             )
           })}
         </Swiper>
           <span slot="container-end" className="slot-first">01</span>
-          <span slot="container-end" className="slot-second">{slides.length + 1 >= 10 ? slides.length : `0${slides.length}`}</span>
+          <span slot="container-end" className="slot-second">{data?.contentfulWelcome.slider.slides.length + 1 >= 10 ? data?.contentfulWelcome.slider.slides.length : `0${data?.contentfulWelcome.slider.slides.length}`}</span>
       </div>
     </section>
   )
