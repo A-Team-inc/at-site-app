@@ -8,7 +8,6 @@ import "./Project.scss"
 
 const Project = ({ data }) => {
   const projectData = data?.allContentfulProject.nodes[0]
-  console.log("projectData", projectData)
 
   return(
     <Layout>

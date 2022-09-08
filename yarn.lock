@@ -10155,3 +10155,7 @@ yurnalist@^2.1.0:
     is-ci "^2.0.0"
     read "^1.0.7"
     strip-ansi "^5.2.0"
+
+"solutions": {
+  "got": "^12.1.0"
+}
