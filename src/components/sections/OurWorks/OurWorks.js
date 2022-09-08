@@ -37,7 +37,7 @@ const Card = ({ project }) => (
       <Title className="project-card__title" size="4">{project.title}</Title>
       <Link
         className="project-card__link"
-        to={project.slug}
+        to={`projects${project.slug}`}
         aria-label={`${project.title} View the project`}
       >
         View the project <img src={ArrowRight} />
