@@ -8,7 +8,6 @@ import "./Project.scss"
 
 const Project = ({ data }) => {
   const projectData = data?.allContentfulProject.nodes[0]
-  console.log("projectData", projectData)
 
   return(
     <Layout>
@@ -38,7 +37,7 @@ const Project = ({ data }) => {
           <div className="project_images">
             {projectData?.images && projectData?.images.map((image, index) => {
               if(index < 3) {
-                return <img className="main_img" key={image.url + index} src={image.url} />
+                return <img className="main_img" key={image.url + index} src={image.url} alt={projectData.title} />
               }
             } )}
           </div>

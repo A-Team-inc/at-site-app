@@ -12,10 +12,10 @@ const OurWorks = () => {
     <section className="our_works content_max_width" id="our-works">
       <div className="our_works_subtitle-wrapper">
         <div className="subtitle_line" />
-        <h4 className="our_works_subtitle" tabindex="0">{data?.contentfulOurWorks.subtitle}</h4>
+        <h4 className="our_works_subtitle" tabIndex="0">{data?.contentfulOurWorks.subtitle}</h4>
       </div>
       <div className="our_works_title-wrapper">
-        <h1 className="our_works_title" tabindex="0">{data?.contentfulOurWorks.title}</h1>
+        <h1 className="our_works_title" tabIndex="0">{data?.contentfulOurWorks.title}</h1>
         <button onClick={() => window.location.pathname = "/our-works"} className="our_works_btn">{data?.contentfulOurWorks.cta}</button>
       </div>
       <div className="project-cards">

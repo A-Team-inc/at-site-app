@@ -23,10 +23,10 @@ const Footer = () => {
           <div className="left_block">
             <div className="footer_subtitle-wrapper">
               <div className="subtitle_line" />
-              <h4 className={"footer_subtitle"} tabindex="0">{ data?.contentfulFooter.subtitle }</h4>
+              <h4 className={"footer_subtitle"} tabIndex="0">{ data?.contentfulFooter.subtitle }</h4>
             </div>
-            <h1 className={"footer_title"} tabindex="0">{addLineBreaks(data?.contentfulFooter.title.title)}</h1>
-            <p className="footer_email" tabindex="0">{data?.contentfulFooter.email}</p>
+            <h1 className={"footer_title"} tabIndex="0">{addLineBreaks(data?.contentfulFooter.title.title)}</h1>
+            <p className="footer_email" tabIndex="0">{data?.contentfulFooter.email}</p>
             <SocialBlock SocialBlockClassName={"footer_social-links"} data={data?.contentfulFooter.socialLinks} />
           </div>
           <div className="footer_form-wrapper">
@@ -40,7 +40,7 @@ const Footer = () => {
                   <input className="form_text-input" type="text" id="userEmail" name="user email" placeholder={ data?.contentfulFooter.footerForm.emailPlaceholder } />
                 </div>
                 <div className="form_item-wrapper">
-                  <label className="form_label" tabindex="0">{ data?.contentfulFooter.footerForm.projectTypesTitle }</label>
+                  <label className="form_label" tabIndex="0">{ data?.contentfulFooter.footerForm.projectTypesTitle }</label>
                   <div className="form_radio-group">
                     { data?.contentfulFooter.footerForm.projectTypesLabel.map((item, index) => (
                       <>
@@ -54,7 +54,7 @@ const Footer = () => {
                         <label
                           htmlFor={`serviceType${index}`}
                           key={`serviceTypeLabel${index}`}
-                          tabindex="0"
+                          tabIndex="0"
                           onKeyDown={event => keyDown(event)}
                         >{item}</label>
                       </>
@@ -78,7 +78,7 @@ const Footer = () => {
                           htmlFor={`budgetRange${index}`}
                           key={`budgetRangeLabel${index}`}
                           onKeyDown={event => keyDown(event)}
-                          tabindex="0"
+                          tabIndex="0"
                         >{item}</label>
                       </>
                     )) }
@@ -120,7 +120,7 @@ const Footer = () => {
               </li>
             )}
           </menu>
-          <div className="underfooter-menu__link underfooter_email" tabindex="0">
+          <div className="underfooter-menu__link underfooter_email" tabIndex="0">
             <p>{data?.contentfulFooter.underfooter.email}</p>
           </div>
           <SocialBlock SocialBlockClassName={"footer_social-links underfooter_social-links"} data={data?.contentfulFooter.socialLinks} />

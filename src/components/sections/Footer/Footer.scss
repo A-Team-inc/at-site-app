@@ -92,6 +92,7 @@
   }
 
   &_email {
+    line-height: 150%;
     letter-spacing: 0.02em;
     color: #181818;
 
@@ -171,7 +172,7 @@
   .copyright {
     font-weight: 400;
     font-size: 12px;
-    line-height: 100%;
+    line-height: 150%;
     letter-spacing: 0.12em;
     color: rgba(247, 247, 247, 0.7);
 
@@ -208,7 +209,7 @@
     margin: 0 50px 0 0;
     font-weight: 600;
     font-size: 16px;
-    line-height: 100%;
+    line-height: 150%;
     letter-spacing: 0.16em;
     color: #F7F7F7;
 
