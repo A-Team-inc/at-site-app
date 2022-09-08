@@ -13,10 +13,10 @@ const OurWorks = () => {
     <section className="our_works content_max_width" id="our-works">
       <div className="our_works_subtitle-wrapper">
         <div className="subtitle_line" />
-        <Title className="our_works_subtitle" size="4">{data?.contentfulOurWorks.subtitle}</Title>
+        <h4 className="our_works_subtitle" tabindex="0">{data?.contentfulOurWorks.subtitle}</h4>
       </div>
       <div className="our_works_title-wrapper">
-        <Title className="our_works_title" size="1">{data?.contentfulOurWorks.title}</Title>
+        <h1 className="our_works_title" tabindex="0">{data?.contentfulOurWorks.title}</h1>
         <button onClick={() => window.location.pathname = "/our-works"} className="our_works_btn">{data?.contentfulOurWorks.cta}</button>
       </div>
       <div className="project-cards">
@@ -31,11 +31,17 @@ const OurWorks = () => {
 
 const Card = ({ project }) => (
   <div className="project-card">
-    <img className="project-card__img" src={project.cover.file.url} />
+    <img className="project-card__img" src={project.cover.file.url} alt={project.title} />
     <div className="project-card__content">
       <Title className="project-card__subtitle" size="5">{project.subtitle}</Title>
       <Title className="project-card__title" size="4">{project.title}</Title>
-      <Link className="project-card__link" to={project.slug}>View the project <img src={ArrowRight} /></Link>
+      <Link
+        className="project-card__link"
+        to={project.slug}
+        aria-label={`${project.title} View the project`}
+      >
+        View the project <img src={ArrowRight} />
+      </Link>
     </div>
   </div>
 )
