@@ -81,6 +81,12 @@
       font-size: 16px;
       line-height: 16px;
       color: #FFFFFF;
+      cursor: pointer;
+
+      &:hover {
+        color: #333333;
+        background: linear-gradient(68deg, #BEB3F5 -0.66%, #E4F2EE 70.67%);
+      }
     }
   }
 

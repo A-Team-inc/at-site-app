@@ -1,8 +1,8 @@
 .our_works {
-  padding: 0 100px 170px;
+  padding: 0 135px 170px;
 
   @media screen and (max-width: 1439px) {
-    padding: 0 5vw 170px;
+    padding: 0 5vw 135px;
   }
 
   @media screen and (max-width: 1023px) {
@@ -67,9 +67,20 @@
     height: 50px;
     background: #181818;
     border-radius: 45px;
+    border: none;
+    cursor: pointer;
 
     @media screen and (max-width: 1023px) {
       display: none;
+    }
+
+    @media screen and (max-width: 1023px) {
+      display: none;
+    }
+
+    &:hover {
+      color: #333333;
+      background: linear-gradient(68deg, #BEB3F5 -0.66%, #E4F2EE 70.67%);
     }
     
     &.mobile {
@@ -203,5 +214,17 @@
     line-height: 100%;
     text-decoration: none;
     color: #4B5BD7;
+
+    &:hover {
+      color: #D3D8FE;
+
+      svg path {
+        fill: #D3D8FE;
+      }
+    }
+  }
+
+  &__arrow {
+    margin-left: 15px;
   }
 }
