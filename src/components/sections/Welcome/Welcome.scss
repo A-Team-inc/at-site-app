@@ -28,24 +28,23 @@
   &_title {
     font-weight: 600;
     font-size: 45px;
-    line-height: 55px;
+    line-height: 122%;
     letter-spacing: 0.02em;
     margin: 0 0 30px;
 
     @media screen and (max-width: 1023px) {
       font-size: 28px;
-      line-height: 38px;
+      line-height: 136%;
     }
   }
 
   &_subtitle {
     font-size: 18px;
-    line-height: 27px;
+    line-height: 150%;
     color: #555555;
 
     @media screen and (max-width: 1023px) {
       font-size: 16px;
-      line-height: 150%;
     }
   }
 
@@ -68,7 +67,7 @@
 
       &::placeholder {
         font-size: 16px;
-        line-height: 16px;
+        line-height: 100%;
         color: #555555;
         opacity: 0.4;
       }
@@ -79,7 +78,7 @@
       height: 50px;
       background: #181818;
       font-size: 16px;
-      line-height: 16px;
+      line-height: 100%;
       color: #FFFFFF;
       cursor: pointer;
 
@@ -110,7 +109,7 @@
 
     &-subtitle {
       font-size: 16px;
-      line-height: 16px;
+      line-height: 100%;
       letter-spacing: 0.16em;
       text-transform: uppercase;
       color: #333333;
@@ -119,7 +118,7 @@
     &-title {
       font-weight: 600;
       font-size: 24px;
-      line-height: 24px;
+      line-height: 100%;
       letter-spacing: 0.02em;
       color: #333333;
       margin-bottom: 50px;
@@ -141,7 +140,7 @@
       bottom: 30px;
       font-weight: 600;
       font-size: 16px;
-      line-height: 16px;
+      line-height: 100%;
       letter-spacing: 0.02em;
       color: #333333;
     }

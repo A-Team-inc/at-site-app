@@ -35,33 +35,32 @@
 
   &_subtitle {
     font-size: 16px;
-    line-height: 16px;
+    line-height: 100%;
     letter-spacing: 0.16em;
     text-transform: uppercase;
     color: #555555;
 
     @media screen and (max-width: 1023px) {
       font-size: 12px;
-      line-height: 12px;
     }
   }
 
   &_title {
     font-weight: 600;
     font-size: 45px;
-    line-height: 55px;
+    line-height: 122%;
     letter-spacing: 0.02em;
     margin: 10px 0 0;
 
     @media screen and (max-width: 1023px) {
       font-size: 28px;
-      line-height: 30px;
+      line-height: 107%;
     }
   }
 
   &_btn {
     font-size: 16px;
-    line-height: 16px;
+    line-height: 100%;
     color: #FFFFFF;
     width: 190px;
     height: 50px;
@@ -76,7 +75,7 @@
   &_description, &_card-description {
     max-width: 810px;
     font-size: 16px;
-    line-height: 24px;
+    line-height: 150%;
     color: #555555;
     margin: 0 0 40px;
   }
@@ -103,7 +102,7 @@
     &-title {
       font-weight: 600;
       font-size: 18px;
-      line-height: 18px;
+      line-height: 100%;
       letter-spacing: 0.02em;
       margin: 0 0 10px;
     }

@@ -58,14 +58,14 @@
     font-style: normal;
     font-weight: 600;
     font-size: 45px;
-    line-height: 55px;
+    line-height: 122%;
     letter-spacing: 0.02em;
     color: #333333;
     margin: 6px 0 39px;
 
     @media screen and (max-width: 768px) {
       font-size: 28px;
-      line-height: 28px;
+      line-height: 100%;
     }
 
     br {
@@ -78,7 +78,7 @@
   &_subtitle, &_email {
     font-weight: 400;
     font-size: 16px;
-    line-height: 16px;
+    line-height: 100%;
   }
 
   &_subtitle {
@@ -87,7 +87,7 @@
 
     @media screen and (max-width: 768px) {
       font-size: 12px;
-      line-height: 12px;
+      line-height: 100%;
     }
   }
 
@@ -171,7 +171,7 @@
   .copyright {
     font-weight: 400;
     font-size: 12px;
-    line-height: 12px;
+    line-height: 100%;
     letter-spacing: 0.12em;
     color: rgba(247, 247, 247, 0.7);
 
@@ -208,7 +208,7 @@
     margin: 0 50px 0 0;
     font-weight: 600;
     font-size: 16px;
-    line-height: 16px;
+    line-height: 100%;
     letter-spacing: 0.16em;
     color: #F7F7F7;
 
@@ -295,7 +295,7 @@
       border-radius: 45px;
       padding: 18px 10px;
       font-size: 14px;
-      line-height: 14px;
+      line-height: 100%;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -363,11 +363,11 @@
 
   &_label, &_submit, &_text-input::placeholder, &_textarea::placeholder {
     font-size: 16px;
-    line-height: 16px;
+    line-height: 100%;
 
     @media screen and (max-width: 374px) {
       font-size: 14px;
-      line-height: 14px;
+      line-height: 100%;
     }
   }
 
@@ -415,7 +415,7 @@
 
   &_checkbox-label {
     font-size: 13px;
-    line-height: 15px;
+    line-height: 115%;
     color: #181818;
     opacity: 0.7;
   }
