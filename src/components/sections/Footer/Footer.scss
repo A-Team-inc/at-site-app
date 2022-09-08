@@ -2,7 +2,7 @@
   background: url("../../../assets/footer_back_img.png") 0% 0% no-repeat, #D3D8FE;
 
   &_content {
-    padding: 120px 135px;
+    padding: 120px 135px 100px;
 
     @media screen and (max-width: 1439px) {
       padding: 120px 5vw;
@@ -234,10 +234,15 @@
   &_email {
     color: #D3D8FE;
     justify-content: flex-end;
+    cursor: pointer;
 
     @media screen and (max-width: 1023px) {
       justify-content: center;
       margin: 0;
+    }
+
+    &:hover {
+      color: #4B5BD7;
     }
   }
 
@@ -262,7 +267,6 @@
   height: 100%;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(3, 33.333%);
   column-gap: 35px;
   margin: 21px 0 0;
 
@@ -335,13 +339,20 @@
 
   &_textarea {
     border-radius: 25px;
-    height: 96px;
+    min-height: 96px;
+    max-height: 400px;
+    @media screen and (min-width: 1024px) {
+      width: 42.833vw!important;
+    }
+    @media screen and (min-width: 1201px) {
+      width: 355px!important;
+    }
   }
 
   &_item-wrapper {
     display: flex;
     flex-direction: column;
-    margin: 0 0 10px;
+    margin: 0 0 35px;
   }
 
   &_checkbox-label, &_label, &_submit, &_text-input::placeholder, &_textarea::placeholder, &_radio+label {
@@ -378,14 +389,20 @@
     border-radius: 45px;
     margin: 0 0 19px;
     padding: 17px;
+    cursor: pointer;
 
-     @media screen and (max-width: 1023px) {
-      width: min(355px, 100%);
-     }
+    @media screen and (max-width: 1023px) {
+    width: min(355px, 100%);
+    }
 
-     @media screen and (max-width: 519px) {
-      width: 100%;
-     }
+    @media screen and (max-width: 519px) {
+    width: 100%;
+    }
+
+    &:hover {
+      color: #333333;
+      background: linear-gradient(68deg, #BEB3F5 -0.66%, #E4F2EE 70.67%);
+    }
   }
 
   &_is-authorize {

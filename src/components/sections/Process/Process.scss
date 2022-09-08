@@ -88,8 +88,16 @@
     background: #181818;
     border-radius: 45px;
     padding: 17px 25px;
+    height: 50px;
+    border: none;
+    cursor: pointer;
     @media screen and (max-width: 1023px) {
       display: none;
+    }
+
+    &:hover {
+      color: #333333;
+      background: linear-gradient(68deg, #BEB3F5 -0.66%, #E4F2EE 70.67%);
     }
   }
 
@@ -103,9 +111,18 @@
     background: #181818;
     border-radius: 45px;
     padding: 14px 25px;
+    height: 50px;
     margin: 36px 0 0;
+    border: none;
+    cursor: pointer;
+
     @media screen and (min-width: 1024px) {
       display: none;
+    }
+
+    &:hover {
+      color: #333333;
+      background: linear-gradient(68deg, #BEB3F5 -0.66%, #E4F2EE 70.67%);
     }
   }
 
