@@ -4,7 +4,6 @@ import { Link } from "gatsby"
 import useFooterQuery from "../../../graphql/footer"
 import { addLineBreaks } from "../../../utilities/index"
 import SocialBlock from "../../globals/SocialBlock/SocialBlock"
-import Title from "../../globals/Title/Title"
 import "./Footer.scss"
 
 const Footer = () => {
