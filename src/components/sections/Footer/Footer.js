@@ -43,21 +43,20 @@ const Footer = () => {
                   <label className="form_label" tabIndex="0">{ data?.contentfulFooter.footerForm.projectTypesTitle }</label>
                   <div className="form_radio-group">
                     { data?.contentfulFooter.footerForm.projectTypesLabel.map((item, index) => (
-                      <>
+                      <React.Fragment key={`serviceType${index}`}>
                         <input
                           className="form_radio"
                           type="radio"
                           id={`serviceType${index}`}
                           name="service type"
-                          value={item}
-                          key={`serviceType${index}`} />
+                          value={item} />
                         <label
                           htmlFor={`serviceType${index}`}
                           key={`serviceTypeLabel${index}`}
                           tabIndex="0"
                           onKeyDown={event => keyDown(event)}
                         >{item}</label>
-                      </>
+                      </React.Fragment>
                     )) }
                   </div>
                 </div>
@@ -65,22 +64,20 @@ const Footer = () => {
                   <label className="form_label" tabIndex="0">{ data?.contentfulFooter.footerForm.budgetRangeTitle }</label>
                   <div className="form_radio-group">
                     { data?.contentfulFooter.footerForm.budgetRangeLabel.map((item, index) => (
-                      <>
+                      <React.Fragment key={`budgetRange${index}`}>
                         <input
                           className="form_radio"
                           type="radio"
                           id={`budgetRange${index}`}
                           name="budget range"
-                          value={item}
-                          key={`budgetRange${index}`}
-                          />
+                          value={item} />
                         <label
                           htmlFor={`budgetRange${index}`}
                           key={`budgetRangeLabel${index}`}
                           onKeyDown={event => keyDown(event)}
                           tabIndex="0"
                         >{item}</label>
-                      </>
+                      </React.Fragment>
                     )) }
                   </div>
                 </div>
