@@ -9,6 +9,7 @@ const useHeaderQuery = () => {
         }
         menu
         socialLinks {
+          title
           url
           icon {
             url
