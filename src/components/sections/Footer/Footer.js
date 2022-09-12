@@ -112,7 +112,7 @@ const Footer = () => {
           <menu className="underfooter-menu">
             {data?.contentfulFooter.underfooter.menu.map((item, index) =>
               <li className="underfooter-menu__link" key={index}>
-                <Link to={`/#${item.split(' ').join('-').toLowerCase()}`}>{item}</Link>
+                <Link to={`/${item.split(' ').join('-').toLowerCase()}`}>{item}</Link>
               </li>
             )}
           </menu>

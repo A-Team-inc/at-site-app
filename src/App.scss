@@ -72,3 +72,60 @@ input, textarea {
   right: 0;
   bottom: 0;
 }
+
+.privacy_policy-terms_of_use {
+  padding: 0 135px 170px;
+
+  @media screen and (max-width: 1439px) {
+    padding: 0 5vw 135px;
+  }
+
+  @media screen and (max-width: 1023px) {
+    padding: 0 4.267vw 80px;
+  }
+
+  &__title {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 2.8rem;
+    line-height: 122%;
+    letter-spacing: 0.02em;
+    color:#333333;
+    margin: 0 0 60px;
+  }
+
+  &__text {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 150%;
+    color: #555555;
+
+    &--bold {
+      font-weight: 500;
+      line-height: 100%;
+      color: #333333;
+      margin-top: 40px;
+    }
+  }
+}
+
+.projects {
+  display: flex;
+  flex-direction: column;
+  padding: 170px 135px 170px;
+
+  @media screen and (max-width: 1439px) {
+    padding: 135px 5vw 135px;
+  }
+
+  @media screen and (max-width: 1023px) {
+    padding: 80px 4.267vw 80px;
+  }
+
+  h2 {
+    margin: 0 0 60px;
+  }
+}
