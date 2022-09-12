@@ -84,9 +84,13 @@
         font-family: 'Poppins';
         font-style: normal;
         font-weight: 500;
-        font-size: 16px;
-        line-height: 16px;
+        font-size: 1rem;
+        line-height: 100%;
         color: #555555;
+
+        &:hover {
+          color: #4B5BD7;
+        }
       }
     }
   }
@@ -122,7 +126,7 @@
   position: absolute;
   background: url("../../../assets/back_img.png") 100% 90% no-repeat, linear-gradient(152.34deg, #5963A5 -0.66%, #95C6D7 102.67%);
   font-family: 'Mak-Bold';
-  font-size: 30px;
+  font-size: 1,875rem;
   line-height: 100%;
   left: 0;
   right: 0;
@@ -171,8 +175,8 @@
       font-family: 'Poppins';
       font-style: normal;
       font-weight: 600;
-      font-size: 16px;
-      line-height: 16px;
+      font-size: 1rem;
+      line-height: 100%;
       letter-spacing: 0.16em;
       text-transform: uppercase;
       color: #333333;
@@ -216,8 +220,8 @@
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 500;
-    font-size: 28px;
-    line-height: 16px;
+    font-size: 1,75rem;
+    line-height: 57%;
 
     color: #333333;
 

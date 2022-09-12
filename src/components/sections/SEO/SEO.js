@@ -24,7 +24,14 @@ const SEO = ({ defaultTitle, defaultDescription, defaultImage, defaultSiteUrl, a
   }
 
   return (
-    <Helmet title={seo.title}>
+    <Helmet
+      title={seo.title}
+      htmlAttributes={
+        {
+          lang: 'en'
+        }
+      }
+    >
       <meta name="description" content={seo.description} />
       <meta name="image" content={seo.image} />
       {seo.url && <meta property="og:url" content={seo.url} />}

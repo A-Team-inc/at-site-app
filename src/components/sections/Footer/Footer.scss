@@ -2,7 +2,7 @@
   background: url("../../../assets/footer_back_img.png") 0% 0% no-repeat, #D3D8FE;
 
   &_content {
-    padding: 120px 135px;
+    padding: 120px 135px 100px;
 
     @media screen and (max-width: 1439px) {
       padding: 120px 5vw;
@@ -57,15 +57,15 @@
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 600;
-    font-size: 45px;
-    line-height: 55px;
+    font-size: 2.8rem;
+    line-height: 122%;
     letter-spacing: 0.02em;
     color: #333333;
     margin: 6px 0 39px;
 
     @media screen and (max-width: 768px) {
-      font-size: 28px;
-      line-height: 28px;
+      font-size: 1.75rem;
+      line-height: 100%;
     }
 
     br {
@@ -77,8 +77,8 @@
 
   &_subtitle, &_email {
     font-weight: 400;
-    font-size: 16px;
-    line-height: 16px;
+    font-size: 1rem;
+    line-height: 100%;
   }
 
   &_subtitle {
@@ -86,12 +86,13 @@
     color: #555555;
 
     @media screen and (max-width: 768px) {
-      font-size: 12px;
-      line-height: 12px;
+      font-size: 0,75rem;
+      line-height: 100%;
     }
   }
 
   &_email {
+    line-height: 150%;
     letter-spacing: 0.02em;
     color: #181818;
 
@@ -170,8 +171,8 @@
 
   .copyright {
     font-weight: 400;
-    font-size: 12px;
-    line-height: 12px;
+    font-size: 0,75rem;
+    line-height: 150%;
     letter-spacing: 0.12em;
     color: rgba(247, 247, 247, 0.7);
 
@@ -207,8 +208,8 @@
   &-menu__link {
     margin: 0 50px 0 0;
     font-weight: 600;
-    font-size: 16px;
-    line-height: 16px;
+    font-size: 1rem;
+    line-height: 150%;
     letter-spacing: 0.16em;
     color: #F7F7F7;
 
@@ -234,10 +235,15 @@
   &_email {
     color: #D3D8FE;
     justify-content: flex-end;
+    cursor: pointer;
 
     @media screen and (max-width: 1023px) {
       justify-content: center;
       margin: 0;
+    }
+
+    &:hover {
+      color: #4B5BD7;
     }
   }
 
@@ -262,7 +268,6 @@
   height: 100%;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(3, 33.333%);
   column-gap: 35px;
   margin: 21px 0 0;
 
@@ -290,8 +295,8 @@
       background: #F7F7F7;
       border-radius: 45px;
       padding: 18px 10px;
-      font-size: 14px;
-      line-height: 14px;
+      font-size: 0,875rem;
+      line-height: 100%;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -335,13 +340,20 @@
 
   &_textarea {
     border-radius: 25px;
-    height: 96px;
+    min-height: 96px;
+    max-height: 400px;
+    @media screen and (min-width: 1024px) {
+      width: 42.833vw!important;
+    }
+    @media screen and (min-width: 1201px) {
+      width: 355px!important;
+    }
   }
 
   &_item-wrapper {
     display: flex;
     flex-direction: column;
-    margin: 0 0 10px;
+    margin: 0 0 35px;
   }
 
   &_checkbox-label, &_label, &_submit, &_text-input::placeholder, &_textarea::placeholder, &_radio+label {
@@ -351,12 +363,12 @@
   }
 
   &_label, &_submit, &_text-input::placeholder, &_textarea::placeholder {
-    font-size: 16px;
-    line-height: 16px;
+    font-size: 1rem;
+    line-height: 100%;
 
     @media screen and (max-width: 374px) {
-      font-size: 14px;
-      line-height: 14px;
+      font-size: 0,875rem;
+      line-height: 100%;
     }
   }
 
@@ -378,14 +390,20 @@
     border-radius: 45px;
     margin: 0 0 19px;
     padding: 17px;
+    cursor: pointer;
 
-     @media screen and (max-width: 1023px) {
-      width: min(355px, 100%);
-     }
+    @media screen and (max-width: 1023px) {
+    width: min(355px, 100%);
+    }
 
-     @media screen and (max-width: 519px) {
-      width: 100%;
-     }
+    @media screen and (max-width: 519px) {
+    width: 100%;
+    }
+
+    &:hover {
+      color: #333333;
+      background: linear-gradient(68deg, #BEB3F5 -0.66%, #E4F2EE 70.67%);
+    }
   }
 
   &_is-authorize {
@@ -397,8 +415,8 @@
   }
 
   &_checkbox-label {
-    font-size: 13px;
-    line-height: 15px;
+    font-size: 0,8125rem;
+    line-height: 115%;
     color: #181818;
     opacity: 0.7;
   }

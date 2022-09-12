@@ -8,14 +8,13 @@ import "./Project.scss"
 
 const Project = ({ data }) => {
   const projectData = data?.allContentfulProject.nodes[0]
-  console.log("projectData", projectData)
 
   return(
     <Layout>
       <section className="project">
         <div className="project_subtitle-wrapper">
           <div className="subtitle_line" />
-          <Title className="project_subtitle" size="4">{ projectData?.subtitle && projectData?.subtitle }</Title>
+          <h4 className="project_subtitle" tabIndex="0">{ projectData?.subtitle && projectData?.subtitle }</h4>
         </div>
         <div className="project_title-wrapper">
           <Title className="project_title" size="1">{ projectData?.title && projectData?.title }</Title>
@@ -38,7 +37,7 @@ const Project = ({ data }) => {
           <div className="project_images">
             {projectData?.images && projectData?.images.map((image, index) => {
               if(index < 3) {
-                return <img className="main_img" key={image.url + index} src={image.url} />
+                return <img className="main_img" key={image.url + index} src={image.url} alt={projectData.title} />
               }
             } )}
           </div>

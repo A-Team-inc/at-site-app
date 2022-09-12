@@ -16,8 +16,10 @@ const Welcome = () => {
   return(
     <section className="welcome content_max_width" id="about-us">
       <div className="welcome_subscribe-wrapper">
-        <Title className={"welcome_title"} size={1}>{data?.contentfulWelcome.title}</Title>
-        <p className="welcome_subtitle">{addLineBreaks(data?.contentfulWelcome.description.description)}</p>
+        <h1 className="welcome_title" tabIndex="0">
+          {data?.contentfulWelcome.title}
+        </h1>
+        <p className="welcome_subtitle" tabIndex="0">{addLineBreaks(data?.contentfulWelcome.description.description)}</p>
         <form className="welcome_form" action={data?.contentfulWelcome.formAction} method="get">
           <input className="welcome_form-email" type="email" placeholder="Enter your email" />
           <input className="welcome_form-submit" type="submit" value={data?.contentfulWelcome.formButtonValue} />
