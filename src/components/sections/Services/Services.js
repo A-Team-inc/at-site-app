@@ -17,10 +17,12 @@ const Services = () => {
           <div className="services__text-block">
             <div className="services__subtitle-block">
               <div className="services__line" />
-              <h6 className="services__subtitle">{ data?.contentfulServicesSection.subtitle }</h6>
+              <h6 className="services__subtitle" tabIndex="0">{ data?.contentfulServicesSection.subtitle }</h6>
             </div>
-            <h2 className="services__title">{ data?.contentfulServicesSection.title }</h2>
-            <RichText paragraphClassName="services__text" richText={data?.contentfulServicesSection.description} />
+            <h2 className="services__title" tabIndex="0">{data?.contentfulServicesSection.title}</h2>
+            <div tabIndex="0">
+              <RichText paragraphClassName="services__text" richText={data?.contentfulServicesSection.description} />
+            </div>
           </div>
         </div>
       </div>

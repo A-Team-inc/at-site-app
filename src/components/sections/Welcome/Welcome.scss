@@ -27,25 +27,24 @@
 
   &_title {
     font-weight: 600;
-    font-size: 45px;
-    line-height: 55px;
+    font-size: 2.8rem;
+    line-height: 122%;
     letter-spacing: 0.02em;
     margin: 0 0 30px;
 
     @media screen and (max-width: 1023px) {
-      font-size: 28px;
-      line-height: 38px;
+      font-size: 1,75rem;
+      line-height: 136%;
     }
   }
 
   &_subtitle {
-    font-size: 18px;
-    line-height: 27px;
+    font-size: 1,125rem;
+    line-height: 150%;
     color: #555555;
 
     @media screen and (max-width: 1023px) {
-      font-size: 16px;
-      line-height: 150%;
+      font-size: 1rem;
     }
   }
 
@@ -67,8 +66,8 @@
       margin: 0 22px 24px 0;
 
       &::placeholder {
-        font-size: 16px;
-        line-height: 16px;
+        font-size: 1rem;
+        line-height: 100%;
         color: #555555;
         opacity: 0.4;
       }
@@ -78,8 +77,8 @@
       width: 148px;
       height: 50px;
       background: #181818;
-      font-size: 16px;
-      line-height: 16px;
+      font-size: 1rem;
+      line-height: 100%;
       color: #FFFFFF;
       cursor: pointer;
 
@@ -109,8 +108,8 @@
     }
 
     &-subtitle {
-      font-size: 16px;
-      line-height: 16px;
+      font-size: 1rem;
+      line-height: 100%;
       letter-spacing: 0.16em;
       text-transform: uppercase;
       color: #333333;
@@ -118,8 +117,8 @@
 
     &-title {
       font-weight: 600;
-      font-size: 24px;
-      line-height: 24px;
+      font-size: 1.5rem;
+      line-height: 100%;
       letter-spacing: 0.02em;
       color: #333333;
       margin-bottom: 50px;
@@ -140,8 +139,8 @@
       position: absolute;
       bottom: 30px;
       font-weight: 600;
-      font-size: 16px;
-      line-height: 16px;
+      font-size: 1rem;
+      line-height: 100%;
       letter-spacing: 0.02em;
       color: #333333;
     }

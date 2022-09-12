@@ -10,6 +10,7 @@ const useFooterQuery = () => {
         subtitle,
         email,
         socialLinks {
+          title
           url
           icon {
             url

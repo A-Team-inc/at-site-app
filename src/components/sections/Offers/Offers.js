@@ -23,9 +23,9 @@ const Offers = () => {
         <div className="offers__text-block">
           <div className="offers__subtitle-block">
             <div className="offers__line" />
-            <h6 className="offers__subtitle">{ data?.contentfulOffer.subtitle }</h6>
+            <h6 className="offers__subtitle" tabIndex="0">{ data?.contentfulOffer.subtitle }</h6>
           </div>
-          <h2 className="offers__title">{ data?.contentfulOffer.title }</h2>
+          <h2 className="offers__title" tabIndex="0">{ data?.contentfulOffer.title }</h2>
         </div>
         <div className="offers__cards" ref={scrollContainer}>
           {data?.contentfulOffer.images.map((card, index) =>
@@ -47,7 +47,7 @@ const Offers = () => {
 }
 
 const Card = ({ image, text, backgroundColor, logoColor, rotateAngle, backgroundLogoPosition, topOffset }) => (
-  <div className="offers__card" style={{ backgroundColor }}>
+  <div className="offers__card" style={{ backgroundColor }} tabIndex="0">
     <img src={image} alt="" style={{marginTop: topOffset}} />
     <div
       className={`offers__background-logo offers__background-logo--${backgroundLogoPosition}`}

@@ -1,5 +1,4 @@
 import React from "react"
-import { graphql, useStaticQuery } from 'gatsby';
 
 import SEO from "../sections/SEO/SEO"
 import Header from "../sections/Header/Header"

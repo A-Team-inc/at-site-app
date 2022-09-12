@@ -30,10 +30,10 @@ const Process = () => {
         <div className="process__headline">
           <div className="process__subtitle-block">
             <div className="process__line" />
-            <h6 className="process__subtitle">{ data?.contentfulProcess.subtitle }</h6>
+            <h6 className="process__subtitle" tabIndex="0">{ data?.contentfulProcess.subtitle }</h6>
           </div>
           <div className="process__title-block">
-            <h2 className="process__title">{ data?.contentfulProcess.title }</h2>
+            <h2 className="process__title" tabIndex="0">{ data?.contentfulProcess.title }</h2>
             <button className="process__cta">{ data?.contentfulProcess.cta }</button>
           </div>
         </div>
@@ -53,7 +53,7 @@ const Process = () => {
             value={(currentIndex + 1) * 25}
           />
         </div>
-        <div className="process__description">
+        <div className="process__description" tabIndex="0">
           {currentStep.description.description}
         </div>
         <div className="abilities">
@@ -61,6 +61,7 @@ const Process = () => {
             <div
               className="abilities__item"
               key={index}
+              tabIndex="0"
             >
               <h6 className="abilities__title">{item.title}</h6>
               <p className="abilities__content">{item.content.content}</p>
@@ -78,6 +79,7 @@ const Step = ({step, handleClick, isActive, index}) => (
   <div
     className={`process-step ${isActive ? 'process-step--active' : ''}`}
     onClick={handleClick}
+    tabIndex="0"
   >
     <div className="process-step__number">{index}</div>
     <h6 className="process-step__title">{step.title}</h6>
