@@ -4,7 +4,7 @@ import "./SocialBlock.scss"
 const SocialBlock = ({ SocialBlockClassName, data }) => {
   return(
     <div className={SocialBlockClassName}>
-      {data?.map((item, index) => <a key={index} href={item.url} target={"blank"}>
+      {data?.map((item, index) => <a key={index} href={item.url} target={"blank"} aria-label={item.url} >
         <Image network={item.title} />
       </a>)}
     </div>

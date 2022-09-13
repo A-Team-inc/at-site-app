@@ -6,6 +6,7 @@ const usePrivacyPolicyAndTermsOfUseQuery = () => {
       allContentfulPrivacyPolicyAndTermsOfUse {
         nodes {
           title,
+          subtitle,
           slug,
           description {
             raw

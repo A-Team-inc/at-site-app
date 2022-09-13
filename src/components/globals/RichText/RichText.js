@@ -5,6 +5,7 @@ import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 
 const RichText = ({
   richText,
+  globalClass = "",
   paragraphClassName = "",
   h1ClassName = "",
   h2ClassName = "",
@@ -112,7 +113,7 @@ const RichText = ({
     return null
   }
 
-  return(<div>{renderRichText(richText, options)}</div>)
+  return(<div className={globalClass}>{renderRichText(richText, options)}</div>)
 }
 
 export default RichText

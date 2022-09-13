@@ -9,13 +9,17 @@ import usePrivacyPolicyAndTermsOfUseQuery from "../graphql/privacy-policy-and-te
 const TermsOfUse = () => {
   const { pathname } = useLocation()
   const data = usePrivacyPolicyAndTermsOfUseQuery()
-  const filteredData = data.allContentfulPrivacyPolicyAndTermsOfUse.nodes.filter((item) => item.slug === pathname)[0]
+  const filteredData = data?.allContentfulPrivacyPolicyAndTermsOfUse.nodes.filter((item) => item.slug === pathname)[0]
 
   return(
     <Layout>
       <section className="privacy_policy-terms_of_use">
-        <Title className="privacy_policy-terms_of_use__title" size={2}>{ filteredData.title }</Title>
-        <RichText paragraphClassName="privacy_policy-terms_of_use__text" richText={filteredData.description} />
+        <div className="subtitle-wrapper">
+          <div className="subtitle_line" />
+          <Title className="privacy_policy-terms_of_use__subtitle" size={3}>{ filteredData.subtitle }</Title>
+        </div>
+        <Title className="privacy_policy-terms_of_use__title title" size={2}>{ filteredData.title }</Title>
+        <RichText paragraphClassName="privacy_policy-terms_of_use__text" globalClass="richtext_wrapper" richText={filteredData.description} />
       </section>
     </Layout>
   )

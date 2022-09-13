@@ -3,26 +3,16 @@ import { graphql, useStaticQuery } from 'gatsby';
 const useProjectsQuery = () => {
   return useStaticQuery(graphql`
     query Projects {
-      allContentfulProject {
-        nodes {
+      contentfulProjectsPage {
+        title,
+        subtitle,
+        cta,
+        projects {
           title,
           slug,
-          cta,
           subtitle,
-          description {
-            description
-          },
           cover {
             url
-          },
-          images {
-            url
-          },
-          abilities {
-            title,
-            content {
-              content
-            }
           }
         }
       }
