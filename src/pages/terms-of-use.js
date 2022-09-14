@@ -11,6 +11,8 @@ const TermsOfUse = () => {
   const data = usePrivacyPolicyAndTermsOfUseQuery()
   const filteredData = data?.allContentfulPrivacyPolicyAndTermsOfUse.nodes.filter((item) => item.slug === pathname)[0]
 
+  console.log("filteredData", filteredData)
+
   return(
     <Layout>
       <section className="privacy_policy-terms_of_use">
