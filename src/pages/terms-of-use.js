@@ -11,17 +11,15 @@ const TermsOfUse = () => {
   const data = usePrivacyPolicyAndTermsOfUseQuery()
   const filteredData = data?.allContentfulPrivacyPolicyAndTermsOfUse.nodes.filter((item) => item.slug === pathname)[0]
 
-  console.log("filteredData", filteredData)
-
   return(
     <Layout>
       <section className="privacy_policy-terms_of_use">
         <div className="subtitle-wrapper">
           <div className="subtitle_line" />
-          <Title className="privacy_policy-terms_of_use__subtitle" size={3}>{ filteredData.subtitle }</Title>
+          <Title className="privacy_policy-terms_of_use__subtitle" size={3}>{ filteredData?.subtitle }</Title>
         </div>
-        <Title className="privacy_policy-terms_of_use__title title" size={2}>{ filteredData.title }</Title>
-        <RichText paragraphClassName="privacy_policy-terms_of_use__text" globalClass="richtext_wrapper" richText={filteredData.description} />
+        <Title className="privacy_policy-terms_of_use__title title" size={2}>{ filteredData?.title }</Title>
+        <RichText paragraphClassName="privacy_policy-terms_of_use__text" globalClass="richtext_wrapper" richText={filteredData?.description} />
       </section>
     </Layout>
   )
