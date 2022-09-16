@@ -99,7 +99,7 @@
   }
 
   &_slider {
-    background: url("../../../assets/slider_back.svg") 0 0/cover no-repeat;
+    background: linear-gradient(84deg, rgb(243, 233, 241) 0%, rgb(187, 190, 241) 60%, rgb(163, 182, 238) 100%);
     position: relative;
     height: 100%;
     width: min(46vw, 640px);
