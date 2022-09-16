@@ -127,8 +127,7 @@
   justify-content: space-between;
   padding: 0 0 55px;
   position: absolute;
-  background: url("../../../assets/mobile_menu_back.svg") 0 0/cover no-repeat;
-  // url("../../../assets/back_img.svg") 100% 90% no-repeat, 
+  background: url("../../../assets/back_img.svg") 100% 90% no-repeat, linear-gradient(84deg, rgb(243, 233, 241) 0%, rgb(187, 190, 241) 60%, rgb(163, 182, 238) 100%);
   font-size: 1.875rem;
   line-height: 100%;
   left: 0;
