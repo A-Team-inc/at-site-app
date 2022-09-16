@@ -1,5 +1,9 @@
 import React from "react"
 import { Link } from "gatsby"
+import { useForm } from "react-hook-form"
+import * as Yup from "yup"
+import { yupResolver } from "@hookform/resolvers/yup";
+import cn from "classnames"
 
 import useFooterQuery from "../../../graphql/footer"
 import { addLineBreaks } from "../../../utilities/index"
@@ -8,6 +12,20 @@ import "./Footer.scss"
 
 const Footer = () => {
   const data = useFooterQuery()
+
+  const schema = Yup.object().shape({
+    name: Yup.string().required("Name is required").matches(/^[A-Za-z]+$/, "Don't use special characters"),
+    email: Yup.string().email("You entered the wrong email").required("Email is required")
+  })
+
+  const { register, handleSubmit, formState: { errors }, reset } = useForm({
+    resolver: yupResolver(schema)
+  });
+
+  const onSubmitHandler = (data) => {
+    console.log({ data });
+    reset();
+  };
 
   const keyDown = (event) => {
     if (event.key === 'Enter') {
@@ -25,18 +43,38 @@ const Footer = () => {
               <h4 className={"footer_subtitle"}>{ data?.contentfulFooter.subtitle }</h4>
             </div>
             <h1 className={"footer_title title"}>{addLineBreaks(data?.contentfulFooter.title.title)}</h1>
-            <p className="footer_email" tabIndex="0">{data?.contentfulFooter.email}</p>
+            <p className="footer_email tabIndexItem" tabIndex="0">{data?.contentfulFooter.email}</p>
             <SocialBlock SocialBlockClassName={"footer_social-links"} data={data?.contentfulFooter.socialLinks} />
           </div>
           <div className="footer_form-wrapper">
-            <form className="footer_form form" action={data?.contentfulFooter.footerForm.formAction} method="get">
+            <form className="footer_form form" method="get" onSubmit={handleSubmit(onSubmitHandler)} >
                 <div className="form_item-wrapper">
                   <label className="form_label" htmlFor="userName">{ data?.contentfulFooter.footerForm.nameLabel }</label>
-                  <input className="form_text-input" type="text" id="userName" name="user name" placeholder={ data?.contentfulFooter.footerForm.namePlaceholder } />
+                  <input
+                    {...register("name")}
+                    className={cn("form_text-input", {
+                      error_input: errors.name?.message
+                    })}
+                    type="text"
+                    id="userName"
+                    name="name"
+                    placeholder={ data?.contentfulFooter.footerForm.namePlaceholder }
+                  />
+                  <span className="error_message">{errors.name?.message}</span>
                 </div>
                 <div className="form_item-wrapper">
                   <label className="form_label" htmlFor="userEmail">{ data?.contentfulFooter.footerForm.emailLabel }</label>
-                  <input className="form_text-input" type="text" id="userEmail" name="user email" placeholder={ data?.contentfulFooter.footerForm.emailPlaceholder } />
+                  <input
+                    {...register("email")}
+                    className={cn("form_text-input", {
+                      error_input: errors.email?.message
+                    })}
+                    type="text"
+                    id="userEmail"
+                    name="email"
+                    placeholder={ data?.contentfulFooter.footerForm.emailPlaceholder }
+                  />
+                  <span className="error_message">{errors.email?.message}</span>
                 </div>
                 <div className="form_item-wrapper">
                   <label className="form_label">{ data?.contentfulFooter.footerForm.projectTypesTitle }</label>
@@ -44,11 +82,11 @@ const Footer = () => {
                     { data?.contentfulFooter.footerForm.projectTypesLabel.map((item, index) => (
                       <React.Fragment key={`serviceType${index}`}>
                         <input
+                          {...register("serviceType")}
                           className="form_radio"
                           type="radio"
                           id={`serviceType${index}`}
                           name="service type"
-                          tabIndex="0"
                           value={item} />
                         <label
                           htmlFor={`serviceType${index}`}
@@ -59,6 +97,7 @@ const Footer = () => {
                       </React.Fragment>
                     )) }
                   </div>
+                  <span className="error_message"></span>
                 </div>
                 <div className="form_item-wrapper">
                   <label className="form_label">{ data?.contentfulFooter.footerForm.budgetRangeTitle }</label>
@@ -66,6 +105,7 @@ const Footer = () => {
                     { data?.contentfulFooter.footerForm.budgetRangeLabel.map((item, index) => (
                       <React.Fragment key={`budgetRange${index}`}>
                         <input
+                          {...register("budgetRange")}
                           className="form_radio"
                           type="radio"
                           id={`budgetRange${index}`}
@@ -80,15 +120,30 @@ const Footer = () => {
                       </React.Fragment>
                     )) }
                   </div>
+                  <span className="error_message"></span>
                 </div>
                 <div className="form_item-wrapper">
                   <label className="form_label">{data?.contentfulFooter.footerForm.descriptionLabal}</label>
-                  <textarea className="form_textarea" placeholder="Message" aria-label={data?.contentfulFooter.footerForm.descriptionLabal} />
+                  <textarea
+                    {...register("message")}
+                    className="form_textarea"
+                    placeholder="Message"
+                    aria-label={data?.contentfulFooter.footerForm.descriptionLabal}
+                  />
                 </div>
                 <div className="form_item-wrapper">
-                  <input className="form_submit" type="submit" value={data?.contentfulFooter.footerForm.cta} />
+                  <input
+                    className="form_submit"
+                    type="submit"
+                    value={data?.contentfulFooter.footerForm.cta}
+                  />
                   <div>
-                  <input className="form_is-authorize" id="isAuthorize" name="is authorize" type="checkbox" />
+                  <input
+                    className="form_is-authorize"
+                    id="isAuthorize"
+                    name="is authorize"
+                    type="checkbox"
+                  />
                   <label className="form_checkbox-label" htmlFor="isAuthorize">I authorize the processing of personal data</label>
                   </div>
                 </div>
@@ -99,7 +154,7 @@ const Footer = () => {
       <div className="underfooter">
         <div className="underfooter_content content_max_width">
           <div className="logo_wrapper">
-            <Link to="/">
+            <Link className="tabIndexItem" to="/">
               <img
                 className={"underfooter_logo"}
                 src={data?.contentfulFooter.underfooter.footerLogo.url}
@@ -113,12 +168,12 @@ const Footer = () => {
           <menu className="underfooter-menu">
             {data?.contentfulFooter.underfooter.menu.map((item, index) =>
               <li className="underfooter-menu__link" key={index}>
-                <Link to={`/${item.split(' ').join('-').toLowerCase()}`}>{item}</Link>
+                <Link className="tabIndexItem" to={`/${item.split(' ').join('-').toLowerCase()}`}>{item}</Link>
               </li>
             )}
           </menu>
-          <div className="underfooter-menu__link underfooter_email" tabIndex="0">
-            <p>{data?.contentfulFooter.underfooter.email}</p>
+          <div className="underfooter-menu__link underfooter_email">
+            <p className="tabIndexItem" tabIndex="0">{data?.contentfulFooter.underfooter.email}</p>
           </div>
           <SocialBlock SocialBlockClassName={"footer_social-links underfooter_social-links"} data={data?.contentfulFooter.socialLinks} />
           <p className="copyright mobile_copyright">{data?.contentfulFooter.underfooter.copyright}</p>

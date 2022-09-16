@@ -61,7 +61,6 @@ const Process = () => {
             <div
               className="abilities__item"
               key={index}
-              tabIndex="0"
             >
               <h6 className="abilities__title title">{item.title}</h6>
               <p className="abilities__content">{item.content.content}</p>
@@ -77,7 +76,7 @@ const Process = () => {
 
 const Step = ({step, handleClick, isActive, index}) => (
   <div
-    className={`process-step ${isActive ? 'process-step--active' : ''}`}
+    className={`process-step tabIndexItem ${isActive ? 'process-step--active' : ''}`}
     onClick={handleClick}
     tabIndex="0"
   >

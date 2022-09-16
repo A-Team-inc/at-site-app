@@ -14,7 +14,8 @@ export function resizeWidthOnly(a, b) {
     }),
     a
   )
-}
+};
+
 
 export const addLineBreaks = (text) => text.split('\n').reduce((children, textSegment, index) => {
   return [...children, index > 0 && <br key={index} />, textSegment];
