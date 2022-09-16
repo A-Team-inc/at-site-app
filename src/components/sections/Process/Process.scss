@@ -107,7 +107,7 @@
   &__steps {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-gap: min(2vw, 110px);
+    grid-gap: min(2vw, 107px);
     position: relative;
     @media screen and (max-width: 1023px) {
       overflow-x: scroll;

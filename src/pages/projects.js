@@ -64,7 +64,7 @@ const Card = ({ project }) => (
       <Title className="projects_card__subtitle" size="5">{project.subtitle}</Title>
       <Title className="projects_card__title title" size="4">{project.title}</Title>
       <Link
-        className="projects_card__link"
+        className="projects_card__link tabIndexItem"
         to={`/projects${project.slug}`}
         aria-label={`${project.title} View the project`}
         tabIndex="0"

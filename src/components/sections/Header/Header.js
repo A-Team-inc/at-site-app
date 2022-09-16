@@ -52,9 +52,9 @@ const Header = ({ positionStyle = "" }) => {
     })}>
       <div className="header_desctop-wrapper">
         <div className="header_item">
-        <Link to="/"><img className={"header_logo"} src={data?.contentfulHeader.logo.url} width={123} aria-label='A-Team home page' /></Link>
+        <Link className="tabIndexItem logo" to="/"><img className={"header_logo"} src={data?.contentfulHeader.logo.url} width={123} aria-label='A-Team home page' /></Link>
           <menu className="header_menu">
-            {data?.contentfulHeader.menu.map((item, index) => <li key={index} className="header_menu-item"><Link to={`/#${item.split(' ').join('-').toLowerCase()}`}>{item}</Link></li>)}
+            {data?.contentfulHeader.menu.map((item, index) => <li key={index} className="header_menu-item"><Link className="tabIndexItem" to={`/#${item.split(' ').join('-').toLowerCase()}`}>{item}</Link></li>)}
           </menu>
         </div>
         <div className="header_item">

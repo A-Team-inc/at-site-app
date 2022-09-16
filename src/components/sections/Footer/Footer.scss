@@ -81,6 +81,8 @@
     line-height: 150%;
     letter-spacing: 0.02em;
     color: #181818;
+    width: fit-content;
+    margin: 16px 0 16px -3px;
 
     @media screen and (max-width: 1023px) {
       display: none;
@@ -93,13 +95,15 @@
   }
 
   &_social-links {
+
     @media screen and (max-width: 1023px) {
       display: none;
     }
   }
 
   &_social-links a {
-    margin: 0px 25px 0 0;
+    margin: 0px 22px 0 0;
+    display: inherit;
 
     &:last-child {
       margin: 0;
@@ -147,7 +151,14 @@
 
     @media screen and (max-width: 1023px) {
       margin: 0;
-      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    & a.tabIndexItem {
+      display: inherit;
+      width: fit-content;
     }
   }
 
@@ -241,9 +252,16 @@
     filter: invert(1);
     display: none;
 
+    & a {
+      display: inherit;
+      width: fit-content;
+    }
+
     @media screen and (max-width: 1023px) {
-      display: block;
-      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
     }
   }
 }
@@ -278,10 +296,13 @@
 
     &+label {
       cursor: pointer;
+      box-sizing: border-box;
       min-width: 109px;
+      width: 100%;
       text-align: center;
       background: #F7F7F7;
       border-radius: 45px;
+      border: 1px solid transparent;
       padding: 18px 10px;
       font-size: 0.875rem;
       line-height: 100%;
@@ -313,7 +334,7 @@
   &_text-input, &_textarea {
     background: #F7F7F7;
     padding: 17px;
-    border: none;
+    border: 1px solid transparent;
   }
 
   &_text-input::placeholder, &_textarea::placeholder {
@@ -339,9 +360,10 @@
   }
 
   &_item-wrapper {
+    position: relative;
     display: flex;
     flex-direction: column;
-    margin: 0 0 35px;
+    margin: 0 0 15px;
   }
 
   &_label, &_submit, &_text-input::placeholder, &_textarea::placeholder {
@@ -370,16 +392,17 @@
     color: #FFFFFF;
     background: #181818;
     border-radius: 45px;
-    margin: 0 0 19px;
+    margin: 31px 0 19px;
     padding: 17px;
     cursor: pointer;
 
     @media screen and (max-width: 1023px) {
-    width: min(355px, 100%);
+      width: min(355px, 100%);
+      margin: 0 0 19px;
     }
 
     @media screen and (max-width: 519px) {
-    width: 100%;
+      width: 100%;
     }
 
     &:hover {
@@ -401,5 +424,20 @@
     line-height: 115%;
     color: #181818;
     opacity: 0.7;
+  }
+
+  & .error_message {
+    font-size: 0,8125rem;
+    line-height: 93.75%;
+    color: #FD435A;
+    margin: 5px 0 0 12px;
+    height: 15px;
+    display: inline-block;
+  }
+
+  & .error_input {
+    color: #FD435A;
+    border: 1px solid #FD435A;
+    outline: none;
   }
 }

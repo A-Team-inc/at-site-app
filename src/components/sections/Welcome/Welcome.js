@@ -1,6 +1,10 @@
 import React from "react"
-import { Scrollbar, Mousewheel, Autoplay } from 'swiper'
+import { Scrollbar, Mousewheel, Autoplay, Keyboard } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
+import { useForm } from "react-hook-form"
+import * as Yup from "yup"
+import { yupResolver } from "@hookform/resolvers/yup";
+import cn from "classnames"
 
 import useWelcomeQuery from "../../../graphql/welcome"
 import { addLineBreaks } from "../../../utilities/index"
@@ -9,9 +13,23 @@ import "./Welcome.scss"
 import "swiper/scss"
 import "swiper/scss/scrollbar"
 import "swiper/scss/autoplay"
+import "swiper/scss/keyboard"
 
 const Welcome = () => {
   const data = useWelcomeQuery()
+
+  const schema = Yup.object().shape({
+    email: Yup.string().email("You entered the wrong email").required("Email is required")
+  })
+
+  const { register, handleSubmit, formState: { errors }, reset } = useForm({
+    resolver: yupResolver(schema)
+  });
+
+  const onSubmitHandler = (data) => {
+    console.log({ data });
+    reset();
+  };
 
   return(
     <section className="welcome content_max_width" id="about-us">
@@ -20,15 +38,27 @@ const Welcome = () => {
           {data?.contentfulWelcome.title}
         </h1>
         <p className="welcome_subtitle">{addLineBreaks(data?.contentfulWelcome.description.description)}</p>
-        <form className="welcome_form" action={data?.contentfulWelcome.formAction} method="get">
-          <input className="welcome_form-email" type="email" placeholder="Enter your email" />
+        <form className="welcome_form" onSubmit={handleSubmit(onSubmitHandler)} method="get">
+          <div className="email_wrapper">
+            <input
+              {...register("email")}
+              className={cn("welcome_form-email", {
+                error_input: errors.email?.message
+              })}
+              type="text"
+              name="email"
+              placeholder="Enter your email"
+            />
+            <span className="error_message">{errors.email?.message}</span>
+          </div>
           <input className="welcome_form-submit" type="submit" value={data?.contentfulWelcome.formButtonValue} />
         </form>
       </div>
-      <div className="welcome_slider">
+      <div className="welcome_slider" tabIndex="0">
         <Swiper
-          modules={[Scrollbar, Mousewheel, Autoplay]}
+          modules={[Scrollbar, Mousewheel, Autoplay, Keyboard]}
           mousewheel={{ mousewheelControl: true }}
+          keyboard={{ enabled: true }}
           scrollbar={{ draggable: true }}
           speed={500}
           slidesPerView={1}
