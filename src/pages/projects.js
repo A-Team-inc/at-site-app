@@ -34,7 +34,7 @@ const Projects = () => {
   }, [list])
 
   return(
-    <Layout>
+    <Layout isShowForm={false}>
       <section className="projects">
         <div className="subtitle-wrapper">
           <div className="subtitle_line" />

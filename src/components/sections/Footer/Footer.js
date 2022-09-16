@@ -10,7 +10,7 @@ import { addLineBreaks } from "../../../utilities/index"
 import SocialBlock from "../../globals/SocialBlock/SocialBlock"
 import "./Footer.scss"
 
-const Footer = () => {
+const Footer = ({ isShowForm }) => {
   const data = useFooterQuery()
 
   const schema = Yup.object().shape({
@@ -35,7 +35,7 @@ const Footer = () => {
 
   return(
     <section>
-      <div className="footer" id="contacts">
+      <div className={cn("footer", { is_show_form: isShowForm })} id="contacts">
         <div className="footer_content content_max_width">
           <div className="left_block">
             <div className="footer_subtitle-wrapper">

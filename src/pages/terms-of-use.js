@@ -12,7 +12,7 @@ const TermsOfUse = () => {
   const filteredData = data?.allContentfulPrivacyPolicyAndTermsOfUse.nodes.filter((item) => item.slug === pathname)[0]
 
   return(
-    <Layout>
+    <Layout isShowForm={false}>
       <section className="privacy_policy-terms_of_use">
         <div className="subtitle-wrapper">
           <div className="subtitle_line" />
