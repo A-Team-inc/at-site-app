@@ -1,5 +1,11 @@
 * {
   box-sizing: border-box;
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+  "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+  sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  color: #555555;
 }
 
 html {
@@ -9,9 +15,6 @@ html {
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
@@ -71,4 +74,221 @@ input, textarea {
   top: 0;
   right: 0;
   bottom: 0;
+}
+
+.title {
+  font-size: 2.8rem;
+  font-weight: 600;
+  line-height: 122%;
+  letter-spacing: 0.02em;
+  color: #333333;
+}
+
+.privacy_policy-terms_of_use {
+  padding: 0 135px 170px;
+
+  @media screen and (max-width: 1439px) {
+    padding: 0 5vw 135px;
+  }
+
+  @media screen and (max-width: 1023px) {
+    padding: 0 4.267vw 80px;
+  }
+
+  &__subtitle {
+    font-size: 1rem;
+    line-height: 100%;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  &__title.title {
+    margin: 0 0 60px;
+  }
+
+  &__text {
+    font-size: 1rem;
+    line-height: 150%;
+    max-width: 1028px;
+
+    &--bold {
+      font-weight: 500;
+      line-height: 100%;
+      color: #333333;
+      margin-top: 2.5rem;
+    }
+  }
+
+  & .richtext_wrapper {
+
+    h1, h2, h3, h4, h5, h6 {
+      font-size: 1.5rem;
+      line-height: 150%;
+      letter-spacing: 0.02em;
+    }
+  }
+}
+
+.projects {
+  padding: 0 135px 170px;
+
+  @media screen and (max-width: 1439px) {
+    padding: 0 5vw 135px;
+  }
+
+  @media screen and (max-width: 1023px) {
+    padding: 0 4.267vw 80px;
+  }
+
+  &_title-wrapper {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &_title.title {
+    max-width: 465px;
+    margin: 0 0 60px;
+
+    @media screen and (max-width: 1023px) {
+      font-size: 1.75rem;
+      line-height: 107%;
+    }
+  }
+
+  &_subtitle {
+    font-size: 1rem;
+    line-height: 100%;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+
+    @media screen and (max-width: 1023px) {
+      font-size: 0.75rem;
+      line-height: 100%;
+    }
+  }
+
+  &_btn {
+    font-size: 1rem;
+    line-height: 100%;
+    color: #FFFFFF;
+    width: 190px;
+    height: 50px;
+    background: #181818;
+    border-radius: 45px;
+    border: none;
+    cursor: pointer;
+
+    @media screen and (max-width: 1023px) {
+      display: none;
+    }
+
+    &:hover {
+      color: #333333;
+      background: linear-gradient(68deg, #BEB3F5 -0.66%, #E4F2EE 70.67%);
+    }
+    
+    &.mobile {
+      display: none;
+
+      @media screen and (max-width: 1023px) {
+        display: block;
+      }
+    }
+  }
+
+  &_load-more-btn {
+    display: block;
+    width: 190px;
+    height: 50px;
+    border: 1px solid #181818;
+    border-radius: 45px;
+    margin: 0 auto;
+  }
+
+  &_main {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 89px;
+    margin: 0 0 89px;
+
+    @media screen and (max-width: 768px) {
+      grid-template-columns: 1fr;
+      margin: 0 0 47px;
+    }
+  }
+
+  &_card {
+    display: flex;
+    flex-direction: column;
+  
+    &__img {
+      max-width: 540px;
+      max-height: 540px;
+      width: 100%;
+      margin-bottom: 40px;
+      object-fit: cover;
+  
+      @media screen and (max-width: 1023px) {
+        max-width: inherit;
+      }
+    }
+  
+    &__content {
+      @media screen and (max-width: 374px) {
+        margin-top: 25px;
+      }
+    }
+  
+    &__subtitle {
+      font-weight: 500;
+      font-size: 0.75rem;
+      line-height: 100%;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #333333;
+      margin: 0 0 15px;
+    }
+  
+    &__title.title {
+      font-size: 1.125rem;
+      line-height: 100%;
+      margin: 0 0 35px;
+      @media screen and (max-width: 768px) {
+        font-size: 1rem;
+      }
+    }
+  
+    &__link {
+      font-weight: 500;
+      font-size: 0.875rem;
+      line-height: 100%;
+      text-decoration: none;
+      color: #4B5BD7;
+  
+      &:hover {
+        color: #D3D8FE;
+  
+        svg path {
+          fill: #D3D8FE;
+        }
+      }
+    }
+  
+    &__arrow {
+      margin-left: 15px;
+    }
+  }
+}
+
+.projects .subtitle-wrapper, .privacy_policy-terms_of_use .subtitle-wrapper {
+  display: flex;
+  align-items: center;
+  margin: 0 0 28px;
+}
+
+.subtitle_line {
+  width: 70px;
+  height: 1px;
+  background: #555555;
+  margin: 0 15px 0 0;
 }

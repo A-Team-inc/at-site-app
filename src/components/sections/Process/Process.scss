@@ -35,16 +35,7 @@
     }
   }
 
-  &__line {
-    width: 70px;
-    border-top: 1px solid #555555;
-    margin-right: 15px;
-  }
-
   &__subtitle {
-    font-family: 'Poppins';
-    font-style: normal;
-    font-weight: 400;
     font-size: 1rem;
     line-height: 100%;
     letter-spacing: 0.16em;
@@ -52,7 +43,7 @@
     color: #555555;
     margin: 0;
     @media screen and (max-width: 1023px) {
-      font-size: 0,75rem;
+      font-size: 0.75rem;
     }
   }
 
@@ -62,26 +53,16 @@
     align-items: center;
   }
 
-  &__title {
-    font-family: 'Poppins';
-    font-style: normal;
-    font-weight: 600;
-    font-size: 2.8rem;
-    line-height: 122%;
-    letter-spacing: 0.02em;
-    color: #333333;
+  &__title.title {
     margin: 0;
     max-width: 465px;
     @media screen and (max-width: 1023px) {
-      font-size: 1,75rem;
+      font-size: 1.75rem;
       line-height: 100%;
     }
   }
 
   &__cta {
-    font-family: 'Poppins';
-    font-style: normal;
-    font-weight: 400;
     font-size: 1rem;
     line-height: 100%;
     color: #FFFFFF;
@@ -102,9 +83,6 @@
   }
 
   &__cta--mobile {
-    font-family: 'Poppins';
-    font-style: normal;
-    font-weight: 400;
     font-size: 1rem;
     line-height: 100%;
     color: #FFFFFF;
@@ -147,9 +125,6 @@
   }
 
   &__description {
-    font-family: 'Poppins';
-    font-style: normal;
-    font-weight: 400;
     font-size: 1rem;
     line-height: 150%;
     color: #555555;
@@ -186,21 +161,13 @@
       grid-gap: 60px;
     }
 
-    &__title {
-      font-family: 'Poppins';
-      font-style: normal;
-      font-weight: 600;
-      font-size: 1,125rem;
+    &__title.title {
+      font-size: 1.125rem;
       line-height: 100%;
-      letter-spacing: 0.02em;
-      color: #333333;
       margin: 0 0 10px;
     }
 
     &__content {
-      font-family: 'Poppins';
-      font-style: normal;
-      font-weight: 400;
       font-size: 1rem;
       line-height: 150%;
       letter-spacing: 0.02em;
@@ -225,8 +192,6 @@
     }
 
     &__number {
-      font-family: 'Poppins';
-      font-style: normal;
       font-weight: 600;
       font-size: 1.5rem;
       line-height: 100%;
@@ -235,21 +200,13 @@
       padding-bottom: 20px;
     }
 
-    &__title {
-      font-family: 'Poppins';
-      font-style: normal;
-      font-weight: 600;
-      font-size: 1,125rem;
+    &__title.title {
+      font-size: 1.125rem;
       line-height: 100%;
-      letter-spacing: 0.02em;
-      color: #333333;
       margin: 40px 0 15px 0;
     }
 
     &__content {
-      font-family: 'Poppins';
-      font-style: normal;
-      font-weight: 400;
       font-size: 1rem;
       line-height: 150%;
       letter-spacing: 0.02em;

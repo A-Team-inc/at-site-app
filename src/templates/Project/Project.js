@@ -14,10 +14,10 @@ const Project = ({ data }) => {
       <section className="project">
         <div className="project_subtitle-wrapper">
           <div className="subtitle_line" />
-          <h4 className="project_subtitle" tabIndex="0">{ projectData?.subtitle && projectData?.subtitle }</h4>
+          <h4 className="project_subtitle">{ projectData?.subtitle && projectData?.subtitle }</h4>
         </div>
         <div className="project_title-wrapper">
-          <Title className="project_title" size="1">{ projectData?.title && projectData?.title }</Title>
+          <Title className="project_title title" size="1">{ projectData?.title && projectData?.title }</Title>
           <button className="project_btn">{ projectData?.cta && projectData?.cta }</button>
         </div>
         <p className="project_description">
@@ -28,7 +28,7 @@ const Project = ({ data }) => {
             {projectData?.abilities && projectData?.abilities.map((item, index) => {
               return(
                 <div key={item + index}>
-                  <Title className="project_cards-title" size="5">{ item.title }</Title>
+                  <Title className="project_cards-title title" size="5">{ item.title }</Title>
                   <p className="project_cards-description">{ item.content.content }</p>
                 </div>
               )

@@ -46,21 +46,7 @@
     height: 100%;
   }
 
-  .subtitle_line {
-    width: 70px;
-    height: 1px;
-    background: #555555;
-    margin: 0 15px 0 0;
-  }
-
-  &_title {
-    font-family: 'Poppins';
-    font-style: normal;
-    font-weight: 600;
-    font-size: 2.8rem;
-    line-height: 122%;
-    letter-spacing: 0.02em;
-    color: #333333;
+  &_title.title {
     margin: 6px 0 39px;
 
     @media screen and (max-width: 768px) {
@@ -86,7 +72,7 @@
     color: #555555;
 
     @media screen and (max-width: 768px) {
-      font-size: 0,75rem;
+      font-size: 0.75rem;
       line-height: 100%;
     }
   }
@@ -171,7 +157,7 @@
 
   .copyright {
     font-weight: 400;
-    font-size: 0,75rem;
+    font-size: 0.75rem;
     line-height: 150%;
     letter-spacing: 0.12em;
     color: rgba(247, 247, 247, 0.7);
@@ -237,12 +223,16 @@
     justify-content: flex-end;
     cursor: pointer;
 
+    p {
+      color: #D3D8FE;
+    }
+
     @media screen and (max-width: 1023px) {
       justify-content: center;
       margin: 0;
     }
 
-    &:hover {
+    & p:hover {
       color: #4B5BD7;
     }
   }
@@ -259,8 +249,6 @@
 }
 
 .copyright, .underfooter-menu__link, .footer_email, .footer_subtitle {
-  font-family: 'Poppins';
-  font-style: normal;
   text-transform: uppercase;
 }
 
@@ -295,7 +283,7 @@
       background: #F7F7F7;
       border-radius: 45px;
       padding: 18px 10px;
-      font-size: 0,875rem;
+      font-size: 0.875rem;
       line-height: 100%;
       display: flex;
       justify-content: center;
@@ -356,18 +344,12 @@
     margin: 0 0 35px;
   }
 
-  &_checkbox-label, &_label, &_submit, &_text-input::placeholder, &_textarea::placeholder, &_radio+label {
-    font-family: 'Poppins';
-    font-style: normal;
-    font-weight: 400;
-  }
-
   &_label, &_submit, &_text-input::placeholder, &_textarea::placeholder {
     font-size: 1rem;
     line-height: 100%;
 
     @media screen and (max-width: 374px) {
-      font-size: 0,875rem;
+      font-size: 0.875rem;
       line-height: 100%;
     }
   }
@@ -415,7 +397,7 @@
   }
 
   &_checkbox-label {
-    font-size: 0,8125rem;
+    font-size: 0.8125rem;
     line-height: 115%;
     color: #181818;
     opacity: 0.7;

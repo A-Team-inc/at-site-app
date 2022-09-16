@@ -16,11 +16,11 @@ const Services = () => {
           </div>
           <div className="services__text-block">
             <div className="services__subtitle-block">
-              <div className="services__line" />
-              <h6 className="services__subtitle" tabIndex="0">{ data?.contentfulServicesSection.subtitle }</h6>
+              <div className="services__line subtitle_line" />
+              <h6 className="services__subtitle">{ data?.contentfulServicesSection.subtitle }</h6>
             </div>
-            <h2 className="services__title" tabIndex="0">{data?.contentfulServicesSection.title}</h2>
-            <div tabIndex="0">
+            <h2 className="services__title title">{data?.contentfulServicesSection.title}</h2>
+            <div>
               <RichText paragraphClassName="services__text" richText={data?.contentfulServicesSection.description} />
             </div>
           </div>

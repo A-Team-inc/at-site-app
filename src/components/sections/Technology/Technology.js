@@ -18,12 +18,12 @@ const Technology = () => {
 
   return (
     <section className="technology">
-      <h2 className="technology__title" tabIndex="0">{data?.contentfulTechnologiesSection.title}</h2>
+      <h2 className="technology__title title">{data?.contentfulTechnologiesSection.title}</h2>
       <div className="technology__content" ref={scrollContainer}>
         {data?.contentfulTechnologiesSection.technologies.map((item, index) =>
           <div className="technology__section" key={index}>
             <img className="technology__image" src={item.icon.url} alt={item.subtitle} />
-            <p className="technology__subtitle" tabIndex="0">{item.subtitle}</p>
+            <p className="technology__subtitle">{item.subtitle}</p>
           </div>
         )}
       </div>
