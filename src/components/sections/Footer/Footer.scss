@@ -292,7 +292,9 @@
   }
 
   &_radio {
-    display: none;
+    // display: none;
+    position: absolute;
+    opacity: 0;
 
     &+label {
       cursor: pointer;

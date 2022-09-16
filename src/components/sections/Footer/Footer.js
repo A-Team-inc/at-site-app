@@ -86,7 +86,7 @@ const Footer = () => {
                           className="form_radio"
                           type="radio"
                           id={`serviceType${index}`}
-                          name="service type"
+                          name="serviceType"
                           value={item} />
                         <label
                           htmlFor={`serviceType${index}`}
@@ -109,7 +109,7 @@ const Footer = () => {
                           className="form_radio"
                           type="radio"
                           id={`budgetRange${index}`}
-                          name="budget range"
+                          name="budgetRange"
                           value={item} />
                         <label
                           htmlFor={`budgetRange${index}`}
@@ -139,9 +139,10 @@ const Footer = () => {
                   />
                   <div>
                   <input
+                    {...register("isAuthorize")}
                     className="form_is-authorize"
                     id="isAuthorize"
-                    name="is authorize"
+                    name="isAuthorize"
                     type="checkbox"
                   />
                   <label className="form_checkbox-label" htmlFor="isAuthorize">I authorize the processing of personal data</label>
