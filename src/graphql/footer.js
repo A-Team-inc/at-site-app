@@ -12,9 +12,6 @@ const useFooterQuery = () => {
         socialLinks {
           title
           url
-          icon {
-            url
-          }
         },
         footerForm {
           formAction,
@@ -31,7 +28,10 @@ const useFooterQuery = () => {
         },
         underfooter {
           footerLogo {
-            url
+            gatsbyImageData(
+              placeholder: BLURRED
+              width: 123
+            )
           },
           copyright,
           menu,

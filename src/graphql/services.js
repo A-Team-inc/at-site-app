@@ -10,7 +10,9 @@ const useServicesQuery = () => {
           raw
         },
         image {
-          url
+          gatsbyImageData(
+            placeholder: BLURRED
+          )
         }
       }
     }

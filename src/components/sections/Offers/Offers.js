@@ -1,4 +1,5 @@
 import React, {useEffect, useRef} from "react"
+import { GatsbyImage, getImage } from "gatsby-plugin-image"
 
 import useOfferQuery from "../../../graphql/offer"
 import "./Offers.scss"
@@ -30,13 +31,13 @@ const Offers = () => {
         <div className="offers__cards" ref={scrollContainer}>
           {data?.contentfulOffer.images.map((card, index) =>
             <Card
-              image={card.img?.url}
-              text={card.text}
-              backgroundColor={`#${card.backgroundColor}`}
-              logoColor={`#${card.logoColor}`}
-              rotateAngle={card.rotateAngle}
-              backgroundLogoPosition={card.backgroundLogoPosition}
-              topOffset={card.topOffset}
+              image={card?.img}
+              text={card?.text}
+              backgroundColor={`#${card?.backgroundColor}`}
+              logoColor={`#${card?.logoColor}`}
+              rotateAngle={card?.rotateAngle}
+              backgroundLogoPosition={card?.backgroundLogoPosition}
+              topOffset={card?.topOffset}
               key={index}
             />
           )}
@@ -46,17 +47,23 @@ const Offers = () => {
   )
 }
 
-const Card = ({ image, text, backgroundColor, logoColor, rotateAngle, backgroundLogoPosition, topOffset }) => (
-  <div className="offers__card" style={{ backgroundColor }}>
-    <img src={image} alt="" style={{marginTop: topOffset}} />
-    <div
-      className={`offers__background-logo offers__background-logo--${backgroundLogoPosition}`}
-      style={{transform: `rotate(${rotateAngle}deg)`}}
-    >
-      <BackgroundLogo color={logoColor} width="428" height="376" />
-    </div>
-    <h6 className="offers__card-title title">{text}</h6>
-  </div >
-)
+const Card = ({ image, text, backgroundColor, logoColor, rotateAngle, backgroundLogoPosition, topOffset }) => {
+  const offerImage = getImage(image)
+  
+  return (
+    <div className="offers__card" style={{ backgroundColor }}>
+      {/* <div style={{ marginTop: topOffset + "px" }}> */}
+        <GatsbyImage image={offerImage} alt="" />
+      {/* </div> */}
+      <div
+        className={`offers__background-logo offers__background-logo--${backgroundLogoPosition}`}
+        style={{transform: `rotate(${rotateAngle}deg)`}}
+      >
+        <BackgroundLogo color={logoColor} width="428" height="376" />
+      </div>
+      <h6 className="offers__card-title title">{text}</h6>
+    </div >
+  )
+}
 
 export default Offers

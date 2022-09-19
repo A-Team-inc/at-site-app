@@ -94,10 +94,8 @@
       margin-right: 0;
     }
 
-    img {
+    & .gatsby-image-wrapper img {
       z-index: 1;
-      width: fit-content;
-      max-width: 100%;
     }
   }
 

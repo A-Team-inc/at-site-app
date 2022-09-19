@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form"
 import * as Yup from "yup"
 import { yupResolver } from "@hookform/resolvers/yup";
 import cn from "classnames"
+import { GatsbyImage, getImage } from "gatsby-plugin-image"
 
 import useFooterQuery from "../../../graphql/footer"
 import { addLineBreaks } from "../../../utilities/index"
@@ -12,6 +13,7 @@ import "./Footer.scss"
 
 const Footer = ({ isShowForm }) => {
   const data = useFooterQuery()
+  const logoImage = getImage(data?.contentfulFooter.underfooter.footerLogo)
 
   const schema = Yup.object().shape({
     name: Yup.string().required("Name is required").matches(/^[A-Za-z]+$/, "Don't use special characters"),
@@ -156,12 +158,9 @@ const Footer = ({ isShowForm }) => {
         <div className="underfooter_content content_max_width">
           <div className="logo_wrapper">
             <Link className="tabIndexItem" to="/">
-              <img
-                className={"underfooter_logo"}
-                src={data?.contentfulFooter.underfooter.footerLogo.url}
-                width={123}
-                alt={data?.contentfulFooter.underfooter.footerLogo.url}
-                aria-label="A-Team home page"
+              <GatsbyImage
+                image={logoImage}
+                alt={"footer logo"}
               />
             </Link>
             <p className="copyright">{data?.contentfulFooter.underfooter.copyright}</p>

@@ -5,7 +5,10 @@ const useHeaderQuery = () => {
     query Header {
       contentfulHeader {
         logo {
-          url
+          gatsbyImageData(
+            placeholder: BLURRED
+            width: 123
+          )
         }
         menu
         socialLinks {

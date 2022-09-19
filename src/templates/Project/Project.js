@@ -1,5 +1,6 @@
 import React from "react"
 import { graphql } from "gatsby"
+import { GatsbyImage, getImage } from "gatsby-plugin-image"
 
 import Layout from "../../components/layout/Layout"
 import Title from "../../components/globals/Title/Title"
@@ -37,7 +38,12 @@ const Project = ({ data }) => {
           <div className="project_images">
             {projectData?.images && projectData?.images.map((image, index) => {
               if(index < 3) {
-                return <img className="main_img" key={image.url + index} src={image.url} alt={projectData.title} />
+                const projectImage = getImage(image)
+                return (
+                  <div className="main_img" key={image + index}>
+                    <GatsbyImage image={projectImage} alt={projectData.title} />
+                  </div>
+                )
               }
             } )}
           </div>
@@ -65,9 +71,14 @@ export const query = graphql`
           description
         },
         cover {
-          url
+          gatsbyImageData(
+            placeholder: BLURRED
+          )
         },
         images {
+          gatsbyImageData(
+            placeholder: BLURRED
+          ),
           url
         },
         abilities {

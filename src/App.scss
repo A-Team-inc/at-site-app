@@ -214,6 +214,12 @@ input, textarea {
     border: 1px solid #181818;
     border-radius: 45px;
     margin: 0 auto;
+    cursor: pointer;
+
+    &:hover {
+      color: #FFFFFF;
+      background: #181818;
+    }
   }
 
   &_main {
@@ -231,8 +237,12 @@ input, textarea {
   &_card {
     display: flex;
     flex-direction: column;
+
+    & .gatsby-image-wrapper div {
+      max-width: 540px !important;
+    }
   
-    &__img {
+    & .gatsby-image-wrapper img {
       max-width: 540px;
       max-height: 540px;
       width: 100%;

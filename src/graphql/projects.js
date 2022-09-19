@@ -12,7 +12,9 @@ const useProjectsQuery = () => {
           slug,
           subtitle,
           cover {
-            url
+            gatsbyImageData(
+              placeholder: BLURRED
+            )
           }
         }
       }
