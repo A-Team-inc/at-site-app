@@ -37,6 +37,12 @@ module.exports = {
         ],
         display: 'swap'
       }
+    },
+    {
+      resolve: 'gatsby-plugin-mailchimp',
+      options: {
+        endpoint: 'https://ateam-inc.us12.list-manage.com/subscribe/post?u=f43a82dca6f5f9ece25c8879e&amp;id=81038d644f&amp;f_id=0077bae0f0',
+      }
     }
   ],
 }

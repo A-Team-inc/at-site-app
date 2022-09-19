@@ -1,10 +1,11 @@
-import React from "react"
+import React, { useState } from "react"
 import { Link } from "gatsby"
 import { useForm } from "react-hook-form"
 import * as Yup from "yup"
 import { yupResolver } from "@hookform/resolvers/yup";
 import cn from "classnames"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
+import addToMailchimp from 'gatsby-plugin-mailchimp'
 
 import useFooterQuery from "../../../graphql/footer"
 import { addLineBreaks } from "../../../utilities/index"
@@ -14,6 +15,7 @@ import "./Footer.scss"
 const Footer = ({ isShowForm }) => {
   const data = useFooterQuery()
   const logoImage = getImage(data?.contentfulFooter.underfooter.footerLogo)
+  const [mailChimpResponse, setMailChimpResponse] = useState()
 
   const schema = Yup.object().shape({
     name: Yup.string().required("Name is required").matches(/^[A-Za-z]+$/, "Don't use special characters"),
@@ -24,8 +26,14 @@ const Footer = ({ isShowForm }) => {
     resolver: yupResolver(schema)
   });
 
-  const onSubmitHandler = (data) => {
-    console.log({ data });
+  const onSubmitHandler = async (data) => {
+    const response = await addToMailchimp(data.email, {
+      NAME: data.name,
+      SERVICE: data.serviceType,
+      BUDGET: data.budgetRange,
+      MESSAGE: data.message
+    })
+    setMailChimpResponse(response)
     reset();
   };
 

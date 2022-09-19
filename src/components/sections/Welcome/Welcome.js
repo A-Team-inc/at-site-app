@@ -1,10 +1,11 @@
-import React from "react"
+import React, { useState } from "react"
 import { Scrollbar, Mousewheel, Autoplay, Keyboard } from 'swiper'
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { useForm } from "react-hook-form"
 import * as Yup from "yup"
 import { yupResolver } from "@hookform/resolvers/yup";
+import addToMailchimp from 'gatsby-plugin-mailchimp'
 import cn from "classnames"
 
 import useWelcomeQuery from "../../../graphql/welcome"
@@ -18,6 +19,7 @@ import "swiper/scss/keyboard"
 
 const Welcome = () => {
   const data = useWelcomeQuery()
+  const [mailChimpResponse, setMailChimpResponse] = useState()
 
   const schema = Yup.object().shape({
     email: Yup.string().email("You entered the wrong email").required("Email is required")
@@ -27,8 +29,9 @@ const Welcome = () => {
     resolver: yupResolver(schema)
   });
 
-  const onSubmitHandler = (data) => {
-    console.log({ data });
+  const onSubmitHandler = async (data) => {
+    const response = await addToMailchimp(data.email)
+    setMailChimpResponse(response)
     reset();
   };
 
