@@ -42,21 +42,25 @@ const Welcome = () => {
           {data?.contentfulWelcome.title}
         </h1>
         <p className="welcome_subtitle">{addLineBreaks(data?.contentfulWelcome.description.description)}</p>
-        <form className="welcome_form" onSubmit={handleSubmit(onSubmitHandler)} method="get">
-          <div className="email_wrapper">
-            <input
-              {...register("email")}
-              className={cn("welcome_form-email", {
-                error_input: errors.email?.message
-              })}
-              type="text"
-              name="email"
-              placeholder="Enter your email"
-            />
-            <span className="error_message">{errors.email?.message}</span>
-          </div>
-          <input className="welcome_form-submit" type="submit" value={data?.contentfulWelcome.formButtonValue} />
-        </form>
+        {mailChimpResponse ? (
+          <div>{mailChimpResponse.msg}</div>
+        ) : (
+          <form className="welcome_form" onSubmit={handleSubmit(onSubmitHandler)} method="get">
+            <div className="email_wrapper">
+              <input
+                {...register("email")}
+                className={cn("welcome_form-email", {
+                  error_input: errors.email?.message
+                })}
+                type="text"
+                name="email"
+                placeholder="Enter your email"
+              />
+              <span className="error_message">{errors.email?.message}</span>
+            </div>
+            <input className="welcome_form-submit" type="submit" value={data?.contentfulWelcome.formButtonValue} />
+          </form>
+        )}
       </div>
       <div className="welcome_slider" tabIndex="0">
         <Swiper

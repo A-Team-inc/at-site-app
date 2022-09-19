@@ -46,7 +46,9 @@ const Footer = ({ isShowForm }) => {
   return(
     <section>
       <div className={cn("footer", { is_show_form: isShowForm })} id="contacts">
-        <div className="footer_content content_max_width">
+        <div className={cn("footer_content content_max_width", {
+          thank_you_text: mailChimpResponse
+        })}>
           <div className="left_block">
             <div className="footer_subtitle-wrapper">
               <div className="subtitle_line" />
@@ -57,9 +59,12 @@ const Footer = ({ isShowForm }) => {
             <SocialBlock SocialBlockClassName={"footer_social-links"} data={data?.contentfulFooter.socialLinks} />
           </div>
           <div className="footer_form-wrapper">
-            <form className="footer_form form" method="get" onSubmit={handleSubmit(onSubmitHandler)} >
+            {mailChimpResponse ? (
+              <div>{mailChimpResponse.msg}</div>
+            ) : (
+              <form className="footer_form form" method="get" onSubmit={handleSubmit(onSubmitHandler)} >
                 <div className="form_item-wrapper">
-                  <label className="form_label" htmlFor="userName">{ data?.contentfulFooter.footerForm.nameLabel }</label>
+                  <label className="form_label" htmlFor="userName">{data?.contentfulFooter.footerForm.nameLabel}</label>
                   <input
                     {...register("name")}
                     className={cn("form_text-input", {
@@ -68,12 +73,12 @@ const Footer = ({ isShowForm }) => {
                     type="text"
                     id="userName"
                     name="name"
-                    placeholder={ data?.contentfulFooter.footerForm.namePlaceholder }
+                    placeholder={data?.contentfulFooter.footerForm.namePlaceholder}
                   />
                   <span className="error_message">{errors.name?.message}</span>
                 </div>
                 <div className="form_item-wrapper">
-                  <label className="form_label" htmlFor="userEmail">{ data?.contentfulFooter.footerForm.emailLabel }</label>
+                  <label className="form_label" htmlFor="userEmail">{data?.contentfulFooter.footerForm.emailLabel}</label>
                   <input
                     {...register("email")}
                     className={cn("form_text-input", {
@@ -82,14 +87,14 @@ const Footer = ({ isShowForm }) => {
                     type="text"
                     id="userEmail"
                     name="email"
-                    placeholder={ data?.contentfulFooter.footerForm.emailPlaceholder }
+                    placeholder={data?.contentfulFooter.footerForm.emailPlaceholder}
                   />
                   <span className="error_message">{errors.email?.message}</span>
                 </div>
                 <div className="form_item-wrapper">
-                  <label className="form_label">{ data?.contentfulFooter.footerForm.projectTypesTitle }</label>
+                  <label className="form_label">{data?.contentfulFooter.footerForm.projectTypesTitle}</label>
                   <div className="form_radio-group">
-                    { data?.contentfulFooter.footerForm.projectTypesLabel.map((item, index) => (
+                    {data?.contentfulFooter.footerForm.projectTypesLabel.map((item, index) => (
                       <React.Fragment key={`serviceType${index}`}>
                         <input
                           {...register("serviceType")}
@@ -105,14 +110,14 @@ const Footer = ({ isShowForm }) => {
                           onKeyDown={event => keyDown(event)}
                         >{item}</label>
                       </React.Fragment>
-                    )) }
+                    ))}
                   </div>
                   <span className="error_message"></span>
                 </div>
                 <div className="form_item-wrapper">
-                  <label className="form_label">{ data?.contentfulFooter.footerForm.budgetRangeTitle }</label>
+                  <label className="form_label">{data?.contentfulFooter.footerForm.budgetRangeTitle}</label>
                   <div className="form_radio-group">
-                    { data?.contentfulFooter.footerForm.budgetRangeLabel.map((item, index) => (
+                    {data?.contentfulFooter.footerForm.budgetRangeLabel.map((item, index) => (
                       <React.Fragment key={`budgetRange${index}`}>
                         <input
                           {...register("budgetRange")}
@@ -128,7 +133,7 @@ const Footer = ({ isShowForm }) => {
                           tabIndex="0"
                         >{item}</label>
                       </React.Fragment>
-                    )) }
+                    ))}
                   </div>
                   <span className="error_message"></span>
                 </div>
@@ -148,17 +153,18 @@ const Footer = ({ isShowForm }) => {
                     value={data?.contentfulFooter.footerForm.cta}
                   />
                   <div>
-                  <input
-                    {...register("isAuthorize")}
-                    className="form_is-authorize"
-                    id="isAuthorize"
-                    name="isAuthorize"
-                    type="checkbox"
-                  />
-                  <label className="form_checkbox-label" htmlFor="isAuthorize">I authorize the processing of personal data</label>
+                    <input
+                      {...register("isAuthorize")}
+                      className="form_is-authorize"
+                      id="isAuthorize"
+                      name="isAuthorize"
+                      type="checkbox"
+                    />
+                    <label className="form_checkbox-label" htmlFor="isAuthorize">I authorize the processing of personal data</label>
                   </div>
                 </div>
-            </form>
+              </form>
+            )}
           </div>
         </div>
       </div>
