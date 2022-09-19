@@ -133,7 +133,7 @@
 
   .content_max_width {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1.15fr 1fr 1fr;
     column-gap: 10px;
 
     @media screen and (max-width: 1023px) {
@@ -164,10 +164,6 @@
       display: inherit;
       width: fit-content;
     }
-  }
-
-  &_logo {
-    object-fit: contain;
   }
 
   .copyright {
@@ -207,7 +203,6 @@
   }
 
   &-menu__link {
-    margin: 0 50px 0 0;
     font-weight: 600;
     font-size: 1rem;
     line-height: 150%;

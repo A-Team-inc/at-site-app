@@ -15,7 +15,9 @@ const useWelcomeQuery = () => {
             title
             subtitle
             slide {
-              url
+              gatsbyImageData(
+                placeholder: BLURRED
+              )
             }
           }
         }

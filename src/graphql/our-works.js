@@ -12,9 +12,9 @@ const useOurWorksQuery = () => {
           slug,
           subtitle,
           cover {
-            file {
-              url
-            }
+            gatsbyImageData(
+              placeholder: BLURRED
+            )
           }
         }
       }

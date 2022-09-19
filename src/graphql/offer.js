@@ -8,11 +8,14 @@ const useOfferQuery = () => {
         subtitle,
         images {
           img {
-            url
+            gatsbyImageData(
+              placeholder: BLURRED
+            )
           },
           text,
           backgroundColor,
           logoColor,
+          topOffset,
           rotateAngle,
           backgroundLogoPosition
         }

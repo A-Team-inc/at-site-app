@@ -7,7 +7,9 @@ const useTechnologyQuery = () => {
         title,
         technologies {
           icon {
-            url
+            gatsbyImageData(
+              placeholder: BLURRED
+            )
           },
           subtitle
         }

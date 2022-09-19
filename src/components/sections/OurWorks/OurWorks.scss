@@ -145,17 +145,6 @@
     }
   }
 
-  &__img {
-    margin-right: 25px;
-    @media screen and (max-width: 374px) {
-      margin: 0;
-    }
-
-    @media screen and (max-width: 1023px) {
-      max-width: 160px;
-    }
-  }
-
   &__content {
     @media screen and (max-width: 374px) {
       margin-top: 25px;

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { Link } from "gatsby"
+import { GatsbyImage, getImage } from "gatsby-plugin-image"
 
 import useHeaderQuery from "../../../graphql/header"
 import SocialBlock from "../../globals/SocialBlock/SocialBlock"
@@ -8,6 +9,7 @@ import cn from "classnames"
 
 const Header = ({ positionStyle = "" }) => {
   const data = useHeaderQuery()
+  const logoImage = getImage(data?.contentfulHeader.logo)
   const [ menuIsOpened, setMenuIsOpened ] = useState(false)
 
   useEffect(() => {
@@ -52,7 +54,12 @@ const Header = ({ positionStyle = "" }) => {
     })}>
       <div className="header_desctop-wrapper">
         <div className="header_item">
-        <Link className="tabIndexItem logo" to="/"><img className={"header_logo"} src={data?.contentfulHeader.logo.url} width={123} aria-label='A-Team home page' /></Link>
+        <Link className="tabIndexItem logo" to="/">
+          <GatsbyImage
+            image={logoImage}
+            alt={"footer logo"}
+          />
+        </Link>
           <menu className="header_menu">
             {data?.contentfulHeader.menu.map((item, index) => <li key={index} className="header_menu-item"><Link className="tabIndexItem" to={`/#${item.split(' ').join('-').toLowerCase()}`}>{item}</Link></li>)}
           </menu>

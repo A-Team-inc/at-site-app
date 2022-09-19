@@ -1,5 +1,6 @@
 import React from "react"
 import { Scrollbar, Mousewheel, Autoplay, Keyboard } from 'swiper'
+import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { useForm } from "react-hook-form"
 import * as Yup from "yup"
@@ -68,11 +69,12 @@ const Welcome = () => {
           }}
         >
           {data?.contentfulWelcome.slider.slides.map((item, index) => {
+            const image = getImage(item.slide)
             return (
               <SwiperSlide key={index}>
                 <p className="welcome_slider-subtitle">{item.subtitle}</p>
                 <Title className={"welcome_slider-title title"} size={3}>{item.title}</Title>
-                <img className="slider-image" src={item.slide.url} alt="" />
+                <GatsbyImage image={image} alt="" />
               </SwiperSlide>
             )
           })}

@@ -1,4 +1,5 @@
 import React, { useRef, useEffect } from "react"
+import { GatsbyImage, getImage } from "gatsby-plugin-image"
 
 import useTechnologyQuery from "../../../graphql/technology"
 import "./Technology.scss"
@@ -20,12 +21,15 @@ const Technology = () => {
     <section className="technology">
       <h2 className="technology__title title">{data?.contentfulTechnologiesSection.title}</h2>
       <div className="technology__content" ref={scrollContainer}>
-        {data?.contentfulTechnologiesSection.technologies.map((item, index) =>
-          <div className="technology__section" key={index}>
-            <img className="technology__image" src={item.icon.url} alt={item.subtitle} />
-            <p className="technology__subtitle">{item.subtitle}</p>
-          </div>
-        )}
+        {data?.contentfulTechnologiesSection.technologies.map((item, index) => {
+          const image = getImage(item.icon)
+          return (
+            <div className="technology__section" key={index}>
+              <GatsbyImage image={image} alt={item.subtitle} />
+              <p className="technology__subtitle">{item.subtitle}</p>
+            </div>
+          )
+        })}
       </div>
     </section>
   )
