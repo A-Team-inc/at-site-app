@@ -152,16 +152,6 @@ const Footer = ({ isShowForm }) => {
                     type="submit"
                     value={data?.contentfulFooter.footerForm.cta}
                   />
-                  <div>
-                    <input
-                      {...register("isAuthorize")}
-                      className="form_is-authorize"
-                      id="isAuthorize"
-                      name="isAuthorize"
-                      type="checkbox"
-                    />
-                    <label className="form_checkbox-label" htmlFor="isAuthorize">I authorize the processing of personal data</label>
-                  </div>
                 </div>
               </form>
             )}
