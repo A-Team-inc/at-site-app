@@ -25,6 +25,7 @@ const useFooterQuery = () => {
           budgetRangeLabel,
           descriptionLabal,
           cta
+          subscriptionError
         },
         underfooter {
           footerLogo {
