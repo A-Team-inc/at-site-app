@@ -17,7 +17,9 @@ const useWelcomeQuery = () => {
             slide {
               gatsbyImageData(
                 placeholder: BLURRED
-              )
+              ),
+              url,
+              placeholderUrl
             }
           }
         }

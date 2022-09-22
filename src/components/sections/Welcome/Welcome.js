@@ -81,7 +81,7 @@ const Welcome = () => {
               <SwiperSlide key={index}>
                 <p className="welcome_slider-subtitle">{item.subtitle}</p>
                 <Title className={"welcome_slider-title title"} size={3}>{item.title}</Title>
-                <GatsbyImage image={image} alt="" />
+                {image ? <GatsbyImage image={image} alt="" /> : <img src={item.slide.url} placeholder={item.slide.placeholderUrl} alt="" />}
               </SwiperSlide>
             )
           })}

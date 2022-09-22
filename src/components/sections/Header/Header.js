@@ -12,6 +12,9 @@ const Header = ({ positionStyle = "" }) => {
   const logoImage = getImage(data?.contentfulHeader.logo)
   const [ menuIsOpened, setMenuIsOpened ] = useState(false)
 
+  console.log("data?.contentfulHeader.logo", data?.contentfulHeader.logo)
+  console.log("logoImage", logoImage)
+
   useEffect(() => {
     document.body.classList[menuIsOpened ? 'add' : 'remove']('scroll-disabled')
   }, [menuIsOpened])
@@ -55,10 +58,10 @@ const Header = ({ positionStyle = "" }) => {
       <div className="header_desctop-wrapper">
         <div className="header_item">
         <Link className="tabIndexItem logo" to="/">
-          <GatsbyImage
+          { logoImage ? <GatsbyImage
             image={logoImage}
-            alt={"footer logo"}
-          />
+            alt={"logo"}
+          /> : <img src={data?.contentfulHeader.logo.url} width={123} placeholder={data?.contentfulHeader.logo.placeholderUrl} alt="logo" /> }
         </Link>
           <menu className="header_menu">
             {data?.contentfulHeader.menu.map((item, index) => <li key={index} className="header_menu-item"><Link className="tabIndexItem" to={`/#${item.split(' ').join('-').toLowerCase()}`}>{item}</Link></li>)}

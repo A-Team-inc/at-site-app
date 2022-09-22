@@ -194,10 +194,10 @@ const Footer = ({ isShowForm }) => {
         <div className="underfooter_content content_max_width">
           <div className="logo_wrapper">
             <Link className="tabIndexItem" to="/">
-              <GatsbyImage
-                image={logoImage}
-                alt={"footer logo"}
-              />
+              { logoImage ? <GatsbyImage
+                  image={logoImage}
+                  alt={"logo"}
+                /> : <img src={data?.contentfulFooter.underfooter.footerLogo.url} width={123} placeholder={data?.contentfulFooter.underfooter.footerLogo.placeholderUrl} alt="logo" /> }
             </Link>
             <p className="copyright">{data?.contentfulFooter.underfooter.copyright}</p>
           </div>

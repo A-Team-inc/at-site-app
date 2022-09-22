@@ -25,7 +25,7 @@ const Technology = () => {
           const image = getImage(item.icon)
           return (
             <div className="technology__section" key={index}>
-              <GatsbyImage image={image} alt={item.subtitle} />
+              {image ?<GatsbyImage image={image} alt={item.subtitle} /> : <img src={item.icon.url} placeholder={item.icon.placeholderUrl} alt="" />}
               <p className="technology__subtitle">{item.subtitle}</p>
             </div>
           )

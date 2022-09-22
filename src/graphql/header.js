@@ -8,7 +8,9 @@ const useHeaderQuery = () => {
           gatsbyImageData(
             placeholder: BLURRED
             width: 123
-          )
+          ),
+          url,
+          placeholderUrl
         }
         menu
         socialLinks {

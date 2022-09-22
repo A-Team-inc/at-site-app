@@ -63,7 +63,7 @@ const Card = ({ project }) => {
 
   return (
     <div className="projects_card">
-      <GatsbyImage image={image} alt={project.title} />
+      {image ? <GatsbyImage image={image} alt={project.title} /> : <img src={project.cover.url} placeholder={project.cover.placeholderUrl} alt="" />}
       <div className="projects_card__content">
         <Title className="projects_card__subtitle" size="5">{project.subtitle}</Title>
         <Title className="projects_card__title title" size="4">{project.title}</Title>

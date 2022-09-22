@@ -41,7 +41,7 @@ const Project = ({ data }) => {
                 const projectImage = getImage(image)
                 return (
                   <div className="main_img" key={image + index}>
-                    <GatsbyImage image={projectImage} alt={projectData.title} />
+                    {projectImage ? <GatsbyImage image={projectImage} alt={projectData.title} /> : <img src={image.url} placeholder={image.placeholderUrl} alt="" />}
                   </div>
                 )
               }
@@ -73,13 +73,16 @@ export const query = graphql`
         cover {
           gatsbyImageData(
             placeholder: BLURRED
-          )
+          ),
+          url,
+          placeholderUrl
         },
         images {
           gatsbyImageData(
             placeholder: BLURRED
           ),
-          url
+          url,
+          placeholderUrl
         },
         abilities {
           title,
