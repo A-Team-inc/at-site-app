@@ -28,6 +28,11 @@
     justify-content: space-between;
   }
 
+  .thank_you_text {
+    justify-content: flex-start;
+    align-items: center;
+  }
+
   &_form {
     @media screen and (min-width: 1440px) {
       justify-content: flex-end;
@@ -440,4 +445,9 @@
     border: 1px solid #FD435A;
     outline: none;
   }
+}
+
+.new {
+  justify-content: flex-start;
+  align-items: center;
 }

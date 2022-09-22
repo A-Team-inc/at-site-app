@@ -1,11 +1,12 @@
-import React from "react"
+import React, { useState } from "react"
 import { Scrollbar, Mousewheel, Autoplay, Keyboard } from 'swiper'
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { useForm } from "react-hook-form"
-import * as Yup from "yup"
-import { yupResolver } from "@hookform/resolvers/yup";
-import cn from "classnames"
+// import { useForm } from "react-hook-form"
+// import * as Yup from "yup"
+// import { yupResolver } from "@hookform/resolvers/yup";
+// import addToMailchimp from 'gatsby-plugin-mailchimp'
+// import cn from "classnames"
 
 import useWelcomeQuery from "../../../graphql/welcome"
 import { addLineBreaks } from "../../../utilities/index"
@@ -18,19 +19,21 @@ import "swiper/scss/keyboard"
 
 const Welcome = () => {
   const data = useWelcomeQuery()
+  // const [mailChimpResponse, setMailChimpResponse] = useState()
 
-  const schema = Yup.object().shape({
-    email: Yup.string().email("You entered the wrong email").required("Email is required")
-  })
+  // const schema = Yup.object().shape({
+  //   email: Yup.string().email("You entered the wrong email").required("Email is required")
+  // })
 
-  const { register, handleSubmit, formState: { errors }, reset } = useForm({
-    resolver: yupResolver(schema)
-  });
+  // const { register, handleSubmit, formState: { errors }, reset } = useForm({
+  //   resolver: yupResolver(schema)
+  // });
 
-  const onSubmitHandler = (data) => {
-    console.log({ data });
-    reset();
-  };
+  // const onSubmitHandler = async (data) => {
+  //   const response = await addToMailchimp(data.email)
+  //   setMailChimpResponse(response)
+  //   reset();
+  // };
 
   return(
     <section className="welcome content_max_width" id="about-us">
@@ -39,21 +42,25 @@ const Welcome = () => {
           {data?.contentfulWelcome.title}
         </h1>
         <p className="welcome_subtitle">{addLineBreaks(data?.contentfulWelcome.description.description)}</p>
-        <form className="welcome_form" onSubmit={handleSubmit(onSubmitHandler)} method="get">
-          <div className="email_wrapper">
-            <input
-              {...register("email")}
-              className={cn("welcome_form-email", {
-                error_input: errors.email?.message
-              })}
-              type="text"
-              name="email"
-              placeholder="Enter your email"
-            />
-            <span className="error_message">{errors.email?.message}</span>
-          </div>
-          <input className="welcome_form-submit" type="submit" value={data?.contentfulWelcome.formButtonValue} />
-        </form>
+        {/* {mailChimpResponse ? (
+          <div>{mailChimpResponse.msg}</div>
+        ) : (
+          <form className="welcome_form" onSubmit={handleSubmit(onSubmitHandler)} method="get">
+            <div className="email_wrapper">
+              <input
+                {...register("email")}
+                className={cn("welcome_form-email", {
+                  error_input: errors.email?.message
+                })}
+                type="text"
+                name="email"
+                placeholder="Enter your email"
+              />
+              <span className="error_message">{errors.email?.message}</span>
+            </div>
+            <input className="welcome_form-submit" type="submit" value={data?.contentfulWelcome.formButtonValue} />
+          </form>
+        )} */}
       </div>
       <div className="welcome_slider" tabIndex="0">
         <Swiper

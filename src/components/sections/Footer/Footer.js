@@ -1,10 +1,11 @@
-import React from "react"
+import React, { useState } from "react"
 import { Link } from "gatsby"
 import { useForm } from "react-hook-form"
 import * as Yup from "yup"
 import { yupResolver } from "@hookform/resolvers/yup";
 import cn from "classnames"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
+import addToMailchimp from 'gatsby-plugin-mailchimp'
 
 import useFooterQuery from "../../../graphql/footer"
 import { addLineBreaks } from "../../../utilities/index"
@@ -14,9 +15,10 @@ import "./Footer.scss"
 const Footer = ({ isShowForm }) => {
   const data = useFooterQuery()
   const logoImage = getImage(data?.contentfulFooter.underfooter.footerLogo)
+  const [mailChimpResponse, setMailChimpResponse] = useState()
 
   const schema = Yup.object().shape({
-    name: Yup.string().required("Name is required").matches(/^[A-Za-z]+$/, "Don't use special characters"),
+    name: Yup.string().required("Name is required").matches(/(^[A-Z][a-z]{1,14} [A-Z][a-z]{1,14}$)|(^[А-Я][а-я]{1,14} [А-Я][а-я]{1,14}$)/, "Don't use special characters"),
     email: Yup.string().email("You entered the wrong email").required("Email is required")
   })
 
@@ -24,8 +26,14 @@ const Footer = ({ isShowForm }) => {
     resolver: yupResolver(schema)
   });
 
-  const onSubmitHandler = (data) => {
-    console.log({ data });
+  const onSubmitHandler = async (data) => {
+    const response = await addToMailchimp(data.email, {
+      NAME: data.name,
+      SERVICE: data.serviceType,
+      BUDGET: data.budgetRange,
+      MESSAGE: data.message
+    }).then((res) => console.log("mailChimpResponse", res))
+    setMailChimpResponse(response)
     reset();
   };
 
@@ -38,7 +46,9 @@ const Footer = ({ isShowForm }) => {
   return(
     <section>
       <div className={cn("footer", { is_show_form: isShowForm })} id="contacts">
-        <div className="footer_content content_max_width">
+        <div className={cn("footer_content content_max_width", {
+          thank_you_text: mailChimpResponse
+        })}>
           <div className="left_block">
             <div className="footer_subtitle-wrapper">
               <div className="subtitle_line" />
@@ -49,9 +59,12 @@ const Footer = ({ isShowForm }) => {
             <SocialBlock SocialBlockClassName={"footer_social-links"} data={data?.contentfulFooter.socialLinks} />
           </div>
           <div className="footer_form-wrapper">
-            <form className="footer_form form" method="get" onSubmit={handleSubmit(onSubmitHandler)} >
+            {mailChimpResponse ? (
+              <div>{mailChimpResponse.msg}</div>
+            ) : (
+              <form className="footer_form form" method="get" onSubmit={handleSubmit(onSubmitHandler)} >
                 <div className="form_item-wrapper">
-                  <label className="form_label" htmlFor="userName">{ data?.contentfulFooter.footerForm.nameLabel }</label>
+                  <label className="form_label" htmlFor="userName">{data?.contentfulFooter.footerForm.nameLabel}</label>
                   <input
                     {...register("name")}
                     className={cn("form_text-input", {
@@ -60,12 +73,12 @@ const Footer = ({ isShowForm }) => {
                     type="text"
                     id="userName"
                     name="name"
-                    placeholder={ data?.contentfulFooter.footerForm.namePlaceholder }
+                    placeholder={data?.contentfulFooter.footerForm.namePlaceholder}
                   />
                   <span className="error_message">{errors.name?.message}</span>
                 </div>
                 <div className="form_item-wrapper">
-                  <label className="form_label" htmlFor="userEmail">{ data?.contentfulFooter.footerForm.emailLabel }</label>
+                  <label className="form_label" htmlFor="userEmail">{data?.contentfulFooter.footerForm.emailLabel}</label>
                   <input
                     {...register("email")}
                     className={cn("form_text-input", {
@@ -74,14 +87,14 @@ const Footer = ({ isShowForm }) => {
                     type="text"
                     id="userEmail"
                     name="email"
-                    placeholder={ data?.contentfulFooter.footerForm.emailPlaceholder }
+                    placeholder={data?.contentfulFooter.footerForm.emailPlaceholder}
                   />
                   <span className="error_message">{errors.email?.message}</span>
                 </div>
                 <div className="form_item-wrapper">
-                  <label className="form_label">{ data?.contentfulFooter.footerForm.projectTypesTitle }</label>
+                  <label className="form_label">{data?.contentfulFooter.footerForm.projectTypesTitle}</label>
                   <div className="form_radio-group">
-                    { data?.contentfulFooter.footerForm.projectTypesLabel.map((item, index) => (
+                    {data?.contentfulFooter.footerForm.projectTypesLabel.map((item, index) => (
                       <React.Fragment key={`serviceType${index}`}>
                         <input
                           {...register("serviceType")}
@@ -97,14 +110,14 @@ const Footer = ({ isShowForm }) => {
                           onKeyDown={event => keyDown(event)}
                         >{item}</label>
                       </React.Fragment>
-                    )) }
+                    ))}
                   </div>
                   <span className="error_message"></span>
                 </div>
                 <div className="form_item-wrapper">
-                  <label className="form_label">{ data?.contentfulFooter.footerForm.budgetRangeTitle }</label>
+                  <label className="form_label">{data?.contentfulFooter.footerForm.budgetRangeTitle}</label>
                   <div className="form_radio-group">
-                    { data?.contentfulFooter.footerForm.budgetRangeLabel.map((item, index) => (
+                    {data?.contentfulFooter.footerForm.budgetRangeLabel.map((item, index) => (
                       <React.Fragment key={`budgetRange${index}`}>
                         <input
                           {...register("budgetRange")}
@@ -120,7 +133,7 @@ const Footer = ({ isShowForm }) => {
                           tabIndex="0"
                         >{item}</label>
                       </React.Fragment>
-                    )) }
+                    ))}
                   </div>
                   <span className="error_message"></span>
                 </div>
@@ -139,18 +152,9 @@ const Footer = ({ isShowForm }) => {
                     type="submit"
                     value={data?.contentfulFooter.footerForm.cta}
                   />
-                  <div>
-                  <input
-                    {...register("isAuthorize")}
-                    className="form_is-authorize"
-                    id="isAuthorize"
-                    name="isAuthorize"
-                    type="checkbox"
-                  />
-                  <label className="form_checkbox-label" htmlFor="isAuthorize">I authorize the processing of personal data</label>
-                  </div>
                 </div>
-            </form>
+              </form>
+            )}
           </div>
         </div>
       </div>
