@@ -18,7 +18,7 @@ const Footer = ({ isShowForm }) => {
   const [mailChimpResponse, setMailChimpResponse] = useState()
 
   const schema = Yup.object().shape({
-    name: Yup.string().required("Name is required").matches(/(^[A-Z][a-z]{1,14} [A-Z][a-z]{1,14}$)|(^[А-Я][а-я]{1,14} [А-Я][а-я]{1,14}$)/, "Don't use special characters"),
+    name: Yup.string().required("Name is required").matches(/[A-Za-z]+$/, "Don't use special characters"),
     email: Yup.string().email("You entered the wrong email").required("Email is required")
   })
 
