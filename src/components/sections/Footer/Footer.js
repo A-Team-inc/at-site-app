@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useRef } from "react"
 import { Link } from "gatsby"
 import { useForm } from "react-hook-form"
 import * as Yup from "yup"
@@ -6,6 +6,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import cn from "classnames"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import addToMailchimp from 'gatsby-plugin-mailchimp'
+import ReCAPTCHA from "react-google-recaptcha";
 
 import useFooterQuery from "../../../graphql/footer"
 import { addLineBreaks } from "../../../utilities/index"
@@ -16,6 +17,11 @@ const Footer = ({ isShowForm }) => {
   const data = useFooterQuery()
   const logoImage = getImage(data?.contentfulFooter.underfooter.footerLogo)
   const [mailChimpResponse, setMailChimpResponse] = useState()
+  const [formData, setFormData] = useState()
+  const [showForm, setShowForm] = useState(true)
+  const [showMessage, setShowMessage] = useState(false)
+  const [showReCaptcha, setShowReCaptcha] = useState(false)
+  const recaptchaRef = useRef();
 
   const schema = Yup.object().shape({
     name: Yup.string().required("Name is required").matches(/(^[A-Z][a-z]{1,14} [A-Z][a-z]{1,14}$)|(^[А-Я][а-я]{1,14} [А-Я][а-я]{1,14}$)/, "Don't use special characters"),
@@ -26,16 +32,31 @@ const Footer = ({ isShowForm }) => {
     resolver: yupResolver(schema)
   });
 
-  const onSubmitHandler = async (data) => {
-    const response = await addToMailchimp(data.email, {
-      NAME: data.name,
-      SERVICE: data.serviceType,
-      BUDGET: data.budgetRange,
-      MESSAGE: data.message
-    }).then((res) => console.log("mailChimpResponse", res))
-    setMailChimpResponse(response)
+  const handleChange = async (value) => {
+    if (value) {
+      const response = await addToMailchimp(formData.email, {
+        NAME: formData.name,
+        SERVICE: formData.serviceType,
+        BUDGET: formData.budgetRange,
+        MESSAGE: formData.message
+      })
+      setMailChimpResponse(response)
+      setShowMessage(true)
+    }
+    setShowReCaptcha(false)
+  };
+
+  const onSubmitHandler = (data) => {
+    setShowForm(false)
+    setShowReCaptcha(true)
+    setFormData(data)
     reset();
   };
+
+  const handleGoBack = () => {
+    setShowForm(true)
+    setShowMessage(false)
+  }
 
   const keyDown = (event) => {
     if (event.key === 'Enter') {
@@ -47,7 +68,7 @@ const Footer = ({ isShowForm }) => {
     <section>
       <div className={cn("footer", { is_show_form: isShowForm })} id="contacts">
         <div className={cn("footer_content content_max_width", {
-          thank_you_text: mailChimpResponse
+          thank_you_text: mailChimpResponse || showReCaptcha
         })}>
           <div className="left_block">
             <div className="footer_subtitle-wrapper">
@@ -59,9 +80,20 @@ const Footer = ({ isShowForm }) => {
             <SocialBlock SocialBlockClassName={"footer_social-links"} data={data?.contentfulFooter.socialLinks} />
           </div>
           <div className="footer_form-wrapper">
-            {mailChimpResponse ? (
-              <div>{mailChimpResponse.msg}</div>
-            ) : (
+            {showReCaptcha && <ReCAPTCHA
+              style={{ display: "inline-block" }}
+              theme="dark"
+              ref={recaptchaRef}
+              sitekey={'6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI'}//need replace test sitekey
+              onChange={handleChange}
+            />}
+            {showMessage && (
+              <div className="footer_form-message">
+                <div>{mailChimpResponse.msg.includes('has too many recent signup requests') ? data?.contentfulFooter.footerForm.subscriptionError : mailChimpResponse.msg}</div>
+                {mailChimpResponse.result === 'error' && <button className="form_submit" onClick={handleGoBack}>Go back</button>}
+              </div>
+            )}
+            {showForm && (
               <form className="footer_form form" method="get" onSubmit={handleSubmit(onSubmitHandler)} >
                 <div className="form_item-wrapper">
                   <label className="form_label" htmlFor="userName">{data?.contentfulFooter.footerForm.nameLabel}</label>

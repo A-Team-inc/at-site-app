@@ -29,13 +29,21 @@
   }
 
   .thank_you_text {
-    justify-content: flex-start;
-    align-items: center;
+    @media screen and (min-width: 1201px) {
+      justify-content: flex-start;
+      align-items: center;
+    }
   }
 
   &_form {
     @media screen and (min-width: 1440px) {
       justify-content: flex-end;
+    }
+  }
+
+  &_form-message {
+    .form_submit {
+      padding: 17px 30px;
     }
   }
 
@@ -45,14 +53,11 @@
     @media screen and (max-width: 1400px) {
       margin: 0 100px 0 0;
     }
-
-    @media screen and (max-width: 1300px) {
-      margin: 0 50px 0 0;
-    }
   }
 
   &_form-wrapper {
     height: 100%;
+    margin: 21px 0 0;
   }
 
   &_title.title {
@@ -279,7 +284,6 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   column-gap: 35px;
-  margin: 21px 0 0;
 
   @media screen and (max-width: 1023px) {
     grid-template-columns: 100%;
