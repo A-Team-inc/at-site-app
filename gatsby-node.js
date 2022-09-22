@@ -43,7 +43,9 @@ client.setConfig({
 
 const run = async () => {
   const response = await client.lists.getListMembersInfo("81038d644f");
-  console.log(response);
+  const emailsArr = response?.members.map((item) => item.email_address)
+  console.log(emailsArr);
+  console.log(process)
 };
 
 run();
