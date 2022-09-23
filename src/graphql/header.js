@@ -12,7 +12,8 @@ const useHeaderQuery = () => {
           url,
           placeholderUrl
         }
-        menu
+        menu,
+        mobileMenuEmail
         socialLinks {
           title
           url

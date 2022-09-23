@@ -19,7 +19,7 @@ const Project = ({ data }) => {
         </div>
         <div className="project_title-wrapper">
           <Title className="project_title title" size="1">{ projectData?.title && projectData?.title }</Title>
-          <button className="project_btn">{ projectData?.cta && projectData?.cta }</button>
+          { projectData?.cta && <button className="project_btn">{ projectData?.cta && projectData?.cta }</button> }
         </div>
         <p className="project_description">
           {projectData?.description?.description && addLineBreaks(projectData?.description.description)}

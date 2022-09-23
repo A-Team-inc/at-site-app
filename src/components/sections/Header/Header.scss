@@ -29,6 +29,7 @@
     color: #333333;
     transform: none;
     background: #ffffff;
+    position: fixed;
   }
 
   &.activeScrolled &__background {
@@ -189,6 +190,15 @@
         margin: 0;
       }
     }
+  }
+
+  &_email {
+    font-weight: 600;
+    font-size: 1rem;
+    line-height: 100%;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #333333;
   }
 
   menu {

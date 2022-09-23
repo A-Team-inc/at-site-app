@@ -12,9 +12,6 @@ const Header = ({ positionStyle = "" }) => {
   const logoImage = getImage(data?.contentfulHeader.logo)
   const [ menuIsOpened, setMenuIsOpened ] = useState(false)
 
-  console.log("data?.contentfulHeader.logo", data?.contentfulHeader.logo)
-  console.log("logoImage", logoImage)
-
   useEffect(() => {
     document.body.classList[menuIsOpened ? 'add' : 'remove']('scroll-disabled')
   }, [menuIsOpened])
@@ -87,7 +84,7 @@ const Header = ({ positionStyle = "" }) => {
             )}
           </menu>
           <div className="social-links-wrapper">
-            <p>consulting@ateam-inc.com</p>
+            <a href={`mailto:${data?.contentfulHeader.mobileMenuEmail}`} className="mobile-menu_email">{data?.contentfulHeader.mobileMenuEmail}</a>
             <SocialBlock SocialBlockClassName={"mobile-menu__social-links"} />
           </div>
         </div>

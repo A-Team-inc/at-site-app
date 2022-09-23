@@ -43,7 +43,7 @@ const Projects = () => {
         </div>
         <div className="projects_title-wrapper">
           <Title className="projects_title title" size={2}>{data?.contentfulProjectsPage.title}</Title>
-          <button onClick={() => window.location.pathname = "/projects"} className="projects_btn">{data?.contentfulProjectsPage.cta}</button>
+          {data?.contentfulProjectsPage.cta && <button onClick={() => window.location.pathname = "/projects"} className="projects_btn">{data?.contentfulProjectsPage.cta}</button>}
         </div>
         <div className="projects_main">
           {list.map((project, index) => {
