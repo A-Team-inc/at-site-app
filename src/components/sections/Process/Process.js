@@ -48,7 +48,12 @@ const Process = () => {
           </div>
           <div className="process__title-block">
             <h2 className="process__title title">{ data?.contentfulProcess.title }</h2>
-            <button className="process__cta">{ data?.contentfulProcess.cta }</button>
+            <button
+              className="process__cta"
+              aria-label={data?.contentfulProcess.cta}
+            >
+              {data?.contentfulProcess.cta}
+            </button>
           </div>
         </div>
         <div className="process__steps" ref={scrollContainer}>
@@ -83,7 +88,10 @@ const Process = () => {
             </div>
           ))}
         </div>
-        <button className="process__cta--mobile">{ data?.contentfulProcess.cta }</button>
+        <button
+          className="process__cta--mobile"
+          aria-label={data?.contentfulProcess.cta}
+        >{data?.contentfulProcess.cta}</button>
       </div>
     </section>
   )
@@ -96,6 +104,8 @@ const Step = ({ step, handleClick, isActive, index, stepRef, keyDown }) => (
     onClick={() => handleClick(step, index)}
     onKeyDown={(event) => keyDown(event, step, index)}
     ref={stepRef}
+    aria-label={`step ${index + 1} ${step.title}`}
+    role="button"
     tabIndex="0"
   >
     <div className="process-step__number">{`0${index + 1}`}</div>

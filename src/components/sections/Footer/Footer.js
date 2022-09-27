@@ -124,7 +124,7 @@ const Footer = ({ isShowForm }) => {
                   <span className="error_message">{errors.email?.message}</span>
                 </div>
                 <div className="form_item-wrapper">
-                  <label className="form_label">{data?.contentfulFooter.footerForm.projectTypesTitle}</label>
+                  <label className="form_label" htmlFor="serviceType0">{data?.contentfulFooter.footerForm.projectTypesTitle}</label>
                   <div className="form_radio-group">
                     {data?.contentfulFooter.footerForm.projectTypesLabel.map((item, index) => (
                       <React.Fragment key={`serviceType${index}`}>
@@ -134,11 +134,17 @@ const Footer = ({ isShowForm }) => {
                           type="radio"
                           id={`serviceType${index}`}
                           name="serviceType"
-                          value={item} />
+                          value={item}
+                          tabIndex="-1"
+                          />
                         <label
+                          id={`label${index}`}
                           htmlFor={`serviceType${index}`}
                           key={`serviceTypeLabel${index}`}
                           tabIndex="0"
+                          aria-label={
+                            `${index === 0 ? `${data?.contentfulFooter.footerForm.projectTypesTitle} List item with ${data?.contentfulFooter.footerForm.projectTypesLabel.length}items` : ''} List item ${item}`
+                          }
                           onKeyDown={event => keyDown(event)}
                         >{item}</label>
                       </React.Fragment>
@@ -147,7 +153,7 @@ const Footer = ({ isShowForm }) => {
                   <span className="error_message"></span>
                 </div>
                 <div className="form_item-wrapper">
-                  <label className="form_label">{data?.contentfulFooter.footerForm.budgetRangeTitle}</label>
+                  <label className="form_label" htmlFor="budgetRange0">{data?.contentfulFooter.footerForm.budgetRangeTitle}</label>
                   <div className="form_radio-group">
                     {data?.contentfulFooter.footerForm.budgetRangeLabel.map((item, index) => (
                       <React.Fragment key={`budgetRange${index}`}>
@@ -157,12 +163,16 @@ const Footer = ({ isShowForm }) => {
                           type="radio"
                           id={`budgetRange${index}`}
                           name="budgetRange"
-                          value={item} />
+                          value={item}
+                          tabIndex="-1" />
                         <label
                           htmlFor={`budgetRange${index}`}
                           key={`budgetRangeLabel${index}`}
                           onKeyDown={event => keyDown(event)}
                           tabIndex="0"
+                          aria-label={
+                            `${index === 0 ? `${data?.contentfulFooter.footerForm.budgetRangeTitle} List item with ${data?.contentfulFooter.footerForm.budgetRangeLabel.length}items` : ''} List item ${item.replace('$', ' dollars').replace('+', 'and more') }`
+                          }
                         >{item}</label>
                       </React.Fragment>
                     ))}
@@ -170,12 +180,13 @@ const Footer = ({ isShowForm }) => {
                   <span className="error_message"></span>
                 </div>
                 <div className="form_item-wrapper">
-                  <label className="form_label">{data?.contentfulFooter.footerForm.descriptionLabal}</label>
+                  <label className="form_label" htmlFor="message">{data?.contentfulFooter.footerForm.descriptionLabal}</label>
                   <textarea
                     {...register("message")}
                     className="form_textarea"
                     placeholder="Message"
                     aria-label={data?.contentfulFooter.footerForm.descriptionLabal}
+                    id="message"
                   />
                 </div>
                 <div className="form_item-wrapper">
@@ -183,6 +194,7 @@ const Footer = ({ isShowForm }) => {
                     className="form_submit"
                     type="submit"
                     value={data?.contentfulFooter.footerForm.cta}
+                    aria-label={data?.contentfulFooter.footerForm.cta}
                   />
                 </div>
               </form>

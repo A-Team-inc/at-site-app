@@ -61,7 +61,16 @@ const Header = ({ positionStyle = "" }) => {
           />
         </Link>
           <menu className="header_menu">
-            {data?.contentfulHeader.menu.map((item, index) => <li key={index} className="header_menu-item"><Link className="tabIndexItem" to={`/#${item.split(' ').join('-').toLowerCase()}`}>{item}</Link></li>)}
+            {data?.contentfulHeader.menu.map((item, index) =>
+              <li key={index} className="header_menu-item">
+                <Link
+                  className="tabIndexItem"
+                  to={`/#${item.split(' ').join('-').toLowerCase()}`}
+                  aria-label={item}
+                >
+                  {item}
+                </Link>
+              </li>)}
           </menu>
         </div>
         <div className="header_item">

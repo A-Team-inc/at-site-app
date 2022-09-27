@@ -17,7 +17,13 @@ const OurWorks = () => {
       </div>
       <div className="our_works_title-wrapper">
         <h1 className="our_works_title title">{data?.contentfulOurWorks.title}</h1>
-        <button onClick={() => window.location.href = `${window.location.origin}/projects`} className="our_works_btn">{data?.contentfulOurWorks.cta}</button>
+        <button
+          onClick={() => window.location.href = `${window.location.origin}/projects`}
+          className="our_works_btn"
+          aria-label={data?.contentfulOurWorks.cta}
+        >
+          {data?.contentfulOurWorks.cta}
+        </button>
       </div>
       <div className="project-cards">
         {data?.contentfulOurWorks.projects.map((project, index) =>
