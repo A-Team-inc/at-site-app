@@ -8,12 +8,42 @@
   color: #555555;
 }
 
+a {
+  transition: 1s;
+  text-decoration: none;
+
+  &:hover, &:active {
+    color: #4B5BD7;
+  }
+
+  &:hover, &:focus, &:focus-visible, &:active {
+    transition: 0.5s;
+  }
+}
+
+button {
+  transition: 1s;
+
+  &:hover, &:focus, &:focus-visible, &:active {
+    transition: 1s;
+  }
+}
+
+svg {
+  transition: 1s;
+
+  &:hover, &:focus, &:focus-visible, &:active {
+    transition: 1s;
+  }
+}
+
 *:focus-visible {
   outline: 1px solid #333333;
 }
 
-button:focus-visible, button:focus, input[type=submit]:focus-visible, input[type=submit]:focus {
+button:focus-visible, button:focus, input[type=submit]:focus-visible, input[type=submit]:focus, .process__cta:focus-visible, .process__cta:focus {
   box-shadow: 0 0 0 2px #FFFFFF, 0 0 0 4px rgb(24 24 24 / 25%);
+  outline: none;
 }
 
 html {
@@ -178,7 +208,7 @@ input, textarea {
     }
   }
 
-  &_btn {
+  &_btn, &_load-more-btn {
     font-size: 1rem;
     line-height: 100%;
     color: #FFFFFF;
@@ -217,8 +247,8 @@ input, textarea {
     cursor: pointer;
 
     &:hover {
-      color: #FFFFFF;
-      background: #181818;
+      color: #333333;
+      background: linear-gradient(68deg, #BEB3F5 -0.66%, #E4F2EE 70.67%);
     }
   }
 

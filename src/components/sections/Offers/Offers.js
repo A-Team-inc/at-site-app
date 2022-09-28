@@ -53,7 +53,7 @@ const Card = ({ image, text, backgroundColor, logoColor, rotateAngle, background
   return (
     <div className="offers__card" style={{ backgroundColor }}>
       {/* <div style={{ marginTop: topOffset + "px" }}> */}
-        <GatsbyImage image={offerImage} alt="" />
+        {offerImage ? <GatsbyImage image={offerImage} alt="" /> : <img src={image.url} placeholder={image.placeholderUrl} alt="" />}
       {/* </div> */}
       <div
         className={`offers__background-logo offers__background-logo--${backgroundLogoPosition}`}

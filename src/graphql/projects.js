@@ -14,7 +14,9 @@ const useProjectsQuery = () => {
           cover {
             gatsbyImageData(
               placeholder: BLURRED
-            )
+            ),
+            url,
+            placeholderUrl
           }
         }
       }

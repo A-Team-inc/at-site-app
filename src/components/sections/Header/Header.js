@@ -55,10 +55,10 @@ const Header = ({ positionStyle = "" }) => {
       <div className="header_desctop-wrapper">
         <div className="header_item">
         <Link className="tabIndexItem logo" to="/">
-          <GatsbyImage
+          { logoImage ? <GatsbyImage
             image={logoImage}
-            alt={"footer logo"}
-          />
+            alt={"logo"}
+          /> : <img src={data?.contentfulHeader.logo.url} width={123} placeholder={data?.contentfulHeader.logo.placeholderUrl} alt="logo" /> }
         </Link>
           <menu className="header_menu">
             {data?.contentfulHeader.menu.map((item, index) => <li key={index} className="header_menu-item"><Link className="tabIndexItem" to={`/#${item.split(' ').join('-').toLowerCase()}`}>{item}</Link></li>)}
@@ -84,7 +84,7 @@ const Header = ({ positionStyle = "" }) => {
             )}
           </menu>
           <div className="social-links-wrapper">
-            <p>consulting@ateam-inc.com</p>
+            <a href={`mailto:${data?.contentfulHeader.mobileMenuEmail}`} className="mobile-menu_email">{data?.contentfulHeader.mobileMenuEmail}</a>
             <SocialBlock SocialBlockClassName={"mobile-menu__social-links"} />
           </div>
         </div>

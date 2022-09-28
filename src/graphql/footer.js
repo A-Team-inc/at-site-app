@@ -32,7 +32,9 @@ const useFooterQuery = () => {
             gatsbyImageData(
               placeholder: BLURRED
               width: 123
-            )
+            ),
+            url,
+            placeholderUrl
           },
           copyright,
           menu,

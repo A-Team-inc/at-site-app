@@ -34,7 +34,7 @@ const Process = () => {
           </div>
           <div className="process__title-block">
             <h2 className="process__title title">{ data?.contentfulProcess.title }</h2>
-            <button className="process__cta">{ data?.contentfulProcess.cta }</button>
+            { data?.contentfulProcess.cta && <a href="#footer-form" className="process__cta">{ data?.contentfulProcess.cta }</a> }
           </div>
         </div>
         <div className="process__steps" ref={scrollContainer}>
@@ -67,7 +67,7 @@ const Process = () => {
             </div>
           ))}
         </div>
-        <button className="process__cta--mobile">{ data?.contentfulProcess.cta }</button>
+        {data?.contentfulProcess.cta && <a href="#footer-form" className="process__cta--mobile">{ data?.contentfulProcess.cta }</a>}
       </div>
     </section>
   )
