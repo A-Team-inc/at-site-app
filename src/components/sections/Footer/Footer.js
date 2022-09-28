@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useRef } from "react"
 import { Link } from "gatsby"
 import { useForm } from "react-hook-form"
 import * as Yup from "yup"
@@ -6,6 +6,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import cn from "classnames"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import addToMailchimp from 'gatsby-plugin-mailchimp'
+import ReCAPTCHA from "react-google-recaptcha";
 
 import useFooterQuery from "../../../graphql/footer"
 import { addLineBreaks } from "../../../utilities/index"
@@ -16,12 +17,18 @@ const Footer = ({ mailchimpMembers, isShowForm }) => {
   console.log("mailchimpMembers", JSON.parse(mailchimpMembers))
   const data = useFooterQuery()
   const logoImage = getImage(data?.contentfulFooter.underfooter.footerLogo)
-  const [ mailChimpResponse, setMailChimpResponse ] = useState()
+  const [mailChimpResponse, setMailChimpResponse] = useState()
   const [ emailError, setEmailError ] = useState()
   const mailchimpMembersList = JSON.parse(mailchimpMembers)
+  const [formData, setFormData] = useState()
+  const [showForm, setShowForm] = useState(true)
+  const [showMessage, setShowMessage] = useState(false)
+  const [showReCaptcha, setShowReCaptcha] = useState(false)
+  const recaptchaRef = useRef();
+  const submitRef = useRef()
 
   const schema = Yup.object().shape({
-    name: Yup.string().required("Name is required").matches(/[A-Za-z]+$/, "Don't use special characters"),
+    name: Yup.string().required("Name is required").trim().matches(/^[A-Za-z]+$/, "Don't use special characters"),
     email: Yup.string().email("You entered the wrong email").required("Email is required")
   })
 
@@ -29,20 +36,35 @@ const Footer = ({ mailchimpMembers, isShowForm }) => {
     resolver: yupResolver(schema)
   });
 
-  const onSubmitHandler = async (data) => {
-    if(mailchimpMembersList.includes(data.email)) {
+  const handleChange = async (value) => {
+    if(mailchimpMembersList.includes(formData.email)) {
       setEmailError("This email is already registered")
       return null
     }
-    const response = await addToMailchimp(data.email, {
-      NAME: data.name,
-      SERVICE: data.serviceType,
-      BUDGET: data.budgetRange,
-      MESSAGE: data.message
-    })
-    setMailChimpResponse(response)
+    if (value) {
+      const response = await addToMailchimp(formData.email, {
+        NAME: formData.name,
+        SERVICE: formData.serviceType,
+        BUDGET: formData.budgetRange,
+        MESSAGE: formData.message
+      })
+      setMailChimpResponse(response)
+      setShowMessage(true)
+    }
+    setShowReCaptcha(false)
+  };
+
+  const onSubmitHandler = (data) => {
+    setShowForm(false)
+    setShowReCaptcha(true)
+    setFormData(data)
     reset();
   };
+
+  const handleGoBack = () => {
+    setShowForm(true)
+    setShowMessage(false)
+  }
 
   const keyDown = (event) => {
     if (event.key === 'Enter') {
@@ -51,24 +73,35 @@ const Footer = ({ mailchimpMembers, isShowForm }) => {
   }
 
   return(
-    <section>
+    <section id="footer-form">
       <div className={cn("footer", { is_show_form: isShowForm })} id="contacts">
         <div className={cn("footer_content content_max_width", {
-          thank_you_text: mailChimpResponse
+          thank_you_text: mailChimpResponse || showReCaptcha
         })}>
           <div className="left_block">
             <div className="footer_subtitle-wrapper">
               <div className="subtitle_line" />
-              <h4 className={"footer_subtitle"}>{ data?.contentfulFooter.subtitle }</h4>
+              <p className={"footer_subtitle"}>{ data?.contentfulFooter.subtitle }</p>
             </div>
             <h1 className={"footer_title title"}>{addLineBreaks(data?.contentfulFooter.title.title)}</h1>
-            <p className="footer_email tabIndexItem" tabIndex="0">{data?.contentfulFooter.email}</p>
+            <a href={`mailto:${data?.contentfulFooter.email}`} className="footer_email tabIndexItem" tabIndex="0">{data?.contentfulFooter.email}</a>
             <SocialBlock SocialBlockClassName={"footer_social-links"} data={data?.contentfulFooter.socialLinks} />
           </div>
           <div className="footer_form-wrapper">
-            {mailChimpResponse ? (
-              <div>{mailChimpResponse.msg}</div>
-            ) : (
+            {showReCaptcha && <ReCAPTCHA
+              style={{ display: "inline-block" }}
+              theme="dark"
+              ref={recaptchaRef}
+              sitekey={'6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI'}//need replace test sitekey
+              onChange={handleChange}
+            />}
+            {showMessage && (
+              <div className="footer_form-message">
+                <div>{mailChimpResponse.msg.includes('has too many recent signup requests') ? data?.contentfulFooter.footerForm.subscriptionError : mailChimpResponse.msg}</div>
+                {mailChimpResponse.result === 'error' && <button className="form_submit" onClick={handleGoBack}>Go back</button>}
+              </div>
+            )}
+            {showForm && (
               <form className="footer_form form" method="get" onSubmit={handleSubmit(onSubmitHandler)} >
                 <div className="form_item-wrapper">
                   <label className="form_label" htmlFor="userName">{data?.contentfulFooter.footerForm.nameLabel}</label>
@@ -99,58 +132,68 @@ const Footer = ({ mailchimpMembers, isShowForm }) => {
                   <span className="error_message">{errors.email?.message || emailError}</span>
                 </div>
                 <div className="form_item-wrapper">
-                  <label className="form_label">{data?.contentfulFooter.footerForm.projectTypesTitle}</label>
-                  <div className="form_radio-group">
+                  <label className="form_label" htmlFor="serviceType0">{data?.contentfulFooter.footerForm.projectTypesTitle}</label>
+                  <ul className="form_radio-group" aria-label={data?.contentfulFooter.footerForm.projectTypesTitle}>
                     {data?.contentfulFooter.footerForm.projectTypesLabel.map((item, index) => (
-                      <React.Fragment key={`serviceType${index}`}>
+                      <li key={`serviceType${index}`}>
                         <input
                           {...register("serviceType")}
                           className="form_radio"
                           type="radio"
                           id={`serviceType${index}`}
                           name="serviceType"
+                          tabIndex={-1}
                           value={item} />
                         <label
+                          id={`label${index}`}
                           htmlFor={`serviceType${index}`}
                           key={`serviceTypeLabel${index}`}
                           tabIndex="0"
+                          aria-label={
+                            `${index === 0 ? `${data?.contentfulFooter.footerForm.projectTypesTitle} List item with ${data?.contentfulFooter.footerForm.projectTypesLabel.length}items` : ''} List item ${item}`
+                          }
                           onKeyDown={event => keyDown(event)}
                         >{item}</label>
-                      </React.Fragment>
+                      </li>
                     ))}
-                  </div>
+                  </ul>
                   <span className="error_message"></span>
                 </div>
                 <div className="form_item-wrapper">
-                  <label className="form_label">{data?.contentfulFooter.footerForm.budgetRangeTitle}</label>
-                  <div className="form_radio-group">
+                  <label className="form_label" htmlFor="budgetRange0">{data?.contentfulFooter.footerForm.budgetRangeTitle}</label>
+                  <ul className="form_radio-group" aria-label={data?.contentfulFooter.footerForm.budgetRangeTitle}>
                     {data?.contentfulFooter.footerForm.budgetRangeLabel.map((item, index) => (
-                      <React.Fragment key={`budgetRange${index}`}>
+                      <li key={`budgetRange${index}`}>
                         <input
                           {...register("budgetRange")}
                           className="form_radio"
                           type="radio"
                           id={`budgetRange${index}`}
                           name="budgetRange"
+                          tabIndex={-1}
                           value={item} />
                         <label
                           htmlFor={`budgetRange${index}`}
                           key={`budgetRangeLabel${index}`}
                           onKeyDown={event => keyDown(event)}
                           tabIndex="0"
+                          aria-label={
+                            `${index === 0 ? `${data?.contentfulFooter.footerForm.budgetRangeTitle} List item with ${data?.contentfulFooter.footerForm.budgetRangeLabel.length}items` : ''} List item ${item.replace('$', ' dollars').replace('+', 'and more') }`
+                          }
                         >{item}</label>
-                      </React.Fragment>
+                      </li>
                     ))}
-                  </div>
+                  </ul>
                   <span className="error_message"></span>
                 </div>
                 <div className="form_item-wrapper">
-                  <label className="form_label">{data?.contentfulFooter.footerForm.descriptionLabal}</label>
+                  <label className="form_label" htmlFor="message">{data?.contentfulFooter.footerForm.descriptionLabal}</label>
                   <textarea
                     {...register("message")}
                     className="form_textarea"
                     placeholder="Message"
                     aria-label={data?.contentfulFooter.footerForm.descriptionLabal}
+                    id="message"
                   />
                 </div>
                 <div className="form_item-wrapper">
@@ -158,6 +201,9 @@ const Footer = ({ mailchimpMembers, isShowForm }) => {
                     className="form_submit"
                     type="submit"
                     value={data?.contentfulFooter.footerForm.cta}
+                    aria-label={data?.contentfulFooter.footerForm.cta}
+                    disabled={true}
+                    ref={submitRef}
                   />
                 </div>
               </form>
@@ -169,10 +215,10 @@ const Footer = ({ mailchimpMembers, isShowForm }) => {
         <div className="underfooter_content content_max_width">
           <div className="logo_wrapper">
             <Link className="tabIndexItem" to="/">
-              <GatsbyImage
-                image={logoImage}
-                alt={"footer logo"}
-              />
+              { logoImage ? <GatsbyImage
+                  image={logoImage}
+                  alt={"logo"}
+                /> : <img src={data?.contentfulFooter.underfooter.footerLogo.url} width={123} placeholder={data?.contentfulFooter.underfooter.footerLogo.placeholderUrl} alt="logo" /> }
             </Link>
             <p className="copyright">{data?.contentfulFooter.underfooter.copyright}</p>
           </div>
@@ -184,7 +230,7 @@ const Footer = ({ mailchimpMembers, isShowForm }) => {
             )}
           </menu>
           <div className="underfooter-menu__link underfooter_email">
-            <p className="tabIndexItem" tabIndex="0">{data?.contentfulFooter.underfooter.email}</p>
+            <a href={`mailto:${data?.contentfulFooter.underfooter.email}`} className="tabIndexItem" tabIndex="0">{data?.contentfulFooter.underfooter.email}</a>
           </div>
           <SocialBlock SocialBlockClassName={"footer_social-links underfooter_social-links"} data={data?.contentfulFooter.socialLinks} />
           <p className="copyright mobile_copyright">{data?.contentfulFooter.underfooter.copyright}</p>

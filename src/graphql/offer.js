@@ -10,7 +10,9 @@ const useOfferQuery = () => {
           img {
             gatsbyImageData(
               placeholder: BLURRED
-            )
+            ),
+            url,
+            placeholderUrl
           },
           text,
           backgroundColor,

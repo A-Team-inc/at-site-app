@@ -9,7 +9,9 @@ const useTechnologyQuery = () => {
           icon {
             gatsbyImageData(
               placeholder: BLURRED
-            )
+            ),
+            url,
+            placeholderUrl
           },
           subtitle
         }

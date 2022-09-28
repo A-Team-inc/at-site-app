@@ -24,7 +24,7 @@ const Offers = () => {
         <div className="offers__text-block">
           <div className="offers__subtitle-block">
             <div className="offers__line subtitle_line" />
-            <h6 className="offers__subtitle">{ data?.contentfulOffer.subtitle }</h6>
+            <p className="offers__subtitle">{ data?.contentfulOffer.subtitle }</p>
           </div>
           <h2 className="offers__title title">{ data?.contentfulOffer.title }</h2>
         </div>
@@ -53,7 +53,7 @@ const Card = ({ image, text, backgroundColor, logoColor, rotateAngle, background
   return (
     <div className="offers__card" style={{ backgroundColor }}>
       {/* <div style={{ marginTop: topOffset + "px" }}> */}
-        <GatsbyImage image={offerImage} alt="" />
+        {offerImage ? <GatsbyImage image={offerImage} alt="" /> : <img src={image.url} placeholder={image.placeholderUrl} alt="" />}
       {/* </div> */}
       <div
         className={`offers__background-logo offers__background-logo--${backgroundLogoPosition}`}
@@ -61,7 +61,7 @@ const Card = ({ image, text, backgroundColor, logoColor, rotateAngle, background
       >
         <BackgroundLogo color={logoColor} width="428" height="376" />
       </div>
-      <h6 className="offers__card-title title">{text}</h6>
+      <p className="offers__card-title title">{text}</p>
     </div >
   )
 }

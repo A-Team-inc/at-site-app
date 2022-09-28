@@ -25,13 +25,16 @@ const useFooterQuery = () => {
           budgetRangeLabel,
           descriptionLabal,
           cta
+          subscriptionError
         },
         underfooter {
           footerLogo {
             gatsbyImageData(
               placeholder: BLURRED
               width: 123
-            )
+            ),
+            url,
+            placeholderUrl
           },
           copyright,
           menu,

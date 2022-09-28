@@ -15,11 +15,18 @@ const Project = ({ data }) => {
       <section className="project">
         <div className="project_subtitle-wrapper">
           <div className="subtitle_line" />
-          <h4 className="project_subtitle">{ projectData?.subtitle && projectData?.subtitle }</h4>
+          <p className="project_subtitle">{ projectData?.subtitle && projectData?.subtitle }</p>
         </div>
         <div className="project_title-wrapper">
           <Title className="project_title title" size="1">{ projectData?.title && projectData?.title }</Title>
-          <button className="project_btn">{ projectData?.cta && projectData?.cta }</button>
+          {projectData?.cta &&
+            <button
+              className="project_btn"
+              aria-label={projectData?.cta}
+            >
+              {projectData?.cta && projectData?.cta}
+            </button>
+          }
         </div>
         <p className="project_description">
           {projectData?.description?.description && addLineBreaks(projectData?.description.description)}
@@ -29,7 +36,7 @@ const Project = ({ data }) => {
             {projectData?.abilities && projectData?.abilities.map((item, index) => {
               return(
                 <div key={item + index}>
-                  <Title className="project_cards-title title" size="5">{ item.title }</Title>
+                  <p className="project_cards-title title">{ item.title }</p>
                   <p className="project_cards-description">{ item.content.content }</p>
                 </div>
               )
@@ -41,7 +48,7 @@ const Project = ({ data }) => {
                 const projectImage = getImage(image)
                 return (
                   <div className="main_img" key={image + index}>
-                    <GatsbyImage image={projectImage} alt={projectData.title} />
+                    {projectImage ? <GatsbyImage image={projectImage} alt={projectData.title} /> : <img src={image.url} placeholder={image.placeholderUrl} alt="" />}
                   </div>
                 )
               }
@@ -73,13 +80,16 @@ export const query = graphql`
         cover {
           gatsbyImageData(
             placeholder: BLURRED
-          )
+          ),
+          url,
+          placeholderUrl
         },
         images {
           gatsbyImageData(
             placeholder: BLURRED
           ),
-          url
+          url,
+          placeholderUrl
         },
         abilities {
           title,
