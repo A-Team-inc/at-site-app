@@ -8,9 +8,12 @@ const useHeaderQuery = () => {
           gatsbyImageData(
             placeholder: BLURRED
             width: 123
-          )
+          ),
+          url,
+          placeholderUrl
         }
-        menu
+        menu,
+        mobileMenuEmail
         socialLinks {
           title
           url

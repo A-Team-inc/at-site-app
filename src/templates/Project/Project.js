@@ -19,7 +19,14 @@ const Project = ({ data }) => {
         </div>
         <div className="project_title-wrapper">
           <Title className="project_title title" size="1">{ projectData?.title && projectData?.title }</Title>
-          <button className="project_btn" aria-label={projectData?.cta}>{ projectData?.cta && projectData?.cta }</button>
+          {projectData?.cta &&
+            <button
+              className="project_btn"
+              aria-label={projectData?.cta}
+            >
+              {projectData?.cta && projectData?.cta}
+            </button>
+          }
         </div>
         <p className="project_description">
           {projectData?.description?.description && addLineBreaks(projectData?.description.description)}
@@ -41,7 +48,7 @@ const Project = ({ data }) => {
                 const projectImage = getImage(image)
                 return (
                   <div className="main_img" key={image + index}>
-                    <GatsbyImage image={projectImage} alt={projectData.title} />
+                    {projectImage ? <GatsbyImage image={projectImage} alt={projectData.title} /> : <img src={image.url} placeholder={image.placeholderUrl} alt="" />}
                   </div>
                 )
               }
@@ -73,13 +80,16 @@ export const query = graphql`
         cover {
           gatsbyImageData(
             placeholder: BLURRED
-          )
+          ),
+          url,
+          placeholderUrl
         },
         images {
           gatsbyImageData(
             placeholder: BLURRED
           ),
-          url
+          url,
+          placeholderUrl
         },
         abilities {
           title,

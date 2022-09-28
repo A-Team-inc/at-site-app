@@ -12,7 +12,9 @@ const useServicesQuery = () => {
         image {
           gatsbyImageData(
             placeholder: BLURRED
-          )
+          ),
+          url,
+          placeholderUrl
         }
       }
     }

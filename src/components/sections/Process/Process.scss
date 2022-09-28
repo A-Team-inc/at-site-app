@@ -72,6 +72,8 @@
     height: 50px;
     border: none;
     cursor: pointer;
+    text-decoration: none;
+
     @media screen and (max-width: 1023px) {
       display: none;
     }
@@ -83,6 +85,7 @@
   }
 
   &__cta--mobile {
+    display: inline-block;
     font-size: 1rem;
     line-height: 100%;
     color: #FFFFFF;
@@ -93,6 +96,7 @@
     margin: 36px 0 0;
     border: none;
     cursor: pointer;
+    text-decoration: none;
 
     @media screen and (min-width: 1024px) {
       display: none;

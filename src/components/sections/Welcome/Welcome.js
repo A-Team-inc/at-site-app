@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { Scrollbar, Mousewheel, Autoplay, Keyboard } from 'swiper'
+import { Scrollbar, Mousewheel, Keyboard } from 'swiper'
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import { Swiper, SwiperSlide } from 'swiper/react'
 // import { useForm } from "react-hook-form"
@@ -10,11 +10,9 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 
 import useWelcomeQuery from "../../../graphql/welcome"
 import { addLineBreaks } from "../../../utilities/index"
-import Title from "../../globals/Title/Title"
 import "./Welcome.scss"
 import "swiper/scss"
 import "swiper/scss/scrollbar"
-import "swiper/scss/autoplay"
 import "swiper/scss/keyboard"
 
 const Welcome = () => {
@@ -64,16 +62,12 @@ const Welcome = () => {
       </div>
       <div className="welcome_slider" tabIndex="0">
         <Swiper
-          modules={[Scrollbar, Mousewheel, Autoplay, Keyboard]}
+          modules={[Scrollbar, Mousewheel, Keyboard]}
           mousewheel={{ mousewheelControl: true }}
           keyboard={{ enabled: true }}
           scrollbar={{ draggable: true }}
           speed={500}
           slidesPerView={1}
-          autoplay={{
-            delay: 3000,
-            disableOnInteraction: false
-          }}
         >
           {data?.contentfulWelcome.slider.slides.map((item, index) => {
             const image = getImage(item.slide)
@@ -81,7 +75,7 @@ const Welcome = () => {
               <SwiperSlide key={index}>
                 <p className="welcome_slider-subtitle">{item.subtitle}</p>
                 <p className={"welcome_slider-title title"}>{item.title}</p>
-                <GatsbyImage image={image} alt="" />
+                {image ? <GatsbyImage image={image} alt="" /> : <img src={item.slide.url} placeholder={item.slide.placeholderUrl} alt="" />}
               </SwiperSlide>
             )
           })}

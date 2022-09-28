@@ -22,9 +22,10 @@ const Footer = ({ isShowForm }) => {
   const [showMessage, setShowMessage] = useState(false)
   const [showReCaptcha, setShowReCaptcha] = useState(false)
   const recaptchaRef = useRef();
+  const submitRef = useRef()
 
   const schema = Yup.object().shape({
-    name: Yup.string().required("Name is required").matches(/^[A-Za-z]+$/, "Don't use special characters"),
+    name: Yup.string().required("Name is required").trim().matches(/^[A-Za-z]+$/, "Don't use special characters"),
     email: Yup.string().email("You entered the wrong email").required("Email is required")
   })
 
@@ -65,7 +66,7 @@ const Footer = ({ isShowForm }) => {
   }
 
   return(
-    <section>
+    <section id="footer-form">
       <div className={cn("footer", { is_show_form: isShowForm })} id="contacts">
         <div className={cn("footer_content content_max_width", {
           thank_you_text: mailChimpResponse || showReCaptcha
@@ -76,7 +77,7 @@ const Footer = ({ isShowForm }) => {
               <p className={"footer_subtitle"}>{ data?.contentfulFooter.subtitle }</p>
             </div>
             <h1 className={"footer_title title"}>{addLineBreaks(data?.contentfulFooter.title.title)}</h1>
-            <p className="footer_email tabIndexItem" tabIndex="0">{data?.contentfulFooter.email}</p>
+            <a href={`mailto:${data?.contentfulFooter.email}`} className="footer_email tabIndexItem" tabIndex="0">{data?.contentfulFooter.email}</a>
             <SocialBlock SocialBlockClassName={"footer_social-links"} data={data?.contentfulFooter.socialLinks} />
           </div>
           <div className="footer_form-wrapper">
@@ -134,9 +135,8 @@ const Footer = ({ isShowForm }) => {
                           type="radio"
                           id={`serviceType${index}`}
                           name="serviceType"
-                          value={item}
-                          tabIndex="-1"
-                          />
+                          tabIndex={-1}
+                          value={item} />
                         <label
                           id={`label${index}`}
                           htmlFor={`serviceType${index}`}
@@ -163,8 +163,8 @@ const Footer = ({ isShowForm }) => {
                           type="radio"
                           id={`budgetRange${index}`}
                           name="budgetRange"
-                          value={item}
-                          tabIndex="-1" />
+                          tabIndex={-1}
+                          value={item} />
                         <label
                           htmlFor={`budgetRange${index}`}
                           key={`budgetRangeLabel${index}`}
@@ -195,6 +195,8 @@ const Footer = ({ isShowForm }) => {
                     type="submit"
                     value={data?.contentfulFooter.footerForm.cta}
                     aria-label={data?.contentfulFooter.footerForm.cta}
+                    disabled={true}
+                    ref={submitRef}
                   />
                 </div>
               </form>
@@ -206,10 +208,10 @@ const Footer = ({ isShowForm }) => {
         <div className="underfooter_content content_max_width">
           <div className="logo_wrapper">
             <Link className="tabIndexItem" to="/">
-              <GatsbyImage
-                image={logoImage}
-                alt={"footer logo"}
-              />
+              { logoImage ? <GatsbyImage
+                  image={logoImage}
+                  alt={"logo"}
+                /> : <img src={data?.contentfulFooter.underfooter.footerLogo.url} width={123} placeholder={data?.contentfulFooter.underfooter.footerLogo.placeholderUrl} alt="logo" /> }
             </Link>
             <p className="copyright">{data?.contentfulFooter.underfooter.copyright}</p>
           </div>
@@ -221,7 +223,7 @@ const Footer = ({ isShowForm }) => {
             )}
           </menu>
           <div className="underfooter-menu__link underfooter_email">
-            <p className="tabIndexItem" tabIndex="0">{data?.contentfulFooter.underfooter.email}</p>
+            <a href={`mailto:${data?.contentfulFooter.underfooter.email}`} className="tabIndexItem" tabIndex="0">{data?.contentfulFooter.underfooter.email}</a>
           </div>
           <SocialBlock SocialBlockClassName={"footer_social-links underfooter_social-links"} data={data?.contentfulFooter.socialLinks} />
           <p className="copyright mobile_copyright">{data?.contentfulFooter.underfooter.copyright}</p>
