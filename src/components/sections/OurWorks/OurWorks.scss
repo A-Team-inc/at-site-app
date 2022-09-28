@@ -216,6 +216,14 @@
     color: #4B5BD7;
     margin: 0 0 0 -3px;
 
+    &:visited {
+      color: #c58af9;
+
+      svg path {
+        fill: #c58af9;
+      }
+    }
+
     &:hover {
       color: #D3D8FE;
 

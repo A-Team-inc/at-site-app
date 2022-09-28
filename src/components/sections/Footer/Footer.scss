@@ -294,9 +294,21 @@
 
   &_radio-group {
     display: flex;
+    margin: 0;
+    padding: 0;
 
     @media screen and (max-width: 374px) {
       flex-direction: column;
+    }
+
+    li {
+      width: 100%;
+      list-style-type: none;
+      padding-right: 15px;
+
+      &:last-child {
+        padding: 0;
+      }
     }
   }
 
@@ -313,7 +325,7 @@
       background: #F7F7F7;
       border-radius: 45px;
       border: 1px solid transparent;
-      padding: 18px 10px;
+      padding: 18px 8px;
       font-size: 0.875rem;
       line-height: 100%;
       display: flex;
@@ -417,7 +429,12 @@
 
     &:hover {
       color: #333333;
-      background: linear-gradient(68deg, #BEB3F5 -0.66%, #E4F2EE 70.67%);
+      // background: linear-gradient(68deg, #BEB3F5 -0.66%, #E4F2EE 70.67%);//old version
+
+      // background: linear-gradient(68deg, #baadff -0.66%, #dffff6 70.67%);//1
+      // background: linear-gradient(68deg, #baadff -0.66%, #cdfaed 70.67%);//2
+      // background: linear-gradient(68deg, #b4a6fd -0.66%, #c9fff0 70.67%);//3
+      background: linear-gradient(68deg, #ae9dff -0.66%, #b9f9e7 70.67%);//4
     }
   }
 

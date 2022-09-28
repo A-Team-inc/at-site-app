@@ -15,11 +15,18 @@ const Project = ({ data }) => {
       <section className="project">
         <div className="project_subtitle-wrapper">
           <div className="subtitle_line" />
-          <h4 className="project_subtitle">{ projectData?.subtitle && projectData?.subtitle }</h4>
+          <p className="project_subtitle">{ projectData?.subtitle && projectData?.subtitle }</p>
         </div>
         <div className="project_title-wrapper">
           <Title className="project_title title" size="1">{ projectData?.title && projectData?.title }</Title>
-          { projectData?.cta && <button className="project_btn">{ projectData?.cta && projectData?.cta }</button> }
+          {projectData?.cta &&
+            <button
+              className="project_btn"
+              aria-label={projectData?.cta}
+            >
+              {projectData?.cta && projectData?.cta}
+            </button>
+          }
         </div>
         <p className="project_description">
           {projectData?.description?.description && addLineBreaks(projectData?.description.description)}
@@ -29,7 +36,7 @@ const Project = ({ data }) => {
             {projectData?.abilities && projectData?.abilities.map((item, index) => {
               return(
                 <div key={item + index}>
-                  <Title className="project_cards-title title" size="5">{ item.title }</Title>
+                  <p className="project_cards-title title">{ item.title }</p>
                   <p className="project_cards-description">{ item.content.content }</p>
                 </div>
               )

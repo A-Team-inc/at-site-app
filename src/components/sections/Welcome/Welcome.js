@@ -10,7 +10,6 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 
 import useWelcomeQuery from "../../../graphql/welcome"
 import { addLineBreaks } from "../../../utilities/index"
-import Title from "../../globals/Title/Title"
 import "./Welcome.scss"
 import "swiper/scss"
 import "swiper/scss/scrollbar"
@@ -75,7 +74,7 @@ const Welcome = () => {
             return (
               <SwiperSlide key={index}>
                 <p className="welcome_slider-subtitle">{item.subtitle}</p>
-                <Title className={"welcome_slider-title title"} size={3}>{item.title}</Title>
+                <p className={"welcome_slider-title title"}>{item.title}</p>
                 {image ? <GatsbyImage image={image} alt="" /> : <img src={item.slide.url} placeholder={item.slide.placeholderUrl} alt="" />}
               </SwiperSlide>
             )
