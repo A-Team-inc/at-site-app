@@ -14,12 +14,13 @@ import SocialBlock from "../../globals/SocialBlock/SocialBlock"
 import "./Footer.scss"
 
 const Footer = ({ mailchimpMembers, isShowForm }) => {
-  console.log("mailchimpMembers", JSON.parse(mailchimpMembers))
   const data = useFooterQuery()
   const logoImage = getImage(data?.contentfulFooter.underfooter.footerLogo)
   const [mailChimpResponse, setMailChimpResponse] = useState()
   const [ emailError, setEmailError ] = useState()
-  const mailchimpMembersList = JSON.parse(mailchimpMembers)
+  const [ nameInputValue, setNameInputValue ] = useState()
+  const [ emailInputValue, setEmailInputValue ] = useState()
+  const mailchimpMembersList = mailchimpMembers && JSON.parse(mailchimpMembers)
   const [formData, setFormData] = useState()
   const [showForm, setShowForm] = useState(true)
   const [showMessage, setShowMessage] = useState(false)
@@ -37,10 +38,6 @@ const Footer = ({ mailchimpMembers, isShowForm }) => {
   });
 
   const handleChange = async (value) => {
-    if(mailchimpMembersList.includes(formData.email)) {
-      setEmailError("This email is already registered")
-      return null
-    }
     if (value) {
       const response = await addToMailchimp(formData.email, {
         NAME: formData.name,
@@ -55,6 +52,10 @@ const Footer = ({ mailchimpMembers, isShowForm }) => {
   };
 
   const onSubmitHandler = (data) => {
+    if(mailchimpMembersList.includes(data.email)) {
+      setEmailError("This email is already registered")
+      return null
+    }
     setShowForm(false)
     setShowReCaptcha(true)
     setFormData(data)
@@ -64,6 +65,18 @@ const Footer = ({ mailchimpMembers, isShowForm }) => {
   const handleGoBack = () => {
     setShowForm(true)
     setShowMessage(false)
+  }
+
+  const onInputChange = (e, value) => {
+    if(value === "email") {
+      setEmailInputValue(e.target.value)
+      return null
+    }
+
+    if(value === "name") {
+      setNameInputValue(e.target.value)
+      return null
+    }
   }
 
   const keyDown = (event) => {
@@ -110,6 +123,7 @@ const Footer = ({ mailchimpMembers, isShowForm }) => {
                     className={cn("form_text-input", {
                       error_input: errors.name?.message
                     })}
+                    onChange={(e) => onInputChange(e, "name")}
                     type="text"
                     id="userName"
                     name="name"
@@ -122,14 +136,15 @@ const Footer = ({ mailchimpMembers, isShowForm }) => {
                   <input
                     {...register("email")}
                     className={cn("form_text-input", {
-                      error_input: errors.email?.message || emailError
+                      error_input: errors.email?.message || emailInputValue && emailError
                     })}
+                    onChange={(e) => onInputChange(e, "email")}
                     type="text"
                     id="userEmail"
                     name="email"
                     placeholder={data?.contentfulFooter.footerForm.emailPlaceholder}
                   />
-                  <span className="error_message">{errors.email?.message || emailError}</span>
+                  <span className="error_message">{emailInputValue ? errors.email?.message || emailError : ""}</span>
                 </div>
                 <div className="form_item-wrapper">
                   <label className="form_label" htmlFor="serviceType0">{data?.contentfulFooter.footerForm.projectTypesTitle}</label>
@@ -198,11 +213,11 @@ const Footer = ({ mailchimpMembers, isShowForm }) => {
                 </div>
                 <div className="form_item-wrapper">
                   <input
-                    className="form_submit"
+                    className={cn("form_submit", {disabled: !nameInputValue || !emailInputValue})}
                     type="submit"
                     value={data?.contentfulFooter.footerForm.cta}
                     aria-label={data?.contentfulFooter.footerForm.cta}
-                    disabled={true}
+                    disabled={!nameInputValue || !emailInputValue}
                     ref={submitRef}
                   />
                 </div>

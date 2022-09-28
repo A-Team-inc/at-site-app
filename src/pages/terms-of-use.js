@@ -1,18 +1,19 @@
 import React from "react"
 import { useLocation } from "@reach/router"
+import { graphql } from "gatsby"
 
 import Layout from "../components/layout/Layout"
 import RichText from "../components/globals/RichText/RichText"
 import Title from "../components/globals/Title/Title"
 import usePrivacyPolicyAndTermsOfUseQuery from "../graphql/privacy-policy-and-terms-of-use"
 
-const TermsOfUse = () => {
+const TermsOfUse = ({ data }) => {
   const { pathname } = useLocation()
-  const data = usePrivacyPolicyAndTermsOfUseQuery()
-  const filteredData = data?.allContentfulPrivacyPolicyAndTermsOfUse.nodes.filter((item) => item.slug === pathname)[0]
+  const dataTerms = usePrivacyPolicyAndTermsOfUseQuery()
+  const filteredData = dataTerms?.allContentfulPrivacyPolicyAndTermsOfUse.nodes.filter((item) => item.slug === pathname)[0]
 
   return(
-    <Layout isShowForm={false}>
+    <Layout isShowForm={false} mailchimpMembers={data?.allMailchimpMembers.nodes[0].internal.content}>
       <section className="privacy_policy-terms_of_use">
         <div className="subtitle-wrapper">
           <div className="subtitle_line" />
@@ -24,5 +25,17 @@ const TermsOfUse = () => {
     </Layout>
   )
 }
+
+export const query = graphql`
+  query {
+    allMailchimpMembers {
+      nodes {
+        internal {
+          content
+        }
+      }
+    }
+  }
+`;
 
 export default TermsOfUse

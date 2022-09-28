@@ -1,5 +1,6 @@
 import React from "react"
 import { graphql } from "gatsby"
+
 import SEO from "../components/sections/SEO/SEO"
 import Header from "../components/sections/Header/Header"
 import Footer from "../components/sections/Footer/Footer"
