@@ -44,7 +44,7 @@ const Process = () => {
         <div className="process__headline">
           <div className="process__subtitle-block">
             <div className="subtitle_line" />
-            <h6 className="process__subtitle">{ data?.contentfulProcess.subtitle }</h6>
+            <p className="process__subtitle">{ data?.contentfulProcess.subtitle }</p>
           </div>
           <div className="process__title-block">
             <h2 className="process__title title">{ data?.contentfulProcess.title }</h2>
@@ -83,7 +83,7 @@ const Process = () => {
               className="abilities__item"
               key={index}
             >
-              <h6 className="abilities__title title">{item.title}</h6>
+              <p className="abilities__title title">{item.title}</p>
               <p className="abilities__content">{item.content.content}</p>
             </div>
           ))}
@@ -109,7 +109,7 @@ const Step = ({ step, handleClick, isActive, index, stepRef, keyDown }) => (
     tabIndex="0"
   >
     <div className="process-step__number">{`0${index + 1}`}</div>
-    <h6 className="process-step__title title">{step.title}</h6>
+    <p className="process-step__title title">{step.title}</p>
     <p className="process-step__content">{step.content.content}</p>
   </div>
 )

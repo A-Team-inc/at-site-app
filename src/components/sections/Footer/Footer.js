@@ -73,7 +73,7 @@ const Footer = ({ isShowForm }) => {
           <div className="left_block">
             <div className="footer_subtitle-wrapper">
               <div className="subtitle_line" />
-              <h4 className={"footer_subtitle"}>{ data?.contentfulFooter.subtitle }</h4>
+              <p className={"footer_subtitle"}>{ data?.contentfulFooter.subtitle }</p>
             </div>
             <h1 className={"footer_title title"}>{addLineBreaks(data?.contentfulFooter.title.title)}</h1>
             <p className="footer_email tabIndexItem" tabIndex="0">{data?.contentfulFooter.email}</p>
@@ -125,9 +125,9 @@ const Footer = ({ isShowForm }) => {
                 </div>
                 <div className="form_item-wrapper">
                   <label className="form_label" htmlFor="serviceType0">{data?.contentfulFooter.footerForm.projectTypesTitle}</label>
-                  <div className="form_radio-group">
+                  <ul className="form_radio-group" aria-label={data?.contentfulFooter.footerForm.projectTypesTitle}>
                     {data?.contentfulFooter.footerForm.projectTypesLabel.map((item, index) => (
-                      <React.Fragment key={`serviceType${index}`}>
+                      <li key={`serviceType${index}`}>
                         <input
                           {...register("serviceType")}
                           className="form_radio"
@@ -147,16 +147,16 @@ const Footer = ({ isShowForm }) => {
                           }
                           onKeyDown={event => keyDown(event)}
                         >{item}</label>
-                      </React.Fragment>
+                      </li>
                     ))}
-                  </div>
+                  </ul>
                   <span className="error_message"></span>
                 </div>
                 <div className="form_item-wrapper">
                   <label className="form_label" htmlFor="budgetRange0">{data?.contentfulFooter.footerForm.budgetRangeTitle}</label>
-                  <div className="form_radio-group">
+                  <ul className="form_radio-group" aria-label={data?.contentfulFooter.footerForm.budgetRangeTitle}>
                     {data?.contentfulFooter.footerForm.budgetRangeLabel.map((item, index) => (
-                      <React.Fragment key={`budgetRange${index}`}>
+                      <li key={`budgetRange${index}`}>
                         <input
                           {...register("budgetRange")}
                           className="form_radio"
@@ -174,9 +174,9 @@ const Footer = ({ isShowForm }) => {
                             `${index === 0 ? `${data?.contentfulFooter.footerForm.budgetRangeTitle} List item with ${data?.contentfulFooter.footerForm.budgetRangeLabel.length}items` : ''} List item ${item.replace('$', ' dollars').replace('+', 'and more') }`
                           }
                         >{item}</label>
-                      </React.Fragment>
+                      </li>
                     ))}
-                  </div>
+                  </ul>
                   <span className="error_message"></span>
                 </div>
                 <div className="form_item-wrapper">

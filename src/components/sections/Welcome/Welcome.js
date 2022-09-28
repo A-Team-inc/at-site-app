@@ -80,7 +80,7 @@ const Welcome = () => {
             return (
               <SwiperSlide key={index}>
                 <p className="welcome_slider-subtitle">{item.subtitle}</p>
-                <Title className={"welcome_slider-title title"} size={3}>{item.title}</Title>
+                <p className={"welcome_slider-title title"}>{item.title}</p>
                 <GatsbyImage image={image} alt="" />
               </SwiperSlide>
             )

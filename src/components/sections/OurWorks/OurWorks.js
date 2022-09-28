@@ -13,7 +13,7 @@ const OurWorks = () => {
     <section className="our_works content_max_width" id="our-works">
       <div className="our_works_subtitle-wrapper">
         <div className="subtitle_line" />
-        <h4 className="our_works_subtitle">{data?.contentfulOurWorks.subtitle}</h4>
+        <p className="our_works_subtitle">{data?.contentfulOurWorks.subtitle}</p>
       </div>
       <div className="our_works_title-wrapper">
         <h1 className="our_works_title title">{data?.contentfulOurWorks.title}</h1>
@@ -42,8 +42,8 @@ const Card = ({ project }) => {
     <div className="project-card">
       <GatsbyImage image={image} alt={project.title} />
       <div className="project-card__content">
-        <Title className="project-card__subtitle" size="5">{project.subtitle}</Title>
-        <Title className="project-card__title title" size="4">{project.title}</Title>
+        <p className="project-card__subtitle">{project.subtitle}</p>
+        <p className="project-card__title title">{project.title}</p>
         <Link
           className="project-card__link tabIndexItem"
           to={`projects${project.slug}`}

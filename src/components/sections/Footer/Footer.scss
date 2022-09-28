@@ -293,9 +293,21 @@
 
   &_radio-group {
     display: flex;
+    margin: 0;
+    padding: 0;
 
     @media screen and (max-width: 374px) {
       flex-direction: column;
+    }
+
+    li {
+      width: 100%;
+      list-style-type: none;
+      padding-right: 15px;
+
+      &:last-child {
+        padding: 0;
+      }
     }
   }
 

@@ -19,7 +19,7 @@ const Services = () => {
           <div className="services__text-block">
             <div className="services__subtitle-block">
               <div className="services__line subtitle_line" />
-              <h6 className="services__subtitle">{ data?.contentfulServicesSection.subtitle }</h6>
+              <p className="services__subtitle">{ data?.contentfulServicesSection.subtitle }</p>
             </div>
             <h2 className="services__title title">{data?.contentfulServicesSection.title}</h2>
             <div>

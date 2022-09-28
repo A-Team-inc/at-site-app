@@ -54,7 +54,7 @@ const Header = ({ positionStyle = "" }) => {
     })}>
       <div className="header_desctop-wrapper">
         <div className="header_item">
-        <Link className="tabIndexItem logo" to="/">
+        <Link className="tabIndexItem logo" to="/" aria-label="A-Team">
           <GatsbyImage
             image={logoImage}
             alt={"footer logo"}
