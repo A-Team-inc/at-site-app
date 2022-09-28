@@ -1,4 +1,5 @@
 import React from "react"
+import { graphql } from "gatsby"
 import SEO from "../components/sections/SEO/SEO"
 import Header from "../components/sections/Header/Header"
 import Footer from "../components/sections/Footer/Footer"
@@ -10,10 +11,10 @@ import Offers from "../components/sections/Offers/Offers"
 import Process from "../components/sections/Process/Process"
 import reportWebVitals from "../reportWebVitals"
 
+
 import "../App.scss"
 
-export default function Home() {
-
+export default function Home({ data }) {
   return (
     <>
       <SEO />
@@ -28,9 +29,21 @@ export default function Home() {
           <OurWorks />
         </div>
       </div>
-      <Footer />
+      <Footer mailchimpMembers={data?.allMailchimpMembers.nodes[0].internal.content} />
     </>
   )
 }
+
+export const query = graphql`
+  query {
+    allMailchimpMembers {
+      nodes {
+        internal {
+          content
+        }
+      }
+    }
+  }
+`;
 
 reportWebVitals()

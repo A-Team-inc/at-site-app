@@ -12,10 +12,13 @@ import { addLineBreaks } from "../../../utilities/index"
 import SocialBlock from "../../globals/SocialBlock/SocialBlock"
 import "./Footer.scss"
 
-const Footer = ({ isShowForm }) => {
+const Footer = ({ mailchimpMembers, isShowForm }) => {
+  console.log("mailchimpMembers", JSON.parse(mailchimpMembers))
   const data = useFooterQuery()
   const logoImage = getImage(data?.contentfulFooter.underfooter.footerLogo)
-  const [mailChimpResponse, setMailChimpResponse] = useState()
+  const [ mailChimpResponse, setMailChimpResponse ] = useState()
+  const [ emailError, setEmailError ] = useState()
+  const mailchimpMembersList = JSON.parse(mailchimpMembers)
 
   const schema = Yup.object().shape({
     name: Yup.string().required("Name is required").matches(/[A-Za-z]+$/, "Don't use special characters"),
@@ -27,12 +30,16 @@ const Footer = ({ isShowForm }) => {
   });
 
   const onSubmitHandler = async (data) => {
+    if(mailchimpMembersList.includes(data.email)) {
+      setEmailError("This email is already registered")
+      return null
+    }
     const response = await addToMailchimp(data.email, {
       NAME: data.name,
       SERVICE: data.serviceType,
       BUDGET: data.budgetRange,
       MESSAGE: data.message
-    }).then((res) => console.log("mailChimpResponse", res))
+    })
     setMailChimpResponse(response)
     reset();
   };
@@ -82,14 +89,14 @@ const Footer = ({ isShowForm }) => {
                   <input
                     {...register("email")}
                     className={cn("form_text-input", {
-                      error_input: errors.email?.message
+                      error_input: errors.email?.message || emailError
                     })}
                     type="text"
                     id="userEmail"
                     name="email"
                     placeholder={data?.contentfulFooter.footerForm.emailPlaceholder}
                   />
-                  <span className="error_message">{errors.email?.message}</span>
+                  <span className="error_message">{errors.email?.message || emailError}</span>
                 </div>
                 <div className="form_item-wrapper">
                   <label className="form_label">{data?.contentfulFooter.footerForm.projectTypesTitle}</label>

@@ -41,11 +41,21 @@ client.setConfig({
   server: "us12",
 });
 
-const run = async () => {
+exports.sourceNodes = async ({
+  actions: { createNode },
+  createContentDigest
+}) => {
+
   const response = await client.lists.getListMembersInfo("81038d644f");
   const emailsArr = response?.members.map((item) => item.email_address)
-  console.log(emailsArr);
-  console.log(process)
-};
 
-run();
+  createNode({
+    ...emailsArr,
+    id: "mailchimp-members-list",
+    internal: {
+      type: 'mailchimpMembers',
+      content: JSON.stringify(emailsArr),
+      contentDigest: createContentDigest(emailsArr)
+    }
+  });
+};
