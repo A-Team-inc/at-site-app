@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^2.9.8",
+    "@mailchimp/mailchimp_marketing": "^3.0.78",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^14.4.3",

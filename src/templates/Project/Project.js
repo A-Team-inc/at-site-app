@@ -11,7 +11,7 @@ const Project = ({ data }) => {
   const projectData = data?.allContentfulProject.nodes[0]
 
   return(
-    <Layout>
+    <Layout mailchimpMembers={data?.allMailchimpMembers.nodes[0].internal.content}>
       <section className="project">
         <div className="project_subtitle-wrapper">
           <div className="subtitle_line" />
@@ -96,6 +96,13 @@ export const query = graphql`
           content {
             content
           }
+        }
+      }
+    }
+    allMailchimpMembers {
+      nodes {
+        internal {
+          content
         }
       }
     }

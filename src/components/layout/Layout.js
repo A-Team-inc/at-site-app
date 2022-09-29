@@ -6,7 +6,7 @@ import Footer from "../sections/Footer/Footer"
 
 import "../../App.scss"
 
-const Layout = ({ children, isShowForm }) => {
+const Layout = ({ children, isShowForm, mailchimpMembers }) => {
   return (
     <>
       <SEO />
@@ -16,7 +16,7 @@ const Layout = ({ children, isShowForm }) => {
           {children}
         </div>
       </div>
-      <Footer isShowForm={isShowForm} />
+      <Footer isShowForm={isShowForm} mailchimpMembers={mailchimpMembers} />
     </>
   )
 }

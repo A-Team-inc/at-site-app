@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react"
-import { Link } from "gatsby"
+import { Link, graphql } from "gatsby"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 
 import Title from "../components/globals/Title/Title"
 import Layout from "../components/layout/Layout"
 import useProjectsQuery from "../graphql/projects"
 
-const Projects = () => {
-  const data = useProjectsQuery()
-  const projects = data.contentfulProjectsPage.projects
+const Projects = ({ data }) => {
+  const projectsData = useProjectsQuery()
+  const projects = projectsData.contentfulProjectsPage.projects
   const [list, setList] = useState([...projects.slice(0, 4)])
   const [loadMore, setLoadMore] = useState(false)
   const [hasMore, setHasMore] = useState(projects.length > 4)
@@ -35,21 +35,21 @@ const Projects = () => {
   }, [list])
 
   return(
-    <Layout isShowForm={false}>
+    <Layout isShowForm={false} mailchimpMembers={data?.allMailchimpMembers.nodes[0].internal.content}>
       <section className="projects">
         <div className="subtitle-wrapper">
           <div className="subtitle_line" />
-          <Title className="projects_subtitle" size={4}>{data?.contentfulProjectsPage.subtitle}</Title>
+          <Title className="projects_subtitle" size={4}>{projectsData?.contentfulProjectsPage.subtitle}</Title>
         </div>
         <div className="projects_title-wrapper">
-          <Title className="projects_title title" size={2}>{data?.contentfulProjectsPage.title}</Title>
-          {data?.contentfulProjectsPage.cta &&
+          <Title className="projects_title title" size={2}>{projectsData?.contentfulProjectsPage.title}</Title>
+          {projectsData?.contentfulProjectsPage.cta &&
             <button
               onClick={() => window.location.pathname = "/projects"}
               className="projects_btn"
-              aria-label={data?.contentfulProjectsPage.cta}
+              aria-label={projectsData?.contentfulProjectsPage.cta}
             >
-              {data?.contentfulProjectsPage.cta}
+              {projectsData?.contentfulProjectsPage.cta}
             </button>
           }
         </div>
@@ -90,5 +90,17 @@ const Card = ({ project }) => {
     </div>
   )
 }
+
+export const query = graphql`
+  query {
+    allMailchimpMembers {
+      nodes {
+        internal {
+          content
+        }
+      }
+    }
+  }
+`;
 
 export default Projects

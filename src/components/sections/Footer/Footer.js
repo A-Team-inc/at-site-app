@@ -13,10 +13,14 @@ import { addLineBreaks } from "../../../utilities/index"
 import SocialBlock from "../../globals/SocialBlock/SocialBlock"
 import "./Footer.scss"
 
-const Footer = ({ isShowForm }) => {
+const Footer = ({ mailchimpMembers, isShowForm }) => {
   const data = useFooterQuery()
   const logoImage = getImage(data?.contentfulFooter.underfooter.footerLogo)
   const [mailChimpResponse, setMailChimpResponse] = useState()
+  const [ emailError, setEmailError ] = useState()
+  const [ nameInputValue, setNameInputValue ] = useState()
+  const [ emailInputValue, setEmailInputValue ] = useState()
+  const mailchimpMembersList = mailchimpMembers && JSON.parse(mailchimpMembers)
   const [formData, setFormData] = useState()
   const [showForm, setShowForm] = useState(true)
   const [showMessage, setShowMessage] = useState(false)
@@ -48,6 +52,10 @@ const Footer = ({ isShowForm }) => {
   };
 
   const onSubmitHandler = (data) => {
+    if(mailchimpMembersList.includes(data.email)) {
+      setEmailError("This email is already registered")
+      return null
+    }
     setShowForm(false)
     setShowReCaptcha(true)
     setFormData(data)
@@ -57,6 +65,18 @@ const Footer = ({ isShowForm }) => {
   const handleGoBack = () => {
     setShowForm(true)
     setShowMessage(false)
+  }
+
+  const onInputChange = (e, value) => {
+    if(value === "email") {
+      setEmailInputValue(e.target.value)
+      return null
+    }
+
+    if(value === "name") {
+      setNameInputValue(e.target.value)
+      return null
+    }
   }
 
   const keyDown = (event) => {
@@ -103,6 +123,7 @@ const Footer = ({ isShowForm }) => {
                     className={cn("form_text-input", {
                       error_input: errors.name?.message
                     })}
+                    onChange={(e) => onInputChange(e, "name")}
                     type="text"
                     id="userName"
                     name="name"
@@ -115,14 +136,15 @@ const Footer = ({ isShowForm }) => {
                   <input
                     {...register("email")}
                     className={cn("form_text-input", {
-                      error_input: errors.email?.message
+                      error_input: errors.email?.message || emailInputValue && emailError
                     })}
+                    onChange={(e) => onInputChange(e, "email")}
                     type="text"
                     id="userEmail"
                     name="email"
                     placeholder={data?.contentfulFooter.footerForm.emailPlaceholder}
                   />
-                  <span className="error_message">{errors.email?.message}</span>
+                  <span className="error_message">{emailInputValue ? errors.email?.message || emailError : ""}</span>
                 </div>
                 <div className="form_item-wrapper">
                   <label className="form_label" htmlFor="serviceType0">{data?.contentfulFooter.footerForm.projectTypesTitle}</label>
@@ -191,11 +213,11 @@ const Footer = ({ isShowForm }) => {
                 </div>
                 <div className="form_item-wrapper">
                   <input
-                    className="form_submit"
+                    className={cn("form_submit", {disabled: !nameInputValue || !emailInputValue})}
                     type="submit"
                     value={data?.contentfulFooter.footerForm.cta}
                     aria-label={data?.contentfulFooter.footerForm.cta}
-                    disabled={true}
+                    disabled={!nameInputValue || !emailInputValue}
                     ref={submitRef}
                   />
                 </div>
