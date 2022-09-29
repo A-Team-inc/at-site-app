@@ -1,4 +1,10 @@
 const path = require('path');
+const client = require("@mailchimp/mailchimp_marketing");
+require('dotenv').config(
+  {
+    path: `.env`,
+  }
+);
 
 exports.createPages = async function ({ actions, graphql }) {
   const { createPage } = actions
@@ -34,10 +40,8 @@ exports.createPages = async function ({ actions, graphql }) {
 
 }
 
-const client = require("@mailchimp/mailchimp_marketing");
-
 client.setConfig({
-  apiKey: "11ed70721fabbc0c4fe0e36df9439c1f-us12",
+  apiKey: process.env.MAILCHIMP_KEY,
   server: "us12",
 });
 
