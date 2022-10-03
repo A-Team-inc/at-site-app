@@ -18,7 +18,6 @@
 
   @media screen and (max-width: 1023px) {
     padding: 24px 4.267vw;
-    position: inherit;
   }
 
   &.active {
@@ -37,6 +36,32 @@
 
     &::after {
       transform: none;
+    }
+  }
+
+  &.mobileMenuOpened {
+    position: relative;
+    height: 100vh;
+  }
+
+  &.mobileMenuClosed {
+    @media screen and (max-width: 1023px) {
+      animation-name: menu_close;
+      animation-duration: 0.5s;
+    }
+  }
+
+  @keyframes menu_close {
+    0%{
+      height: 100vh;
+    }
+
+    50% {
+      height: 50vh;
+    }
+
+    100%{
+      height: auto;
     }
   }
 
@@ -144,9 +169,13 @@
   }
 
   &--closed {
-    transition: all .25s ease-in;
+    transition: all .20s ease-in;
     height: 0;
     visibility: hidden;
+
+    & menu {
+      opacity: 0;
+    }
   }
 
   &::-webkit-scrollbar {

@@ -420,6 +420,12 @@
 
     &.disabled {
       opacity: 0.7;
+      cursor: default;
+
+      &:hover {
+        background: #181818;
+        color: #FFFFFF;
+      }
     }
 
     @media screen and (max-width: 1023px) {
