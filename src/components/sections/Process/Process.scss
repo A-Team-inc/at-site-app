@@ -85,7 +85,8 @@
   }
 
   &__cta--mobile {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
     font-size: 1rem;
     line-height: 100%;
     color: #FFFFFF;

@@ -6,6 +6,7 @@ import "./Technology.scss"
 
 const Technology = () => {
   const data = useTechnologyQuery()
+  const scrollContainer = useRef()
 
   const handleMouseWheelScroll = event => {
     if (window.innerWidth < 1024) {
@@ -14,12 +15,11 @@ const Technology = () => {
     }
   }
 
-  const scrollContainer = useRef()
   useEffect(() => {
-    scrollContainer.current.addEventListener("wheel", event => handleMouseWheelScroll(event))
+    scrollContainer.current?.addEventListener("wheel", event => handleMouseWheelScroll(event))
 
     return () => {
-      scrollContainer.current.removeEventListener("wheel", handleMouseWheelScroll)
+      scrollContainer?.current?.removeEventListener("wheel", handleMouseWheelScroll)
     };
   }, [])
 

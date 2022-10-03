@@ -36,10 +36,10 @@ const Process = () => {
   }
 
   useEffect(() => {
-    scrollContainer.current.addEventListener("wheel", event => handleMouseWheelScroll(event))
+    scrollContainer.current?.addEventListener("wheel", event => handleMouseWheelScroll(event))
 
     return () => {
-      scrollContainer.current.removeEventListener("wheel", handleMouseWheelScroll)
+      scrollContainer.current?.removeEventListener("wheel", handleMouseWheelScroll)
     };
   }, [])
 

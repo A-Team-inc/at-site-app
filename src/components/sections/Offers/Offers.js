@@ -7,6 +7,7 @@ import BackgroundLogo from '../../../components/globals/BackgroundLogo/Backgroun
 
 const Offers = () => {
   const data = useOfferQuery()
+  const scrollContainer = useRef()
 
   const handleMouseWheelScroll = (event) => {
     if (window.innerWidth < 1024) {
@@ -15,12 +16,11 @@ const Offers = () => {
     }
   } 
 
-  const scrollContainer = useRef()
   useEffect(() => {
-    scrollContainer.current.addEventListener("wheel", event => handleMouseWheelScroll(event))
+    scrollContainer.current?.addEventListener("wheel", event => handleMouseWheelScroll(event))
 
     return () => {
-      scrollContainer.current.removeEventListener("wheel", handleMouseWheelScroll)
+      scrollContainer.current?.removeEventListener("wheel", handleMouseWheelScroll)
     };
   }, [])
 
