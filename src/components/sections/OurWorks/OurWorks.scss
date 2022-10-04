@@ -89,6 +89,9 @@
     grid-row-gap: 24px;
     margin: 0 0 36px;
   }
+  @media screen and (max-width: 374px) {
+    grid-row-gap: 40px;
+  }
 }
 
 .project-card {
@@ -103,7 +106,7 @@
   }
 
   & .gatsby-image-wrapper div {
-    @media screen and (max-width: 1024px) {
+    @media screen and (max-width: 1023px) {
       max-width: 100% !important;
     }
   }
@@ -111,9 +114,8 @@
   .gatsby-image-wrapper {
     margin: 0 25px 0 0;
 
-    @media screen and (max-width: 1024px) {
-      width: 100%;
-      max-width: 540px;
+    @media screen and (max-width: 1023px) {
+      width: 160px;
       margin: 0 20px 0 0;
     }
 
@@ -136,20 +138,15 @@
 
     .gatsby-image-wrapper {
       margin: 0;
+      height: 100%;
 
-      @media screen and (max-width: 1024px) {
+      @media screen and (max-width: 1023px) {
         margin: 0 20px 0 0;
       }
 
       @media screen and (max-width: 374px) {
         margin: 0;
       }
-    }
-
-    .gatsby-image-wrapper img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
     }
 
     .project-card__content {
@@ -162,7 +159,7 @@
   &:nth-child(2) {
     @media screen and (min-width: 1024px) {
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       grid-area: 1 / 2 / 2 / 3;
     }
   }
@@ -178,7 +175,7 @@
   &:nth-child(4) {
     @media screen and (min-width: 1024px) {
       display: flex;
-      align-items: center;
+      align-items: flex-end;
       grid-area: 3 / 2 / 4 / 3;
     }
   }
@@ -197,6 +194,9 @@
     text-transform: uppercase;
     color: #333333;
     margin: 0 0 15px;
+    @media screen and (max-width: 1023px) {
+      line-height: 133%;
+    }
   }
 
   &__title.title {
@@ -206,9 +206,14 @@
     @media screen and (max-width: 1023px) {
       font-size: 1rem;
     }
+    @media screen and (max-width: 374px) {
+      margin: 0 0 15px;
+    }
   }
 
   &__link {
+    display: flex;
+    align-items: center;
     font-weight: 500;
     font-size: 0.875rem;
     line-height: 100%;

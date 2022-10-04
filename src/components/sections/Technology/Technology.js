@@ -6,15 +6,21 @@ import "./Technology.scss"
 
 const Technology = () => {
   const data = useTechnologyQuery()
-
   const scrollContainer = useRef()
+
+  const handleMouseWheelScroll = event => {
+    if (window.innerWidth < 1024) {
+      event.preventDefault();
+      scrollContainer.current.scrollLeft += event.deltaY;
+    }
+  }
+
   useEffect(() => {
-    scrollContainer.current.addEventListener("wheel", event => {
-      if (window.innerWidth < 1024) {
-        event.preventDefault();
-        scrollContainer.current.scrollLeft += event.deltaY;
-      }
-    })
+    scrollContainer.current?.addEventListener("wheel", event => handleMouseWheelScroll(event))
+
+    return () => {
+      scrollContainer?.current?.removeEventListener("wheel", handleMouseWheelScroll)
+    };
   }, [])
 
   return (

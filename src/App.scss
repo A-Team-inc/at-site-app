@@ -273,14 +273,18 @@ input, textarea {
     flex-direction: column;
 
     & .gatsby-image-wrapper div {
-      max-width: 540px !important;
+      height: max(340px, 74.219vw);
+
+      @media screen and (min-width: 769px) {
+        height: min(570px, 39.583vw);
+      }
+      @media screen and (max-width: 374px) {
+        height: 90.667vw;
+      }
     }
   
     & .gatsby-image-wrapper img {
-      max-width: 540px;
-      max-height: 540px;
       width: 100%;
-      margin-bottom: 40px;
       object-fit: cover;
   
       @media screen and (max-width: 1023px) {
@@ -289,6 +293,7 @@ input, textarea {
     }
   
     &__content {
+      margin-top: 40px;
       @media screen and (max-width: 374px) {
         margin-top: 25px;
       }
