@@ -71,6 +71,10 @@ code {
 .content {
   width: 100%;
   height: 100%;
+  
+  @media screen and (max-width: 1023px) {
+    padding-top: 92px;
+  }
 }
 
 .positionStyle {

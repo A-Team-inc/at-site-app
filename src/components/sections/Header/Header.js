@@ -50,7 +50,9 @@ const Header = ({ positionStyle = "" }) => {
     <section className={cn("header", {
       active: !scroll.offset || scroll.offset < 30,
       activeScrolled: scroll.direction === 'up' && scroll.offset >= 30,
-      positionStyle: positionStyle === "positionStyle"
+      positionStyle: positionStyle === "positionStyle",
+      mobileMenuOpened: menuIsOpened,
+      mobileMenuClosed: !menuIsOpened
     })}>
       <div className="header_desctop-wrapper">
         <div className="header_item">
