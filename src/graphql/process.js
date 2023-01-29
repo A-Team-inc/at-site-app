@@ -9,9 +9,6 @@ const useProcessQuery = () => {
         cta,
         steps {
           title,
-          content {
-            content
-          },
           description {
             description
           }
