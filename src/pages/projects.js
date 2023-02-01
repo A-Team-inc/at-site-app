@@ -71,7 +71,7 @@ const Card = ({ project }) => {
 
   return (
     <div className="projects_card">
-      {image ? <GatsbyImage image={image} alt={project.title} /> : <img src={project.cover.url} placeholder={project.cover.placeholderUrl} alt="" />}
+      {image ? <GatsbyImage image={image} alt={project.title} /> : <img src={project.cover?.url} placeholder={project.cover?.placeholderUrl} alt="" />}
       <div className="projects_card__content">
         <p className="projects_card__subtitle">{project.subtitle}</p>
         <p className="projects_card__title title">{project.title}</p>

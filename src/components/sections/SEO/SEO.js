@@ -18,8 +18,8 @@ const SEO = ({ defaultTitle, defaultDescription, defaultImage, defaultSiteUrl, a
 
   const seo = {
     title: title || defaultTitle,
-    description: description.description || defaultDescription,
-    image: `${siteUrl}${image.url || defaultImage}`,
+    description: description?.description || defaultDescription,
+    image: `${siteUrl}${image?.url || defaultImage}`,
     url: `${siteUrl}${pathname}` || defaultSiteUrl,
   }
 
