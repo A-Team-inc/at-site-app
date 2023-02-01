@@ -27,11 +27,11 @@ const Technology = () => {
     <section className="technology">
       <h2 className="technology__title title">{data?.contentfulTechnologiesSection.title}</h2>
       <div className="technology__content" ref={scrollContainer}>
-        {data?.contentfulTechnologiesSection.technologies.map((item, index) => {
+        {data?.contentfulTechnologiesSection.technologies?.map((item, index) => {
           const image = getImage(item.icon)
           return (
             <div className="technology__section" key={index}>
-              {image ?<GatsbyImage image={image} alt={item.subtitle} /> : <img src={item.icon.url} placeholder={item.icon.placeholderUrl} alt="" />}
+              {image ?<GatsbyImage image={image} alt={item.subtitle} /> : <img src={item.icon?.url} placeholder={item.icon?.placeholderUrl} alt="" />}
               <p className="technology__subtitle">{item.subtitle}</p>
             </div>
           )

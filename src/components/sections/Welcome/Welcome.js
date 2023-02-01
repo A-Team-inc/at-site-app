@@ -39,7 +39,7 @@ const Welcome = () => {
         <h1 className="welcome_title title">
           {data?.contentfulWelcome.title}
         </h1>
-        <p className="welcome_subtitle">{addLineBreaks(data?.contentfulWelcome.description.description)}</p>
+        <p className="welcome_subtitle">{addLineBreaks(data?.contentfulWelcome.description?.description)}</p>
         {/* {mailChimpResponse ? (
           <div>{mailChimpResponse.msg}</div>
         ) : (
@@ -69,19 +69,19 @@ const Welcome = () => {
           speed={500}
           slidesPerView={1}
         >
-          {data?.contentfulWelcome.slider.slides.map((item, index) => {
+          {data?.contentfulWelcome.slider?.slides.map((item, index) => {
             const image = getImage(item.slide)
             return (
               <SwiperSlide key={index}>
                 <p className="welcome_slider-subtitle">{item.subtitle}</p>
                 <p className={"welcome_slider-title title"}>{item.title}</p>
-                {image ? <GatsbyImage image={image} alt="" /> : <img src={item.slide.url} placeholder={item.slide.placeholderUrl} alt="" />}
+                {image ? <GatsbyImage image={image} alt="" /> : <img src={item.slide?.url} placeholder={item.slide?.placeholderUrl} alt="" />}
               </SwiperSlide>
             )
           })}
         </Swiper>
           <span slot="container-end" className="slot-first">01</span>
-          <span slot="container-end" className="slot-second">{data?.contentfulWelcome.slider.slides.length + 1 >= 10 ? data?.contentfulWelcome.slider.slides.length : `0${data?.contentfulWelcome.slider.slides.length}`}</span>
+          <span slot="container-end" className="slot-second">{data?.contentfulWelcome.slider?.slides.length + 1 >= 10 ? data?.contentfulWelcome.slider?.slides.length : `0${data?.contentfulWelcome.slider?.slides.length}`}</span>
       </div>
     </section>
   )

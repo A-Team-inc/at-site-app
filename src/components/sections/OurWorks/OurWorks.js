@@ -41,7 +41,7 @@ const Card = ({ project }) => {
 
   return (
     <div className="project-card">
-      {image ? <GatsbyImage image={image} alt={project.title} /> : <img src={project?.cover.url} placeholder={project?.cover.placeholderUrl} alt={project.title} />}
+      {image ? <GatsbyImage image={image} alt={project.title} /> : <img src={project?.cover?.url} placeholder={project?.cover?.placeholderUrl} alt={project.title} />}
       <div className="project-card__content">
         <p className="project-card__subtitle">{project.subtitle}</p>
         <p className="project-card__title title">{project.title}</p>

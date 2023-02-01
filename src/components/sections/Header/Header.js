@@ -60,7 +60,7 @@ const Header = ({ positionStyle = "" }) => {
             { logoImage ? <GatsbyImage
               image={logoImage}
               alt={"logo"}
-            /> : <img src={data?.contentfulHeader.logo.url} width={123} placeholder={data?.contentfulHeader.logo.placeholderUrl} alt="logo" /> }
+            /> : <img src={data?.contentfulHeader.logo?.url} width={123} placeholder={data?.contentfulHeader.logo?.placeholderUrl} alt="logo" /> }
           </Link>
           <menu className="header_menu">
             {data?.contentfulHeader.menu.map((item, index) =>

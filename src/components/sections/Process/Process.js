@@ -83,7 +83,7 @@ const Process = () => {
           />
         </div>
         <div className="process__description">
-          {currentStep.description.description}
+          {currentStep.description?.description}
         </div>
         <div className="abilities">
           {data?.contentfulProcess.abilities.map((item, index) => (
@@ -92,7 +92,7 @@ const Process = () => {
               key={index}
             >
               <p className="abilities__title title">{item.title}</p>
-              <p className="abilities__content">{item.content.content}</p>
+              <p className="abilities__content">{item.content?.content}</p>
             </div>
           ))}
         </div>
@@ -123,7 +123,6 @@ const Step = ({ step, handleClick, isActive, index, stepRef, keyDown }) => (
   >
     <div className="process-step__number">{`0${index + 1}`}</div>
     <p className="process-step__title title">{step.title}</p>
-    <p className="process-step__content">{step.content.content}</p>
   </div>
 )
 

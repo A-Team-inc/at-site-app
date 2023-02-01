@@ -14,7 +14,7 @@ const Services = () => {
       <div className="container">
         <div className="services__content">
           <div className="services__image-block">
-            {image ? <GatsbyImage image={image} alt="" /> : <img src={data?.contentfulServicesSection.image.url} placeholder={data?.contentfulServicesSection.image.placeholderUrl} alt="" />}
+            {image ? <GatsbyImage image={image} alt="" /> : <img src={data?.contentfulServicesSection.image?.url} placeholder={data?.contentfulServicesSection.image?.placeholderUrl} alt="" />}
           </div>
           <div className="services__text-block">
             <div className="services__subtitle-block">
