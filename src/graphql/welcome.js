@@ -8,6 +8,7 @@ const useWelcomeQuery = () => {
         description {
           description
         },
+        subscribeBtn,
         formAction,
         formButtonValue,
         slider {
