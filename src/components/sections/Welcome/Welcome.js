@@ -18,7 +18,6 @@ import "swiper/scss/keyboard"
 
 const Welcome = () => {
   const data = useWelcomeQuery()
-  console.log("data", data)
   // const [mailChimpResponse, setMailChimpResponse] = useState()
 
   // const schema = Yup.object().shape({
@@ -63,7 +62,7 @@ const Welcome = () => {
         )} */}
         <Link
           className="welcome__subscribe-btn"
-          to={`/#contacts`}
+          to={`/#${data?.contentfulWelcome?.subscrabeBtnAction.split(' ').join('-').toLowerCase()}`}
           aria-label={""}
         >
           {data?.contentfulWelcome?.subscribeBtn}

@@ -9,6 +9,8 @@ const useServicesQuery = () => {
         description {
           raw
         },
+        subscrabeBtnAction,
+        subscribeBtn,
         image {
           gatsbyImageData(
             placeholder: BLURRED

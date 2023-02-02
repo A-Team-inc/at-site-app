@@ -11,7 +11,7 @@
 
   &__title.title {
     color: #F8F8F8;
-    margin: 0 0 60px;
+    margin: 0 0 40px;
   }
  
   &__text {
@@ -24,6 +24,28 @@
       line-height: 100%;
       color: #F8F8F8;
       margin-top: 40px;
+    }
+  }
+
+  &__subscribe-btn {
+    display: inline-block;
+    width: 148px;
+    height: 50px;
+    background: #555555;
+    font-size: 1rem;
+    line-height: 100%;
+    color: #FFFFFF;
+    cursor: pointer;
+    border-radius: 45px;
+    border: none;
+    -webkit-appearance: none;
+    text-decoration: none;
+    padding: 17px 25px;
+    text-align: center;
+
+    &:hover {
+      color: #333333;
+      background: linear-gradient(68deg, #BEB3F5 -0.66%, #E4F2EE 70.67%);
     }
   }
 
