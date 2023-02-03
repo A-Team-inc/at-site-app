@@ -116,6 +116,7 @@
 
     @media screen and (max-width: 1023px) {
       width: 160px;
+      height: 160px!important;
       margin: 0 20px 0 0;
     }
 
@@ -157,6 +158,11 @@
   }
 
   &:nth-child(2) {
+    .gatsby-image-wrapper {
+      width: 160px;
+      height: 160px;
+    }
+
     @media screen and (min-width: 1024px) {
       display: flex;
       align-items: flex-start;
@@ -165,6 +171,11 @@
   }
 
   &:nth-child(3) {
+    .gatsby-image-wrapper {
+      width: 160px;
+      height: 160px;
+    }
+
     @media screen and (min-width: 1024px) {
       display: flex;
       align-items: center;
@@ -173,6 +184,11 @@
   }
 
   &:nth-child(4) {
+    .gatsby-image-wrapper {
+      width: 160px;
+      height: 160px;
+    }
+
     @media screen and (min-width: 1024px) {
       display: flex;
       align-items: flex-end;

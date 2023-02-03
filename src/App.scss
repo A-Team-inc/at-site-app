@@ -77,6 +77,10 @@ code {
   }
 }
 
+img {
+  object-fit: contain;
+}
+
 .positionStyle {
   position: inherit;
   transition: none;

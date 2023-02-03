@@ -1,5 +1,6 @@
 import React from "react"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
+import { Link } from "gatsby"
 
 import useServicesQuery from "../../../graphql/services"
 import RichText from "../../globals/RichText/RichText"
@@ -25,6 +26,13 @@ const Services = () => {
             <div>
               <RichText paragraphClassName="services__text" richText={data?.contentfulServicesSection.description} />
             </div>
+            <Link
+              className="services__subscribe-btn"
+              to={`/#${data?.contentfulServicesSection?.subscrabeBtnAction.split(' ').join('-').toLowerCase()}`}
+              aria-label={""}
+            >
+              {data?.contentfulServicesSection?.subscribeBtn}
+            </Link>
           </div>
         </div>
       </div>

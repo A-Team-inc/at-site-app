@@ -1,7 +1,8 @@
-import React, { useState } from "react"
+import React from "react"
 import { Scrollbar, Mousewheel, Keyboard } from 'swiper'
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import { Swiper, SwiperSlide } from 'swiper/react'
+import { Link } from "gatsby"
 // import { useForm } from "react-hook-form"
 // import * as Yup from "yup"
 // import { yupResolver } from "@hookform/resolvers/yup";
@@ -59,6 +60,13 @@ const Welcome = () => {
             <input className="welcome_form-submit" type="submit" value={data?.contentfulWelcome.formButtonValue} />
           </form>
         )} */}
+        <Link
+          className="welcome__subscribe-btn"
+          to={`/#${data?.contentfulWelcome?.subscrabeBtnAction.split(' ').join('-').toLowerCase()}`}
+          aria-label={""}
+        >
+          {data?.contentfulWelcome?.subscribeBtn}
+        </Link>
       </div>
       <div className="welcome_slider" tabIndex="0">
         <Swiper

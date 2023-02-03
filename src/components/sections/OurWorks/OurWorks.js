@@ -27,7 +27,7 @@ const OurWorks = () => {
         }
       </div>
       <div className="project-cards">
-        {data?.contentfulOurWorks.projects.map((project, index) =>
+        {data?.contentfulOurWorks.projects.slice(0,4).map((project, index) =>
           <Card project={project} key={index} />
         )}
       </div>
