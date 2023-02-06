@@ -19,8 +19,8 @@ const RichText = ({
 }) => {
   const options = {
     renderMark: {
-      [MARKS.BOLD]: (text) => <b>{text}</b>,
-      [MARKS.ITALIC]: (text) => <i>{text}</i>,
+      [MARKS.BOLD]: (text) => <b style={{ fontWeight: "bold" }}>{text}</b>,
+      [MARKS.ITALIC]: (text) => <i style={{ fontStyle: "italic" }}>{text}</i>,
       [MARKS.UNDERLINE]: (text) => <u>{text}</u>,
       [MARKS.CODE]: (text) => (
         <code>
