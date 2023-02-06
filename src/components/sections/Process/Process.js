@@ -1,6 +1,7 @@
 import React, {useState, useEffect, useRef} from "react"
 
 import useProcessQuery from "../../../graphql/process"
+import RichText from "../../globals/RichText/RichText"
 import "./Process.scss"
 
 const Process = () => {
@@ -83,7 +84,7 @@ const Process = () => {
           />
         </div>
         <div className="process__description">
-          {currentStep.description?.description}
+          <RichText globalClass="richtext_wrapper" richText={currentStep.description} />
         </div>
         <div className="abilities">
           {data?.contentfulProcess.abilities.map((item, index) => (

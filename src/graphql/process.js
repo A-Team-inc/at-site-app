@@ -10,7 +10,7 @@ const useProcessQuery = () => {
         steps {
           title,
           description {
-            description
+            raw
           }
         },
         abilities {
