@@ -63,16 +63,19 @@ const Header = ({ positionStyle = "" }) => {
             /> : <img src={data?.contentfulHeader.logo?.url} width={123} placeholder={data?.contentfulHeader.logo?.placeholderUrl} alt="logo" /> }
           </Link>
           <menu className="header_menu">
-            {data?.contentfulHeader.menu.map((item, index) =>
-              <li key={index} className="header_menu-item">
-                <Link
-                  className="tabIndexItem"
-                  to={`/#${item.split(' ').join('-').toLowerCase()}`}
-                  aria-label={item}
-                >
-                  {item}
-                </Link>
-              </li>)}
+            {data?.contentfulHeader.menuLinks.map((link, index) => {
+              return (
+                <li key={index} className="header_menu-item">
+                  <Link
+                    className="tabIndexItem"
+                    to={link.slug}
+                    aria-label={link.title}
+                  >
+                    {link.title}
+                  </Link>
+                </li>
+              )
+            })}
           </menu>
         </div>
         <div className="header_item">
@@ -88,9 +91,14 @@ const Header = ({ positionStyle = "" }) => {
         </div>
         <div className={`mobile-menu ${menuIsOpened ? 'mobile-menu--opened' : 'mobile-menu--closed'}`}>
           <menu>
-            {data?.contentfulHeader.menu.map((item, index) =>
+            {data?.contentfulHeader.menuLinks.map((link, index) =>
               <li className="mobile-menu__link" key={index}>
-                <Link to={`/#${item.split(' ').join('-').toLowerCase()}`} onClick={() => setMenuIsOpened(false)}>{item}</Link>
+                <Link
+                  to={link.slug}
+                  onClick={() => setMenuIsOpened(false)}
+                >
+                  {link.title}
+                </Link>
               </li>
             )}
           </menu>

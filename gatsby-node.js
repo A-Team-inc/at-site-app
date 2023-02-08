@@ -9,10 +9,18 @@ require('dotenv').config(
 exports.createPages = async function ({ actions, graphql }) {
   const { createPage } = actions
   const projectPage = path.resolve(`./src/templates/Project/Project.js`)
+  const blogPage = path.resolve(`./src/templates/Post/Post.js`)
 
   return graphql(`
     {
       allContentfulProject {
+        edges {
+          node {
+            slug
+          }
+        }
+      }
+      allContentfulPost {
         edges {
           node {
             slug
@@ -24,13 +32,23 @@ exports.createPages = async function ({ actions, graphql }) {
     if(result.errors) { throw result.errors }
 
     const projects = result.data.allContentfulProject.edges
-
     projects.forEach((project, index) => {
       createPage({
         path: `/projects${project.node.slug}`,
         component: projectPage,
         context: {
           slug: project.node.slug
+        }
+      })
+    })
+
+    const posts = result.data.allContentfulPost.edges
+    posts.forEach((post, index) => {
+      createPage({
+        path: `/blog${post.node.slug}`,
+        component: blogPage,
+        context: {
+          slug: post.node.slug
         }
       })
     })
