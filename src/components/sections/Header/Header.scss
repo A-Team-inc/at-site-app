@@ -1,16 +1,15 @@
 .header {
   padding: 44px 135px;
   width: 100%;
-  background-color: transparent;
   justify-content: space-between;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  z-index: 10;
+  z-index: 100;
 
   transform: translate3d(0, -100%, 0);
-  transition: transform 200ms linear;
+  transition: transform 500ms linear;
 
   @media screen and (max-width: 1439px) {
     padding: 44px 5vw;
@@ -20,8 +19,14 @@
     padding: 24px 4.267vw;
   }
 
+  &.headerBackground {
+    background-color: #ffffff;
+    transition: all 500ms linear;
+  }
+
   &.active {
     transform: none;
+    background-color: transparent;
   }
 
   &.activeScrolled {
