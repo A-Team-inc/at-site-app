@@ -11,8 +11,8 @@ const Layout = ({ children, isShowForm, mailchimpMembers }) => {
     <>
       <SEO />
       <div className="content_max_width">
-        <Header positionStyle="positionStyle" />
-        <div className="content">
+        <Header headerBackground="headerBackground" />
+        <div className="content layout_content">
           {children}
         </div>
       </div>

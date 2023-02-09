@@ -7,7 +7,7 @@ import SocialBlock from "../../globals/SocialBlock/SocialBlock"
 import "./Header.scss"
 import cn from "classnames"
 
-const Header = ({ positionStyle = "" }) => {
+const Header = ({ headerBackground = "" }) => {
   const data = useHeaderQuery()
   const logoImage = getImage(data?.contentfulHeader.logo)
   const [ menuIsOpened, setMenuIsOpened ] = useState(false)
@@ -50,7 +50,7 @@ const Header = ({ positionStyle = "" }) => {
     <section className={cn("header", {
       active: !scroll.offset || scroll.offset < 30,
       activeScrolled: scroll.direction === 'up' && scroll.offset >= 30,
-      positionStyle: positionStyle === "positionStyle",
+      headerBackground: scroll.offset >= 300 || headerBackground === 'headerBackground',
       mobileMenuOpened: menuIsOpened,
       mobileMenuClosed: !menuIsOpened
     })}>
