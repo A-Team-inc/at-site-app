@@ -18,7 +18,7 @@ import "../App.scss"
 export default function Home({ data }) {
   return (
     <>
-      <SEO />
+      <SEO imageUrl={data.contentfulHeader.logo.url} />
       <div>
         <Header />
         <div className="content">
@@ -42,6 +42,11 @@ export const query = graphql`
         internal {
           content
         }
+      }
+    },
+    contentfulHeader {
+      logo {
+        url
       }
     }
   }

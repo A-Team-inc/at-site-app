@@ -11,7 +11,7 @@ const Project = ({ data }) => {
   const projectData = data?.allContentfulProject.nodes[0]
 
   return(
-    <Layout mailchimpMembers={data?.allMailchimpMembers.nodes[0].internal.content}>
+    <Layout mailchimpMembers={data?.allMailchimpMembers.nodes[0].internal.content} imageUrl={projectData?.cover.url}>
       <section className="project">
         <div className="project_subtitle-wrapper">
           <div className="subtitle_line" />

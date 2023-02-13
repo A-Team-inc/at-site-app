@@ -9,7 +9,7 @@ const useBlogQuery = () => {
         posts {
           title,
           slug,
-          media {
+          previewImage {
             gatsbyImageData(
               placeholder: BLURRED
             ),
@@ -18,6 +18,11 @@ const useBlogQuery = () => {
           },
           content {
             raw
+            references {
+              gatsbyImageData
+              contentful_id
+              __typename
+            }
           },
         }
       }

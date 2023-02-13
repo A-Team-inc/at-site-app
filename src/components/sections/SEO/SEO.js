@@ -5,7 +5,7 @@ import { useLocation } from "@reach/router"
 
 import useSEOQuery from "../../../graphql/seo"
 
-const SEO = ({ defaultTitle, defaultDescription, defaultImage, defaultSiteUrl, article }) => {
+const SEO = ({ defaultTitle, defaultDescription, defaultImage, defaultSiteUrl, article, imageUrl }) => {
   const { pathname } = useLocation()
   const site = useSEOQuery()
 
@@ -19,9 +19,11 @@ const SEO = ({ defaultTitle, defaultDescription, defaultImage, defaultSiteUrl, a
   const seo = {
     title: title || defaultTitle,
     description: description?.description || defaultDescription,
-    image: `${siteUrl}${image?.url || defaultImage}`,
+    image: `${imageUrl || defaultImage}`,
     url: `${siteUrl}${pathname}` || defaultSiteUrl,
   }
+
+  console.log('image', image)
 
   return (
     <Helmet

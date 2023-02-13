@@ -35,7 +35,7 @@ const Projects = ({ data }) => {
   }, [list])
 
   return(
-    <Layout isShowForm={false} mailchimpMembers={data?.allMailchimpMembers.nodes[0].internal.content}>
+    <Layout isShowForm={false} mailchimpMembers={data?.allMailchimpMembers.nodes[0].internal.content} >
       <section className="projects">
         <div className="subtitle-wrapper">
           <div className="subtitle_line" />

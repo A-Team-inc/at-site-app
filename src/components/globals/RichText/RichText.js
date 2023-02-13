@@ -96,16 +96,18 @@ const RichText = ({
       ),
       [BLOCKS.HR]: () => <hr/>,
       [BLOCKS.EMBEDDED_ASSET]: (node) => {
-        const { gatsbyImageData, description } = node.data.target
-  
+        const mediaType = node.data.target?.file?.contentType
+
         return (
-          <GatsbyImage
-            image={getImage(gatsbyImageData)}
-            alt={description}
-            className={imageClassName}
-          />
+          mediaType.includes('svg')
+            ? <img src={node.data?.target?.file.url} alt="" />
+            : <GatsbyImage
+              image={getImage(node.data.target?.gatsbyImageData)}
+              alt='{node.data.target?.description}'
+              className={imageClassName}
+            />
         )
-      },
+      }
     },
   }
 
