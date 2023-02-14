@@ -110,16 +110,6 @@ export const query = graphql`
                 }
               }
             }
-            ... on ContentfulAsset {
-              __typename
-              contentful_id
-              title
-              gatsbyImageData
-              file {
-                url
-                contentType
-              }
-            }
           }
         }
       }

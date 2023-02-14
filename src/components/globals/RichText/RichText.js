@@ -103,19 +103,6 @@ const RichText = ({
         </blockquote>
       ),
       [BLOCKS.HR]: () => <hr/>,
-      [BLOCKS.EMBEDDED_ASSET]: (node) => {
-        const mediaType = node.data.target?.file?.contentType
-
-        return (
-          mediaType.includes('svg')
-            ? <img src={node.data?.target?.file.url} alt={node.data.target?.title} />
-            : <GatsbyImage
-              image={getImage(node.data.target?.gatsbyImageData)}
-              alt={node.data.target?.title}
-              className={imageClassName}
-            />
-        )
-      },
       [BLOCKS.EMBEDDED_ENTRY]: node => {
         const imageStyles = {
           'left': {
