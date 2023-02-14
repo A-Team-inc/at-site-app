@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useRef } from "react"
 import { graphql } from "gatsby"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 
@@ -13,8 +13,10 @@ const Post = ({ data }) => {
   const regExpYoutubeId = /youtu(?:.*\/v\/|.*v\=|\.be\/)([A-Za-z0-9_\-]{11})/
   const image = getImage(postData.media?.media)
 
-  return(
-    <Layout mailchimpMembers={data?.allMailchimpMembers.nodes[0].internal.content} imageUrl={postData?.previewImage.url}>
+  const videoRef = useRef();
+
+  return (
+    <Layout mailchimpMembers={data?.allMailchimpMembers.nodes[0].internal.content} previewImageUrl={postData?.previewImage.url}>
       <section className="post">
         <div className="post_title-wrapper">
           <Title className="post_title title" size="1">{postData?.title}</Title>
@@ -25,17 +27,17 @@ const Post = ({ data }) => {
               {mediaType.includes("image") && (
                 image
                   ? <GatsbyImage
-                      image={image}
-                      alt='{postData.title}'
-                    />
+                    image={image}
+                    alt='{postData.title}'
+                  />
                   : <img
-                      src={postData?.media.media.file.url}
-                      alt='{postData.title}'
-                    />
+                    src={postData?.media.media.file.url}
+                    alt='{postData.title}'
+                  />
               )}
-              
+
               {mediaType.includes("video") &&
-                <video controls className="video">
+                <video controls className="video" poster={postData?.previewImage.url}>
                   <source src={postData?.media.media.file.url} />
                 </video>
               }
@@ -52,7 +54,7 @@ const Post = ({ data }) => {
             />
           )}
         </div>
-        <RichText globalClass="richtext_wrapper" richText={postData?.content} />
+        <RichText globalClass="richtext_wrapper" richText={postData?.content} imageClassName="richtext_image" />
       </section>
     </Layout>
   )
@@ -92,12 +94,31 @@ export const query = graphql`
         content {
           raw
           references {
-            gatsbyImageData
-            contentful_id
-            __typename
-            file {
-              url
-              contentType
+            ... on ContentfulEmbeddedImage {
+              __typename
+              contentful_id
+              title
+              alignment
+              desktopWidth
+              mobileWidth
+              image {
+                title
+                gatsbyImageData
+                file {
+                  url
+                  contentType
+                }
+              }
+            }
+            ... on ContentfulAsset {
+              __typename
+              contentful_id
+              title
+              gatsbyImageData
+              file {
+                url
+                contentType
+              }
             }
           }
         }

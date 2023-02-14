@@ -15,15 +15,7 @@ const useBlogQuery = () => {
             ),
             url,
             placeholderUrl
-          },
-          content {
-            raw
-            references {
-              gatsbyImageData
-              contentful_id
-              __typename
-            }
-          },
+          }
         }
       }
     }
