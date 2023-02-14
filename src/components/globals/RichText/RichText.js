@@ -17,9 +17,7 @@ const RichText = ({
   listClassName = "",
   imageClassName = ""
 }) => {
-  const [isMobileBreakpoint, setIsMobileBreakpoint] = useState(
-    window.matchMedia("(max-width: 576px)").matches
-  )
+  const [isMobileBreakpoint, setIsMobileBreakpoint] = useState()
 
   useEffect(() => {
     window
