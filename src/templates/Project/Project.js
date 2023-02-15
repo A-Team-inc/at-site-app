@@ -10,15 +10,15 @@ import "./Project.scss"
 const Project = ({ data }) => {
   const projectData = data?.allContentfulProject.nodes[0]
 
-  return(
-    <Layout mailchimpMembers={data?.allMailchimpMembers.nodes[0].internal.content}>
+  return (
+    <Layout mailchimpMembers={data?.allMailchimpMembers.nodes[0].internal.content} previewImageUrl={projectData?.cover.url}>
       <section className="project">
         <div className="project_subtitle-wrapper">
           <div className="subtitle_line" />
-          <p className="project_subtitle">{ projectData?.subtitle && projectData?.subtitle }</p>
+          <p className="project_subtitle">{projectData?.subtitle && projectData?.subtitle}</p>
         </div>
         <div className="project_title-wrapper">
-          <Title className="project_title title" size="1">{ projectData?.title && projectData?.title }</Title>
+          <Title className="project_title title" size="1">{projectData?.title && projectData?.title}</Title>
           {projectData?.cta &&
             <button
               className="project_btn"
@@ -34,17 +34,17 @@ const Project = ({ data }) => {
         <div className="project_main">
           <div className="project_cards">
             {projectData?.abilities && projectData?.abilities.map((item, index) => {
-              return(
+              return (
                 <div key={item + index}>
-                  <p className="project_cards-title title">{ item.title }</p>
-                  <p className="project_cards-description">{ item.content.content }</p>
+                  <p className="project_cards-title title">{item.title}</p>
+                  <p className="project_cards-description">{item.content.content}</p>
                 </div>
               )
             })}
           </div>
           <div className="project_images">
             {projectData?.images && projectData?.images.map((image, index) => {
-              if(index < 3) {
+              if (index < 3) {
                 const projectImage = getImage(image)
                 return (
                   <div className="main_img" key={image + index}>
@@ -52,7 +52,7 @@ const Project = ({ data }) => {
                   </div>
                 )
               }
-            } )}
+            })}
           </div>
         </div>
       </section>

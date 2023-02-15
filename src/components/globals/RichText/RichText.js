@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState, useEffect } from "react"
 import { renderRichText } from 'gatsby-source-contentful/rich-text'
 import { INLINES, BLOCKS, MARKS } from '@contentful/rich-text-types'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
@@ -17,6 +17,14 @@ const RichText = ({
   listClassName = "",
   imageClassName = ""
 }) => {
+  const [isMobileBreakpoint, setIsMobileBreakpoint] = useState()
+
+  useEffect(() => {
+    window
+      .matchMedia("(max-width: 576px)")
+      .addEventListener('change', e => setIsMobileBreakpoint(e.matches));
+  }, []);
+
   const options = {
     renderMark: {
       [MARKS.BOLD]: (text) => <b style={{ fontWeight: "bold" }}>{text}</b>,
@@ -95,17 +103,37 @@ const RichText = ({
         </blockquote>
       ),
       [BLOCKS.HR]: () => <hr/>,
-      [BLOCKS.EMBEDDED_ASSET]: (node) => {
-        const { gatsbyImageData, description } = node.data.target
-  
+      [BLOCKS.EMBEDDED_ENTRY]: node => {
+        const imageStyles = {
+          'left': {
+            marginRight: '20px'
+          },
+          'right': {
+            marginLeft: '20px'
+          }
+        }
+        const imageAlignment = node.data.target.alignment
+        const imageStyle = imageStyles[imageAlignment]
+        const mediaType = node.data.target?.image?.file?.contentType
+
         return (
-          <GatsbyImage
-            image={getImage(gatsbyImageData)}
-            alt={description}
-            className={imageClassName}
-          />
+          <>
+            <div style={{
+              float: imageAlignment,
+              width: isMobileBreakpoint ? node.data.target.mobileWidth : node.data.target.desktopWidth,
+              ...imageStyle
+            }} >
+              {mediaType.includes('svg')
+                ? <img className={imageClassName} src={node.data.target?.image?.file.url} alt={node.data.target?.image.title} />
+                : <GatsbyImage
+                  image={getImage(node.data.target?.image?.gatsbyImageData)}
+                  alt={node.data.target?.image.title}
+                  className={imageClassName}
+              />}
+            </div>
+          </>
         )
-      },
+      }
     },
   }
 
@@ -113,7 +141,13 @@ const RichText = ({
     return null
   }
 
-  return(<div className={globalClass}>{renderRichText(richText, options)}</div>)
+  return (
+    <>
+      <div className={globalClass}>{renderRichText(richText, options)}</div>
+      <div className="clear"></div>
+    </>
+    
+  )
 }
 
 export default RichText

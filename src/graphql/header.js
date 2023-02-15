@@ -12,7 +12,10 @@ const useHeaderQuery = () => {
           url,
           placeholderUrl
         }
-        menu,
+        menuLinks {
+          slug
+          title
+        }
         mobileMenuEmail
         socialLinks {
           title

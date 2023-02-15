@@ -6,10 +6,10 @@ import Footer from "../sections/Footer/Footer"
 
 import "../../App.scss"
 
-const Layout = ({ children, isShowForm, mailchimpMembers }) => {
+const Layout = ({ children, isShowForm, mailchimpMembers, previewImageUrl }) => {
   return (
     <>
-      <SEO />
+      <SEO previewImageUrl={previewImageUrl} />
       <div className="content_max_width">
         <Header headerBackground="headerBackground" />
         <div className="content layout_content">
