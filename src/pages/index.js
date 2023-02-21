@@ -10,8 +10,8 @@ import OurWorks from "../components/sections/OurWorks/OurWorks"
 import Services from "../components/sections/Services/Services"
 import Offers from "../components/sections/Offers/Offers"
 import Process from "../components/sections/Process/Process"
+import CookieBanner from "../components/globals/CookieBanner/CookieBanner"
 import reportWebVitals from "../reportWebVitals"
-
 
 import "../App.scss"
 
@@ -30,6 +30,7 @@ export default function Home({ data }) {
           <OurWorks />
         </div>
       </div>
+      <CookieBanner />
       <Footer mailchimpMembers={data?.allMailchimpMembers.nodes[0].internal.content} />
     </>
   )
