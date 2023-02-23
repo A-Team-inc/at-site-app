@@ -23,6 +23,13 @@ module.exports = {
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`,
     {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        trackingId: process.env.GA_ID,
+        head: false,
+      },
+    },
+    {
       resolve: `gatsby-source-contentful`,
       options: {
         "spaceId": process.env.CONTENTFUL_SPACE,

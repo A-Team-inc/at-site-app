@@ -20,6 +20,7 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^14.4.3",
     "gatsby": "^4.22.0",
+    "gatsby-plugin-google-analytics": "^5.7.0",
     "gatsby-plugin-google-fonts": "^1.0.1",
     "gatsby-plugin-google-tagmanager": "^4.23.0",
     "gatsby-plugin-image": "^2.22.0",
