@@ -1,12 +1,12 @@
 .post {
-  padding: 100px 135px;
+  padding: 0 135px 100px;
 
   @media screen and (max-width: 1439px) {
-    padding: 100px 5vw;
+    padding: 0 5vw 100px;
   }
 
   @media screen and (max-width: 1023px) {
-    padding: 34px 4.267vw;
+    padding: 0 4.267vw 34px;
   }
 
   &_title-wrapper {
