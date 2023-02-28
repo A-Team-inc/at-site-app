@@ -3,6 +3,7 @@ import React from "react"
 import SEO from "../sections/SEO/SEO"
 import Header from "../sections/Header/Header"
 import Footer from "../sections/Footer/Footer"
+import CookieBanner from "../globals/CookieBanner/CookieBanner"
 
 import "../../App.scss"
 
@@ -16,6 +17,7 @@ const Layout = ({ children, isShowForm, mailchimpMembers, previewImageUrl }) => 
           {children}
         </div>
       </div>
+      <CookieBanner />
       <Footer isShowForm={isShowForm} mailchimpMembers={mailchimpMembers} />
     </>
   )
