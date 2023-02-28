@@ -45,11 +45,14 @@ module.exports = {
       }
     },
     {
-      resolve: "gatsby-plugin-google-tagmanager",
+      resolve: 'gatsby-plugin-gdpr-cookies',
       options: {
-        id: process.env.GTM_ID,
-        includeInDevelopment: false,
+        googleTagManager: {
+          trackingId: process.env.GTM_ID,
+          cookieName: 'gatsby-gdpr-google-tagmanager',
+          routeChangeEvent: 'gatsby-route-change',
+        },
       }
-    }
+    },
   ],
 }
