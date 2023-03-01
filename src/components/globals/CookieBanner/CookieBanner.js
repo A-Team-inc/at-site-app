@@ -2,12 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { useLocation } from '@reach/router';
 import { initializeAndTrack } from 'gatsby-plugin-gdpr-cookies';
 import Cookie from 'js-cookie';
+import useCookieBannerQuery from '../../../graphql/cookie-banner'
 
 import './CookieBanner.scss'
 
 const CookieConsent = () => {
   const [isCookieBannerHidden, setIsCookieBannerHidden] = useState(true)
   const location = useLocation();
+  const cookieBannerData = useCookieBannerQuery()
 
   const isBrowser = () => {
     return typeof window !== 'undefined'
@@ -46,7 +48,7 @@ const CookieConsent = () => {
       {!isCookieBannerHidden && (
         <div className="cookie-banner">
           <p className="cookie-banner__text">
-            This website uses cookies to enhance the user experience
+            {cookieBannerData.contentfulCookieBanner.text.text}
           </p>
           <div className="cookie-banner__buttons">
             <button className="button-accept" onClick={enableAnalytics}>Accept</button>
