@@ -10,7 +10,7 @@ import usePrivacyPolicyAndTermsOfUseQuery from "../graphql/privacy-policy-and-te
 const TermsOfUse = ({ data }) => {
   const { pathname } = useLocation()
   const dataTerms = usePrivacyPolicyAndTermsOfUseQuery()
-  const filteredData = dataTerms?.allContentfulPrivacyPolicyAndTermsOfUse.nodes.filter((item) => item.slug === pathname)[0]
+  const filteredData = dataTerms?.allContentfulPrivacyPolicyAndTermsOfUse.nodes.filter((item) => item.slug.replaceAll('\/','') === pathname.replaceAll('\/',''))[0]
 
   return(
     <Layout isShowForm={false} mailchimpMembers={data?.allMailchimpMembers.nodes[0].internal.content}>
