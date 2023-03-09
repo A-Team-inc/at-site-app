@@ -7,6 +7,7 @@ import cn from "classnames"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import addToMailchimp from 'gatsby-plugin-mailchimp'
 import ReCAPTCHA from "react-google-recaptcha";
+import axios from 'axios';
 
 import useFooterQuery from "../../../graphql/footer"
 import { addLineBreaks } from "../../../utilities/index"
@@ -27,6 +28,7 @@ const Footer = ({ mailchimpMembers, isShowForm }) => {
   const [showReCaptcha, setShowReCaptcha] = useState(false)
   const recaptchaRef = useRef();
   const submitRef = useRef()
+  const SLACK_WEBHOOK_URL = 'https://hooks.slack.com/services/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'
 
   const schema = Yup.object().shape({
     name: Yup.string().required("Name is required").trim().matches(/^[A-Za-z]+$/, "Don't use special characters"),
@@ -47,11 +49,19 @@ const Footer = ({ mailchimpMembers, isShowForm }) => {
       })
       setMailChimpResponse(response)
       setShowMessage(true)
+      sendSlackMessage()
     }
     setShowReCaptcha(false)
   };
 
-  const onSubmitHandler = (data) => {
+  const sendSlackMessage = async () => {
+    const slackMessageData = {
+      "text": `Name: ${formData.name} \nEmail: ${formData.email} \nService: ${formData.serviceType} \nBudget: ${formData.budgetRange} \nMessage: ${formData.message}`,
+    }
+    await axios.post(SLACK_WEBHOOK_URL, JSON.stringify(slackMessageData))
+  }
+
+  const onSubmitHandler = async (data) => {
     if(mailchimpMembersList.includes(data.email)) {
       setEmailError("This email is already registered")
       return null
