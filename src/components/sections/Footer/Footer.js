@@ -26,9 +26,8 @@ const Footer = ({ mailchimpMembers, isShowForm }) => {
   const [showForm, setShowForm] = useState(true)
   const [showMessage, setShowMessage] = useState(false)
   const [showReCaptcha, setShowReCaptcha] = useState(false)
-  const recaptchaRef = useRef();
+  const recaptchaRef = useRef()
   const submitRef = useRef()
-  const SLACK_WEBHOOK_URL = 'https://hooks.slack.com/services/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'
 
   const schema = Yup.object().shape({
     name: Yup.string().required("Name is required").trim().matches(/^[A-Za-z]+$/, "Don't use special characters"),
@@ -58,7 +57,7 @@ const Footer = ({ mailchimpMembers, isShowForm }) => {
     const slackMessageData = {
       "text": `Name: ${formData.name} \nEmail: ${formData.email} \nService: ${formData.serviceType} \nBudget: ${formData.budgetRange} \nMessage: ${formData.message}`,
     }
-    await axios.post(SLACK_WEBHOOK_URL, JSON.stringify(slackMessageData))
+    await axios.post(process.env.GATSBY_SLACK_WEBHOOK_URL, JSON.stringify(slackMessageData))
   }
 
   const onSubmitHandler = async (data) => {
@@ -115,7 +114,7 @@ const Footer = ({ mailchimpMembers, isShowForm }) => {
               style={{ display: "inline-block" }}
               theme="dark"
               ref={recaptchaRef}
-              sitekey={'6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI'}//need replace test sitekey
+              sitekey={process.env.GATSBY_RECAPTCHA_SITE_KEY}
               onChange={handleChange}
             />}
             {showMessage && (
