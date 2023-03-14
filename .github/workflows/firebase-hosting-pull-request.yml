@@ -9,6 +9,8 @@ env:
   CONTENTFUL_PREVIEW_TOKEN: ${{ secrets.CONTENTFUL_PREVIEW_TOKEN }}
   GTM_ID: ${{ secrets.GTM_ID }}
   MAILCHIMP_KEY: ${{ secrets.MAILCHIMP_KEY }}
+  GATSBY_SLACK_WEBHOOK_URL: ${{ secrets.GATSBY_SLACK_WEBHOOK_URL }}
+  GATSBY_RECAPTCHA_SITE_KEY: ${{ secrets.GATSBY_RECAPTCHA_SITE_KEY }}
 jobs:
   build_and_preview:
     if: '${{ github.event.pull_request.head.repo.full_name == github.repository }}'

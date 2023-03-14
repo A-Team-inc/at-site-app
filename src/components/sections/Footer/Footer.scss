@@ -67,12 +67,6 @@
       font-size: 1.75rem;
       line-height: 100%;
     }
-
-    br {
-      @media screen and (max-width: 1023px) {
-        display: none;
-      }
-    }
   }
 
   &_subtitle, &_email {
@@ -364,6 +358,11 @@
   &_text-input {
     height: 50px;
     border-radius: 45px;
+
+    &:focus {
+      outline: none;
+      border: 1px solid #000000;
+    }
   }
 
   &_textarea {
@@ -375,6 +374,11 @@
     }
     @media screen and (min-width: 1201px) {
       width: 355px!important;
+    }
+
+    &:focus {
+      outline: none;
+      border: 1px solid #000000;
     }
   }
 
@@ -427,7 +431,6 @@
 
     @media screen and (max-width: 1023px) {
       width: min(355px, 100%);
-      margin: 0 0 19px;
     }
 
     @media screen and (max-width: 519px) {

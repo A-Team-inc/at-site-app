@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react"
+import React, { useState, useRef, useEffect } from "react"
 import { Link } from "gatsby"
 import { useForm } from "react-hook-form"
 import * as Yup from "yup"
@@ -7,6 +7,7 @@ import cn from "classnames"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import addToMailchimp from 'gatsby-plugin-mailchimp'
 import ReCAPTCHA from "react-google-recaptcha";
+import axios from 'axios';
 
 import useFooterQuery from "../../../graphql/footer"
 import { addLineBreaks } from "../../../utilities/index"
@@ -25,11 +26,30 @@ const Footer = ({ mailchimpMembers, isShowForm }) => {
   const [showForm, setShowForm] = useState(true)
   const [showMessage, setShowMessage] = useState(false)
   const [showReCaptcha, setShowReCaptcha] = useState(false)
-  const recaptchaRef = useRef();
+  const recaptchaRef = useRef()
   const submitRef = useRef()
+  const serviceTypeRef = useRef()
+  const budgetRangeRef = useRef()
+
+  useEffect(() => {
+    const serviceTypeValues = data?.contentfulFooter.footerForm.projectTypesLabel
+    const budgetRangeValues = data?.contentfulFooter.footerForm.budgetRangeLabel
+
+    if (formData) {
+      if (formData?.budgetRange && budgetRangeRef.current) {
+        const id = `budgetRange${budgetRangeValues.indexOf(formData?.budgetRange)}`
+        document.getElementById(id).checked = true
+      }
+
+      if (formData?.serviceType && serviceTypeRef.current) {
+        const id = `serviceType${serviceTypeValues.indexOf(formData?.serviceType)}`
+        document.getElementById(id).checked = true
+      }
+    }
+  }, [showForm])
 
   const schema = Yup.object().shape({
-    name: Yup.string().required("Name is required").trim().matches(/^[A-Za-z]+$/, "Don't use special characters"),
+    name: Yup.string().required("Name is required").trim().matches(/^[A-Za-z ]+$/, "Don't use special characters"),
     email: Yup.string().email("You entered the wrong email").required("Email is required")
   })
 
@@ -47,11 +67,29 @@ const Footer = ({ mailchimpMembers, isShowForm }) => {
       })
       setMailChimpResponse(response)
       setShowMessage(true)
+      if (response.result === 'success') {
+        sendSlackMessage(formData)
+      }
     }
     setShowReCaptcha(false)
   };
 
-  const onSubmitHandler = (data) => {
+  const sendSlackMessage = async (data) => {
+    const slackMessageData = {
+      'text':
+        '*New contact request:*' +
+        `\n *Name*: ${data.name}` +
+        `\n *Email*: ${data.email}` +
+        `${data.serviceType ? `\n *Service*: ${data.serviceType}` : ''}` +
+        `${data.budgetRange ? `\n *Budget*: ${data.budgetRange}` : ''}` +
+        `${data.message ? `\n *Message*: ${data.message}` : ''}`,
+      'icon_emoji': ':email:',
+      'username': 'a-team contact'
+    }
+    await axios.post(process.env.GATSBY_SLACK_WEBHOOK_URL, JSON.stringify(slackMessageData))
+  }
+
+  const onSubmitHandler = async (data) => {
     if(mailchimpMembersList.includes(data.email)) {
       setEmailError("This email is already registered")
       return null
@@ -105,7 +143,7 @@ const Footer = ({ mailchimpMembers, isShowForm }) => {
               style={{ display: "inline-block" }}
               theme="dark"
               ref={recaptchaRef}
-              sitekey={'6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI'}//need replace test sitekey
+              sitekey={process.env.GATSBY_RECAPTCHA_SITE_KEY}
               onChange={handleChange}
             />}
             {showMessage && (
@@ -128,6 +166,7 @@ const Footer = ({ mailchimpMembers, isShowForm }) => {
                     id="userName"
                     name="name"
                     placeholder={data?.contentfulFooter.footerForm.namePlaceholder}
+                    defaultValue={formData?.name}
                   />
                   <span className="error_message">{errors.name?.message}</span>
                 </div>
@@ -143,12 +182,17 @@ const Footer = ({ mailchimpMembers, isShowForm }) => {
                     id="userEmail"
                     name="email"
                     placeholder={data?.contentfulFooter.footerForm.emailPlaceholder}
+                    defaultValue={formData?.email}
                   />
                   <span className="error_message">{emailInputValue ? errors.email?.message || emailError : ""}</span>
                 </div>
                 <div className="form_item-wrapper">
                   <label className="form_label" htmlFor="serviceType0">{data?.contentfulFooter.footerForm.projectTypesTitle}</label>
-                  <ul className="form_radio-group" aria-label={data?.contentfulFooter.footerForm.projectTypesTitle}>
+                  <ul
+                    ref={serviceTypeRef}
+                    className="form_radio-group"
+                    aria-label={data?.contentfulFooter.footerForm.projectTypesTitle}
+                  >
                     {data?.contentfulFooter.footerForm.projectTypesLabel.map((item, index) => (
                       <li key={`serviceType${index}`}>
                         <input
@@ -176,7 +220,11 @@ const Footer = ({ mailchimpMembers, isShowForm }) => {
                 </div>
                 <div className="form_item-wrapper">
                   <label className="form_label" htmlFor="budgetRange0">{data?.contentfulFooter.footerForm.budgetRangeTitle}</label>
-                  <ul className="form_radio-group" aria-label={data?.contentfulFooter.footerForm.budgetRangeTitle}>
+                  <ul
+                    ref={budgetRangeRef}
+                    className="form_radio-group"
+                    aria-label={data?.contentfulFooter.footerForm.budgetRangeTitle}
+                  >
                     {data?.contentfulFooter.footerForm.budgetRangeLabel.map((item, index) => (
                       <li key={`budgetRange${index}`}>
                         <input
@@ -209,6 +257,7 @@ const Footer = ({ mailchimpMembers, isShowForm }) => {
                     placeholder="Message"
                     aria-label={data?.contentfulFooter.footerForm.descriptionLabal}
                     id="message"
+                    defaultValue={formData?.message}
                   />
                 </div>
                 <div className="form_item-wrapper">
