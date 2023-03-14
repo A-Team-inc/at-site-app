@@ -54,5 +54,17 @@ module.exports = {
         },
       }
     },
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: `A-Team`,
+        short_name: `A-Team`,
+        start_url: `/`,
+        background_color: `#ffffff`,
+        theme_color: `#000000`,
+        display: `standalone`,
+        icon: `src/images/icon.png`,
+      },
+    },
   ],
 }
