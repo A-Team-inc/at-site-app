@@ -36,9 +36,12 @@ module.exports = {
     {
       resolve: `gatsby-plugin-google-fonts`,
       options: {
-        fonts: [`Poppins`],
-        display: `swap`,
-      },
+        fonts: [
+          `Poppins\:400,500,600`
+        ],
+        display: 'swap',
+        preconnect: true
+      }
     },
     {
       resolve: `gatsby-plugin-mailchimp`,
