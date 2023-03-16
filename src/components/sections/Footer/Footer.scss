@@ -291,7 +291,7 @@
     li {
       width: 100%;
       list-style-type: none;
-      padding-right: 15px;
+      padding-right: min(2.133vw, 15px);
       @media screen and (max-width: 374px) {
         padding-right: 0;
         margin-bottom: 20px;
