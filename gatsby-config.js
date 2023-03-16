@@ -68,16 +68,22 @@ module.exports = {
         icon: `src/assets/icons/a-team-logo.png`,
         icons: [
           {
+            src: "src/assets/icons/a-team-logo-min144.png",
+            sizes: "144x144",
+            type: "image/png",
+            purpose: "any maskable",
+          },
+          {
             src: "src/assets/icons/a-team-logo-min.png",
             sizes: "192x192",
             type: "image/png",
-            purpose: "maskable",
+            purpose: "any maskable",
           },
           {
             src: "src/assets/icons/a-team-logo.png",
             sizes: "512x512",
             type: "image/png",
-            purpose: "maskable",
+            purpose: "any maskable",
           },
         ],
       },
