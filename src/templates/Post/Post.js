@@ -1,4 +1,4 @@
-import React, { useRef } from "react"
+import React, { useState, useEffect, useRef } from "react"
 import { graphql } from "gatsby"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 
@@ -7,13 +7,67 @@ import Title from "../../components/globals/Title/Title"
 import RichText from "../../components/globals/RichText/RichText"
 import "./Post.scss"
 
+const VideoPoster = ({ image }) => {
+  const posterImage = getImage(image)
+
+  return (
+    posterImage ? <GatsbyImage
+      className='poster-image'
+      image={posterImage}
+      alt='video-poster'
+    /> : <img
+      className="poster-image"
+      src={image.url}
+      alt='video-poster'
+    />
+  );
+};
+
+const LazyVideo = ({ src, ...props }) => {
+  const videoRef = useRef(null);
+  const [isIntersecting, setIsIntersecting] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setIsIntersecting(true);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      rootMargin: '0px',
+      threshold: 0.5
+    });
+
+    observer.observe(videoRef.current);
+
+    return () => {
+      if (videoRef.current) {
+        observer.unobserve(videoRef.current);
+      }
+    };
+  }, []);
+
+  return (
+    <video
+      ref={videoRef}
+      src={isIntersecting ? src : null}
+      {...props}
+    />
+  );
+};
+
 const Post = ({ data }) => {
   const postData = data?.allContentfulPost.nodes[0]
   const mediaType = postData.media?.media?.file.contentType
   const regExpYoutubeId = /youtu(?:.*\/v\/|.*v\=|\.be\/)([A-Za-z0-9_\-]{11})/
   const image = getImage(postData.media?.media)
+  const [showPoster, setShowPoster] = useState(true)
 
-  const videoRef = useRef();
+  const handlePlay = () => {
+    setShowPoster(false)
+  }
 
   return (
     <Layout mailchimpMembers={data?.allMailchimpMembers.nodes[0].internal.content} previewImageUrl={postData?.previewImage.url}>
@@ -37,9 +91,15 @@ const Post = ({ data }) => {
               )}
 
               {mediaType.includes("video") &&
-                <video controls className="video" poster={postData?.previewImage.url}>
-                  <source src={postData?.media.media.file.url} />
-                </video>
+                <div className="video-wrapper">
+                  {showPoster && <VideoPoster image={postData?.previewImage} />}
+                  <LazyVideo
+                    controls
+                    className="video"
+                    src={postData?.media.media.file.url}
+                    onPlay={handlePlay}
+                  />
+                </div>
               }
             </>
           )}
@@ -73,6 +133,7 @@ export const query = graphql`
         title,
         slug,
         previewImage {
+          gatsbyImageData
           url
         },
         media {
