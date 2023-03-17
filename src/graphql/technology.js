@@ -11,6 +11,8 @@ const useTechnologyQuery = () => {
               placeholder: BLURRED
             ),
             url,
+            width,
+            height,
             placeholderUrl
           },
           subtitle

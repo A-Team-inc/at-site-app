@@ -39,7 +39,9 @@ const Technology = () => {
                 <img
                   src={item.icon?.url}
                   placeholder={item.icon?.placeholderUrl}
-                  alt="" />
+                  width={item.icon.width}
+                  height={item.icon.height}
+                  alt={item.subtitle} />
               }
               <p className="technology__subtitle">{item.subtitle}</p>
             </div>
