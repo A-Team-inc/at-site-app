@@ -168,7 +168,7 @@
 
     @media screen and (min-width: 1024px) {
       display: flex;
-      align-items: flex-start;
+      align-items: center;
       grid-area: 1 / 2 / 2 / 3;
     }
   }
@@ -194,7 +194,7 @@
 
     @media screen and (min-width: 1024px) {
       display: flex;
-      align-items: flex-end;
+      align-items: center;
       grid-area: 3 / 2 / 4 / 3;
     }
   }
