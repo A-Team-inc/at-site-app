@@ -9,7 +9,7 @@
 }
 
 a {
-  transition: 1s;
+  transition: all .4s;
   text-decoration: none;
 
   &:hover, &:active {
@@ -17,23 +17,23 @@ a {
   }
 
   &:hover, &:focus, &:focus-visible, &:active {
-    transition: 0.5s;
+    transition: .4s;
   }
 }
 
 button {
-  transition: 1s;
+  transition: .4s;
 
   &:hover, &:focus, &:focus-visible, &:active {
-    transition: 1s;
+    transition: .4s;
   }
 }
 
-svg {
-  transition: 1s;
+svg path {
+  transition: .4s;
 
   &:hover, &:focus, &:focus-visible, &:active {
-    transition: 1s;
+    transition: .4s;
   }
 }
 
@@ -225,14 +225,17 @@ input, textarea {
     border-radius: 45px;
     border: none;
     cursor: pointer;
+    transition: all .4s ease-in-out;
+    background-size: 300% 100%;
+    background-image: linear-gradient(68deg, #181818, #181818, #BEB3F5 65%, #E4F2EE 89%);
 
     @media screen and (max-width: 1023px) {
       display: none;
     }
 
     &:hover {
-      color: #333333;
-      background: linear-gradient(68deg, #BEB3F5 -0.66%, #E4F2EE 70.67%);
+      color:#333333;
+      background-position: 100% 0;
     }
     
     &.mobile {
@@ -252,10 +255,13 @@ input, textarea {
     border-radius: 45px;
     margin: 0 auto;
     cursor: pointer;
+    transition: all .4s ease-in-out;
+    background-size: 300% 100%;
+    background-image: linear-gradient(68deg, #181818, #181818, #BEB3F5 65%, #E4F2EE 89%);
 
     &:hover {
-      color: #333333;
-      background: linear-gradient(68deg, #BEB3F5 -0.66%, #E4F2EE 70.67%);
+      color:#333333;
+      background-position: 100% 0;
     }
   }
 
@@ -394,10 +400,13 @@ input, textarea {
     border: none;
     margin: 0 auto;
     cursor: pointer;
+    transition: all .4s ease-in-out;
+    background-size: 300% 100%;
+    background-image: linear-gradient(68deg, #181818, #181818, #BEB3F5 65%, #E4F2EE 89%);
 
     &:hover {
-      color: #333333;
-      background: linear-gradient(68deg, #BEB3F5 -0.66%, #E4F2EE 70.67%);
+      color:#333333;
+      background-position: 100% 0;
     }
     
     &.mobile {
