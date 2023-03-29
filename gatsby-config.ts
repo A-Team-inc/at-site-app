@@ -4,6 +4,7 @@ require(`dotenv`).config({
 
 module.exports = {
   /* Your site config here */
+  graphqlTypegen: true,
 
   siteMetadata: {
     title: "Websites creation from scratch",
