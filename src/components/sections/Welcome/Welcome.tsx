@@ -16,8 +16,36 @@ import "swiper/scss"
 import "swiper/scss/scrollbar"
 import "swiper/scss/keyboard"
 
+import { IGatsbyImage } from '../../../types/index'
+
+interface WelcomeData {
+  contentfulWelcome: {
+    title: string;
+    description: {
+      description: string;
+    }
+    formAction: string;
+    formButtonValue: string;
+    subscrabeBtnAction: string;
+    subscribeBtn: string;
+    slider: {
+      slides: Slide[];
+    }
+  }
+}
+
+interface Slide {
+  title: string
+  subtitle: string
+  slide: {
+    url: string;
+    placeholderUrl: string
+    gatsbyImageData: IGatsbyImage
+  }
+}
+
 const Welcome = () => {
-  const data = useWelcomeQuery()
+  const data: WelcomeData = useWelcomeQuery()
   // const [mailChimpResponse, setMailChimpResponse] = useState()
 
   // const schema = Yup.object().shape({
@@ -68,10 +96,9 @@ const Welcome = () => {
           {data?.contentfulWelcome?.subscribeBtn}
         </Link>
       </div>
-      <div className="welcome_slider" tabIndex="0">
+      <div className="welcome_slider" tabIndex={0}>
         <Swiper
           modules={[Scrollbar, Mousewheel, Keyboard]}
-          mousewheel={{ mousewheelControl: true }}
           keyboard={{ enabled: true }}
           scrollbar={{ draggable: true }}
           speed={500}

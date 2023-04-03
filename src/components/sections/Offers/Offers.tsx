@@ -3,11 +3,33 @@ import { GatsbyImage, getImage } from "gatsby-plugin-image"
 
 import useOfferQuery from "../../../graphql/offer"
 import "./Offers.scss"
-import BackgroundLogo from '../../../components/globals/BackgroundLogo/BackgroundLogo'
+import BackgroundLogo from '../../globals/BackgroundLogo/BackgroundLogo'
+
+interface OffersData {
+  contentfulOffer: {
+    title: string;
+    subtitle: string;
+    images: Image[];
+  }
+}
+
+interface Image {
+  backgroundColor: string;
+  backgroundLogoPosition: string;
+  logoColor: string;
+  rotateAngle: number;
+  text: string;
+  topOffset: number;
+  img: {
+    url: string;
+    placeholderUrl: string;
+    gatsbyImageData: object;
+  }
+}
 
 const Offers = () => {
-  const data = useOfferQuery()
-  const scrollContainer = useRef()
+  const data: OffersData = useOfferQuery()
+  const scrollContainer = useRef<HTMLDivElement>(null);
 
   const handleMouseWheelScroll = (event) => {
     if (window.innerWidth < 1024) {

@@ -7,7 +7,14 @@ import CookieBanner from "../globals/CookieBanner/CookieBanner"
 
 import "../../App.scss"
 
-const Layout = ({ children, isShowForm, mailchimpMembers, previewImageUrl }) => {
+interface LayoutProps {
+  children: JSX.Element
+  isShowForm: boolean
+  mailchimpMembers?: string
+  previewImageUrl?: string 
+}
+
+const Layout = ({ children, isShowForm, mailchimpMembers, previewImageUrl }: LayoutProps) => {
   return (
     <>
       <SEO previewImageUrl={previewImageUrl} />

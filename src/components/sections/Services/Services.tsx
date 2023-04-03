@@ -6,8 +6,25 @@ import useServicesQuery from "../../../graphql/services"
 import RichText from "../../globals/RichText/RichText"
 import "./Services.scss"
 
+interface ServicesData {
+  contentfulServicesSection: {
+    title: string;
+    subtitle: string;
+    subscribeBtn: string;
+    subscrabeBtnAction: string;
+    image: {
+      url: string;
+      placeholderUrl: string;
+      gatsbyImageData: object;
+    };
+    description: {
+      raw: string;
+    };
+  }
+}
+
 const Services = () => {
-  const data = useServicesQuery()
+  const data: ServicesData = useServicesQuery()
   const image = getImage(data?.contentfulServicesSection.image)
 
   return (

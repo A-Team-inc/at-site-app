@@ -15,7 +15,20 @@ import reportWebVitals from "../reportWebVitals"
 
 import "../App.scss"
 
-export default function Home({ data }) {
+interface HomeData {
+  data: {
+    allMailchimpMembers: {
+      nodes: {
+        internal: {
+          content: string
+        }
+      }
+    }
+  }
+}
+
+export default function Home({ data }: HomeData) {
+  console.log('index data', data)
   return (
     <>
       <SEO />

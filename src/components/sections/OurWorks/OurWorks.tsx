@@ -5,9 +5,29 @@ import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import useOurWorksQuery from "../../../graphql/our-works"
 import "./OurWorks.scss"
 
-const OurWorks = () => {
-  const data = useOurWorksQuery()
+interface OurWorksData {
+  contentfulOurWorks: {
+    title: string;
+    subtitle: string;
+    cta: string;
+    projects: Project[];
+  }
+}
 
+interface Project {
+  title: string;
+  subtitle: string;
+  slug: string;
+  cover: {
+    url: string;
+    placeholderUrl: string;
+    gatsbyImageData: object;
+  }
+}
+
+const OurWorks = () => {
+  const data: OurWorksData = useOurWorksQuery()
+  
   return(
     <section className="our_works content_max_width" id="our-works">
       <div className="our_works_subtitle-wrapper">
