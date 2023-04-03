@@ -7,9 +7,23 @@ import RichText from "../components/globals/RichText/RichText"
 import Title from "../components/globals/Title/Title"
 import usePrivacyPolicyAndTermsOfUseQuery from "../graphql/privacy-policy-and-terms-of-use"
 
+interface ITermsOfUseData {
+  allContentfulPrivacyPolicyAndTermsOfUse: {
+    nodes: {
+      description: {
+        raw: string
+      }
+      slug: string
+      subtitle: string
+      title: string
+    }[]
+  }
+}
+
 const TermsOfUse = ({ data }) => {
   const { pathname } = useLocation()
-  const dataTerms = usePrivacyPolicyAndTermsOfUseQuery()
+  const dataTerms: ITermsOfUseData = usePrivacyPolicyAndTermsOfUseQuery()
+  console.log('dataTerms', dataTerms);
   const filteredData = dataTerms?.allContentfulPrivacyPolicyAndTermsOfUse.nodes.filter((item) => item.slug.replaceAll('\/','') === pathname.replaceAll('\/',''))[0]
 
   return(
