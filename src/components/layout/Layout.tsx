@@ -9,7 +9,7 @@ import "../../App.scss"
 
 interface LayoutProps {
   children: JSX.Element
-  isShowForm: boolean
+  isShowForm?: boolean
   mailchimpMembers?: string
   previewImageUrl?: string 
 }

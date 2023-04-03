@@ -7,36 +7,10 @@ import SocialBlock from "../../globals/SocialBlock/SocialBlock"
 import "./Header.scss"
 import cn from "classnames"
 
-// import IHeaderData from './Header'
-
-interface HeaderData {
-  contentfulHeader: {
-    mobileMenuEmail: string;
-    logo: {
-      url: string;
-      placeholderUrl: string;
-      gatsbyImageData: object;
-    }
-    menuLinks: MenuLinks[];
-    socialLinks: SocialLinks[];
-  }
-}
-
-interface MenuLinks {
-  title: string;
-  slug: string;
-}
-
-interface SocialLinks {
-  title: string;
-  url: string;
-  icon: {
-    url: string;
-  };
-}
+import { IHeaderData } from './HeaderTypes'
 
 const Header = ({ headerBackground = "" }) => {
-  const data: HeaderData = useHeaderQuery()
+  const data: IHeaderData = useHeaderQuery()
   const logoImage = getImage(data?.contentfulHeader.logo)
   const [ menuIsOpened, setMenuIsOpened ] = useState(false)
 

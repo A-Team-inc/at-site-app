@@ -17,3 +17,11 @@ export interface IGatsbyImage {
     ]
   }
 }
+
+export interface IAllMailchimpMembers {
+  nodes: [{
+    internal: {
+      content: string
+    }
+  }]
+}

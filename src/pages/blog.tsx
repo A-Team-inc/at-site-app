@@ -6,6 +6,8 @@ import Title from "../components/globals/Title/Title"
 import Layout from "../components/layout/Layout"
 import useBlogQuery from "../graphql/blog"
 
+import { IAllMailchimpMembers } from '../types/index'
+
 interface Post {
   title: string;
   slug: string;
@@ -24,7 +26,13 @@ interface BloqData {
   }
 }
 
-const Blog = ({ data }) => {
+interface BlogPropData {
+  data: {
+    allMailchimpMembers: IAllMailchimpMembers
+  }
+}
+
+const Blog = ({ data }: BlogPropData) => {
   const blogData: BloqData = useBlogQuery()
   const blog = blogData.contentfulBlogPage.posts
   const [list, setList] = useState([...blog.slice(0, 4)])

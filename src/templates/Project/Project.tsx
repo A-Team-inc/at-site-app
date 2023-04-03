@@ -6,8 +6,9 @@ import Layout from "../../components/layout/Layout"
 import Title from "../../components/globals/Title/Title"
 import { addLineBreaks } from "../../utilities/index"
 import "./Project.scss"
+import { IProjectData } from './ProjectTypes'
 
-const Project = ({ data }) => {
+const Project = ({ data }: IProjectData) => {
   const projectData = data?.allContentfulProject.nodes[0]
 
   return (
@@ -35,7 +36,7 @@ const Project = ({ data }) => {
           <div className="project_cards">
             {projectData?.abilities && projectData?.abilities.map((item, index) => {
               return (
-                <div key={item + index}>
+                <div key={`${item}${index}`}>
                   <p className="project_cards-title title">{item.title}</p>
                   <p className="project_cards-description">{item.content.content}</p>
                 </div>
@@ -47,7 +48,7 @@ const Project = ({ data }) => {
               if (index < 3) {
                 const projectImage = getImage(image)
                 return (
-                  <div className="main_img" key={image + index}>
+                  <div className="main_img" key={`${image}${index}`}>
                     {projectImage ? <GatsbyImage image={projectImage} alt={projectData.title} /> : <img src={image.url} placeholder={image.placeholderUrl} alt="" />}
                   </div>
                 )

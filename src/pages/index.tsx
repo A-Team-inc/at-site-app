@@ -14,16 +14,11 @@ import CookieBanner from "../components/globals/CookieBanner/CookieBanner"
 import reportWebVitals from "../reportWebVitals"
 
 import "../App.scss"
+import { IAllMailchimpMembers } from '../types/index'
 
 interface HomeData {
   data: {
-    allMailchimpMembers: {
-      nodes: {
-        internal: {
-          content: string
-        }
-      }
-    }
+    allMailchimpMembers: IAllMailchimpMembers
   }
 }
 

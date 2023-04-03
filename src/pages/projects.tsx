@@ -6,6 +6,8 @@ import Title from "../components/globals/Title/Title"
 import Layout from "../components/layout/Layout"
 import useProjectsQuery from "../graphql/projects"
 
+import { IAllMailchimpMembers } from '../types/index'
+
 interface ProjectsData {
   contentfulProjectsPage: {
     title: string;
@@ -26,7 +28,13 @@ interface Project {
   }
 }
 
-const Projects = ({ data }) => {
+interface ProjectsPropData {
+  data: {
+    allMailchimpMembers: IAllMailchimpMembers
+  }
+}
+
+const Projects = ({ data }: ProjectsPropData) => {
   const projectsData: ProjectsData = useProjectsQuery()
   const projects = projectsData.contentfulProjectsPage.projects
   const [list, setList] = useState([...projects.slice(0, 4)])
