@@ -18,34 +18,10 @@ import "swiper/scss/keyboard"
 
 import { IGatsbyImage } from '../../../types/index'
 
-interface WelcomeData {
-  contentfulWelcome: {
-    title: string;
-    description: {
-      description: string;
-    }
-    formAction: string;
-    formButtonValue: string;
-    subscrabeBtnAction: string;
-    subscribeBtn: string;
-    slider: {
-      slides: Slide[];
-    }
-  }
-}
-
-interface Slide {
-  title: string
-  subtitle: string
-  slide: {
-    url: string;
-    placeholderUrl: string
-    gatsbyImageData: IGatsbyImage
-  }
-}
+import { IWelcomeData } from './WelcomeTypes'
 
 const Welcome = () => {
-  const data: WelcomeData = useWelcomeQuery()
+  const data: IWelcomeData = useWelcomeQuery()
   // const [mailChimpResponse, setMailChimpResponse] = useState()
 
   // const schema = Yup.object().shape({

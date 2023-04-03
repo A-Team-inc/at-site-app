@@ -4,26 +4,10 @@ import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import useTechnologyQuery from "../../../graphql/technology"
 import "./Technology.scss"
 
-interface TechnologyData {
-  contentfulTechnologiesSection: {
-    title: string;
-    technologies: Technology[];
-  }
-}
-
-interface Technology {
-  icon: {
-    url: string;
-    placeholderUrl: string;
-    gatsbyImageData: object;
-    width: number;
-    height: number;
-  };
-  subtitle: string;
-}
+import { ITechnologyData } from './TechnologyTypes'
 
 const Technology = () => {
-  const data: TechnologyData = useTechnologyQuery()
+  const data: ITechnologyData = useTechnologyQuery()
   const scrollContainer = useRef<HTMLDivElement>()
 
   const handleMouseWheelScroll = event => {

@@ -6,36 +6,36 @@ import Title from "../components/globals/Title/Title"
 import Layout from "../components/layout/Layout"
 import useProjectsQuery from "../graphql/projects"
 
-import { IAllMailchimpMembers } from '../types/index'
+import { IAllMailchimpMembers, IGatsbyImage } from '../types/index'
 
-interface ProjectsData {
+interface IProjectsData {
   contentfulProjectsPage: {
-    title: string;
-    subtitle: string;
-    cta: string;
-    projects: Project[]
+    title: string
+    subtitle: string
+    cta: string
+    projects: IProject[]
   }
 }
 
-interface Project {
-  title: string;
-  subtitle: string;
-  slug: string;
+interface IProject {
+  title: string
+  subtitle: string
+  slug: string
   cover: {
-    url: string;
-    placeholderUrl: string;
-    gatsbyImageData: object;
+    url: string
+    placeholderUrl: string
+    gatsbyImageData: IGatsbyImage
   }
 }
 
-interface ProjectsPropData {
+interface IProjectsPropData {
   data: {
     allMailchimpMembers: IAllMailchimpMembers
   }
 }
 
-const Projects = ({ data }: ProjectsPropData) => {
-  const projectsData: ProjectsData = useProjectsQuery()
+const Projects = ({ data }: IProjectsPropData) => {
+  const projectsData: IProjectsData = useProjectsQuery()
   const projects = projectsData.contentfulProjectsPage.projects
   const [list, setList] = useState([...projects.slice(0, 4)])
   const [loadMore, setLoadMore] = useState(false)

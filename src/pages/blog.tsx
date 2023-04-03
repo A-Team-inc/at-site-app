@@ -6,34 +6,34 @@ import Title from "../components/globals/Title/Title"
 import Layout from "../components/layout/Layout"
 import useBlogQuery from "../graphql/blog"
 
-import { IAllMailchimpMembers } from '../types/index'
+import { IAllMailchimpMembers, IGatsbyImage } from '../types/index'
 
-interface Post {
-  title: string;
-  slug: string;
+interface IPost {
+  title: string
+  slug: string
   previewImage: {
-    url: string;
-    placeholderUrl: string;
-    gatsbyImageData: object;
+    url: string
+    placeholderUrl: string
+    gatsbyImageData: IGatsbyImage
   }
 }
 
-interface BloqData {
+interface IBloqData {
   contentfulBlogPage: {
-    title: string;
-    subtitle: string;
-    posts: Post[];
+    title: string
+    subtitle: string
+    posts: IPost[]
   }
 }
 
-interface BlogPropData {
+interface IBlogPropData {
   data: {
     allMailchimpMembers: IAllMailchimpMembers
   }
 }
 
-const Blog = ({ data }: BlogPropData) => {
-  const blogData: BloqData = useBlogQuery()
+const Blog = ({ data }: IBlogPropData) => {
+  const blogData: IBloqData = useBlogQuery()
   const blog = blogData.contentfulBlogPage.posts
   const [list, setList] = useState([...blog.slice(0, 4)])
   const [loadMore, setLoadMore] = useState(false)

@@ -4,15 +4,9 @@ import { useLocation } from "@reach/router"
 
 import useSEOQuery from "../../../graphql/seo"
 
-interface SEOProps {
-  defaultTitle: string
-  defaultDescription: string
-  defaultSiteUrl: string
-  article: boolean
-  previewImageUrl?: string
-}
+import { ISEOProps } from "./SEOTypes"
 
-const SEO = ({ defaultTitle, defaultDescription, defaultSiteUrl, article, previewImageUrl }: SEOProps) => {
+const SEO = ({ defaultTitle, defaultDescription, defaultSiteUrl, article, previewImageUrl }: ISEOProps) => {
   const { pathname } = useLocation()
   const site = useSEOQuery()
 

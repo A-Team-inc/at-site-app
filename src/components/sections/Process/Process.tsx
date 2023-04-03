@@ -4,32 +4,10 @@ import useProcessQuery from "../../../graphql/process"
 import RichText from "../../globals/RichText/RichText"
 import "./Process.scss"
 
-interface ProcessData {
-  contentfulProcess: {
-    title: string;
-    subtitle: string;
-    cta: string;
-    abilities: Abilities[];
-    steps: Step[];
-  }
-}
-
-interface Step {
-  title: string;
-  description: {
-    raw: string;
-  }
-}
-
-interface Abilities {
-  title: string;
-  content: {
-    content: string;
-  }
-}
+import { IProcessData } from './ProcessTypes'
 
 const Process = () => {
-  const data: ProcessData = useProcessQuery()
+  const data: IProcessData = useProcessQuery()
 
   const [currentStep, setCurrentStep] = useState(data?.contentfulProcess.steps[0])
   const [currentIndex, setCurrentIndex] = useState(0)

@@ -5,30 +5,10 @@ import useOfferQuery from "../../../graphql/offer"
 import "./Offers.scss"
 import BackgroundLogo from '../../globals/BackgroundLogo/BackgroundLogo'
 
-interface OffersData {
-  contentfulOffer: {
-    title: string;
-    subtitle: string;
-    images: Image[];
-  }
-}
-
-interface Image {
-  backgroundColor: string;
-  backgroundLogoPosition: string;
-  logoColor: string;
-  rotateAngle: number;
-  text: string;
-  topOffset: number;
-  img: {
-    url: string;
-    placeholderUrl: string;
-    gatsbyImageData: object;
-  }
-}
+import { IOffersData } from './OffersTypes'
 
 const Offers = () => {
-  const data: OffersData = useOfferQuery()
+  const data: IOffersData = useOfferQuery()
   const scrollContainer = useRef<HTMLDivElement>(null);
 
   const handleMouseWheelScroll = (event) => {
