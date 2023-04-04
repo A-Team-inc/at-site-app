@@ -1,11 +1,12 @@
 import React from "react"
-import PropTypes from "prop-types"
 import { Helmet } from "react-helmet"
 import { useLocation } from "@reach/router"
 
 import useSEOQuery from "../../../graphql/seo"
 
-const SEO = ({ defaultTitle, defaultDescription, defaultImage, defaultSiteUrl, article, previewImageUrl }) => {
+import { ISEOProps } from "./SEOTypes"
+
+const SEO = ({ defaultTitle, defaultDescription, defaultSiteUrl, article, previewImageUrl }: ISEOProps) => {
   const { pathname } = useLocation()
   const site = useSEOQuery()
 
@@ -55,14 +56,6 @@ const SEO = ({ defaultTitle, defaultDescription, defaultImage, defaultSiteUrl, a
 }
 
 export default SEO
-
-SEO.propTypes = {
-  defaultTitle: PropTypes.string,
-  defaultDescription: PropTypes.string,
-  defaultImage: PropTypes.string,
-  defaultSiteUrl: PropTypes.string,
-  article: PropTypes.bool
-}
 
 SEO.defaultProps = {
   defaultTitle: null,

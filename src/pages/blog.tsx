@@ -6,8 +6,34 @@ import Title from "../components/globals/Title/Title"
 import Layout from "../components/layout/Layout"
 import useBlogQuery from "../graphql/blog"
 
-const Blog = ({ data }) => {
-  const blogData = useBlogQuery()
+import { IAllMailchimpMembers, IGatsbyImage } from '../types/index'
+
+interface IPost {
+  title: string
+  slug: string
+  previewImage: {
+    url: string
+    placeholderUrl: string
+    gatsbyImageData: IGatsbyImage
+  }
+}
+
+interface IBloqData {
+  contentfulBlogPage: {
+    title: string
+    subtitle: string
+    posts: IPost[]
+  }
+}
+
+interface IBlogPropData {
+  data: {
+    allMailchimpMembers: IAllMailchimpMembers
+  }
+}
+
+const Blog = ({ data }: IBlogPropData) => {
+  const blogData: IBloqData = useBlogQuery()
   const blog = blogData.contentfulBlogPage.posts
   const [list, setList] = useState([...blog.slice(0, 4)])
   const [loadMore, setLoadMore] = useState(false)
@@ -70,7 +96,7 @@ const Card = ({ post }) => {
           className="blog_card__link tabIndexItem"
           to={`/blog${post.slug}`}
           aria-label={`${post.title} View post`}
-          tabIndex="0"
+          tabIndex={0}
         >
           View post
           <svg className="blog_card__arrow" width="17" height="12" viewBox="0 0 17 12" fill="none" xmlns="http://www.w3.org/2000/svg">

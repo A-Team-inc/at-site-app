@@ -5,8 +5,10 @@ import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import useOurWorksQuery from "../../../graphql/our-works"
 import "./OurWorks.scss"
 
+import { IOurWorksData } from './OurWorksTypes'
+
 const OurWorks = () => {
-  const data = useOurWorksQuery()
+  const data: IOurWorksData = useOurWorksQuery()
 
   return(
     <section className="our_works content_max_width" id="our-works">

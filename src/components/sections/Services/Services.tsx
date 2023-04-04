@@ -6,8 +6,10 @@ import useServicesQuery from "../../../graphql/services"
 import RichText from "../../globals/RichText/RichText"
 import "./Services.scss"
 
+import { IServicesData } from "./ServicesTypes"
+
 const Services = () => {
-  const data = useServicesQuery()
+  const data: IServicesData = useServicesQuery()
   const image = getImage(data?.contentfulServicesSection.image)
 
   return (

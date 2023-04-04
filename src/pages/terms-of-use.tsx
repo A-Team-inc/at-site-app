@@ -3,14 +3,28 @@ import { useLocation } from "@reach/router"
 import { graphql } from "gatsby"
 
 import Layout from "../components/layout/Layout"
-import Title from "../components/globals/Title/Title"
 import RichText from "../components/globals/RichText/RichText"
+import Title from "../components/globals/Title/Title"
 import usePrivacyPolicyAndTermsOfUseQuery from "../graphql/privacy-policy-and-terms-of-use"
 
-const PrivacyPolicy = ({ data }) => {
+interface ITermsOfUseData {
+  allContentfulPrivacyPolicyAndTermsOfUse: {
+    nodes: {
+      description: {
+        raw: string
+      }
+      slug: string
+      subtitle: string
+      title: string
+    }[]
+  }
+}
+
+const TermsOfUse = ({ data }) => {
   const { pathname } = useLocation()
-  const dataPrivacy = usePrivacyPolicyAndTermsOfUseQuery()
-  const filteredData = dataPrivacy?.allContentfulPrivacyPolicyAndTermsOfUse.nodes.filter((item) => item.slug.replaceAll('\/','') === pathname.replaceAll('\/',''))[0]
+  const dataTerms: ITermsOfUseData = usePrivacyPolicyAndTermsOfUseQuery()
+  console.log('dataTerms', dataTerms);
+  const filteredData = dataTerms?.allContentfulPrivacyPolicyAndTermsOfUse.nodes.filter((item) => item.slug.replaceAll('\/','') === pathname.replaceAll('\/',''))[0]
 
   return(
     <Layout isShowForm={false} mailchimpMembers={data?.allMailchimpMembers.nodes[0].internal.content}>
@@ -38,4 +52,4 @@ export const query = graphql`
   }
 `;
 
-export default PrivacyPolicy
+export default TermsOfUse

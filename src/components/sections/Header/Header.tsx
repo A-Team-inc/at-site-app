@@ -7,8 +7,10 @@ import SocialBlock from "../../globals/SocialBlock/SocialBlock"
 import "./Header.scss"
 import cn from "classnames"
 
+import { IHeaderData } from './HeaderTypes'
+
 const Header = ({ headerBackground = "" }) => {
-  const data = useHeaderQuery()
+  const data: IHeaderData = useHeaderQuery()
   const logoImage = getImage(data?.contentfulHeader.logo)
   const [ menuIsOpened, setMenuIsOpened ] = useState(false)
 
@@ -104,7 +106,7 @@ const Header = ({ headerBackground = "" }) => {
           </menu>
           <div className="social-links-wrapper">
             <a href={`mailto:${data?.contentfulHeader.mobileMenuEmail}`} className="mobile-menu_email">{data?.contentfulHeader.mobileMenuEmail}</a>
-            <SocialBlock SocialBlockClassName={"mobile-menu__social-links"} />
+            <SocialBlock SocialBlockClassName={"mobile-menu__social-links"} data={data?.contentfulHeader.socialLinks} />
           </div>
         </div>
       </div>

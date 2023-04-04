@@ -16,8 +16,12 @@ import "swiper/scss"
 import "swiper/scss/scrollbar"
 import "swiper/scss/keyboard"
 
+import { IGatsbyImage } from '../../../types/index'
+
+import { IWelcomeData } from './WelcomeTypes'
+
 const Welcome = () => {
-  const data = useWelcomeQuery()
+  const data: IWelcomeData = useWelcomeQuery()
   // const [mailChimpResponse, setMailChimpResponse] = useState()
 
   // const schema = Yup.object().shape({
@@ -68,10 +72,9 @@ const Welcome = () => {
           {data?.contentfulWelcome?.subscribeBtn}
         </Link>
       </div>
-      <div className="welcome_slider" tabIndex="0">
+      <div className="welcome_slider" tabIndex={0}>
         <Swiper
           modules={[Scrollbar, Mousewheel, Keyboard]}
-          mousewheel={{ mousewheelControl: true }}
           keyboard={{ enabled: true }}
           scrollbar={{ draggable: true }}
           speed={500}

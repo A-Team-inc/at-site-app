@@ -14,15 +14,21 @@ import { addLineBreaks } from "../../../utilities/index"
 import SocialBlock from "../../globals/SocialBlock/SocialBlock"
 import "./Footer.scss"
 
-const Footer = ({ mailchimpMembers, isShowForm }) => {
-  const data = useFooterQuery()
+import { FooterData, FormData, MailChimpResponse, FooterProps } from './FooterTypes'
+
+const ErrorMessage = ({ children }): JSX.Element => (
+  <span className="error_message">{ children }</span>
+)
+
+const Footer = ({ mailchimpMembers, isShowForm }: FooterProps) => {
+  const data: FooterData = useFooterQuery()
   const logoImage = getImage(data?.contentfulFooter.underfooter.footerLogo)
-  const [mailChimpResponse, setMailChimpResponse] = useState()
-  const [ emailError, setEmailError ] = useState()
+  const [mailChimpResponse, setMailChimpResponse] = useState<MailChimpResponse | undefined>()
+  const [ emailError, setEmailError ] = useState<string | undefined>()
   const [ nameInputValue, setNameInputValue ] = useState()
   const [ emailInputValue, setEmailInputValue ] = useState()
   const mailchimpMembersList = mailchimpMembers && JSON.parse(mailchimpMembers)
-  const [formData, setFormData] = useState()
+  const [formData, setFormData] = useState<FormData>()
   const [showForm, setShowForm] = useState(true)
   const [showMessage, setShowMessage] = useState(false)
   const [showReCaptcha, setShowReCaptcha] = useState(false)
@@ -38,12 +44,16 @@ const Footer = ({ mailchimpMembers, isShowForm }) => {
     if (formData) {
       if (formData?.budgetRange && budgetRangeRef.current) {
         const id = `budgetRange${budgetRangeValues.indexOf(formData?.budgetRange)}`
-        document.getElementById(id).checked = true
+        const formDataInput = document.getElementById(id) as HTMLInputElement
+        formDataInput.checked = true
       }
+
+      console.log('formData', formData)
 
       if (formData?.serviceType && serviceTypeRef.current) {
         const id = `serviceType${serviceTypeValues.indexOf(formData?.serviceType)}`
-        document.getElementById(id).checked = true
+        const formDataInput = document.getElementById(id) as HTMLInputElement
+        formDataInput.checked = true
       }
     }
   }, [showForm])
@@ -66,6 +76,7 @@ const Footer = ({ mailchimpMembers, isShowForm }) => {
         MESSAGE: formData.message
       })
       setMailChimpResponse(response)
+      console.log('response', response);
       setShowMessage(true)
       if (response.result === 'success') {
         sendSlackMessage(formData)
@@ -135,7 +146,7 @@ const Footer = ({ mailchimpMembers, isShowForm }) => {
               <p className={"footer_subtitle"}>{ data?.contentfulFooter.subtitle }</p>
             </div>
             <h1 className={"footer_title title"}>{addLineBreaks(data?.contentfulFooter.title.title)}</h1>
-            <a href={`mailto:${data?.contentfulFooter.email}`} className="footer_email tabIndexItem" tabIndex="0">{data?.contentfulFooter.email}</a>
+            <a href={`mailto:${data?.contentfulFooter.email}`} className="footer_email tabIndexItem" tabIndex={0}>{data?.contentfulFooter.email}</a>
             <SocialBlock SocialBlockClassName={"footer_social-links"} data={data?.contentfulFooter.socialLinks} />
           </div>
           <div className="footer_form-wrapper">
@@ -168,7 +179,7 @@ const Footer = ({ mailchimpMembers, isShowForm }) => {
                     placeholder={data?.contentfulFooter.footerForm.namePlaceholder}
                     defaultValue={formData?.name}
                   />
-                  <span className="error_message">{errors.name?.message}</span>
+                  <ErrorMessage>{errors.name?.message}</ErrorMessage>
                 </div>
                 <div className="form_item-wrapper">
                   <label className="form_label" htmlFor="userEmail">{data?.contentfulFooter.footerForm.emailLabel}</label>
@@ -184,7 +195,7 @@ const Footer = ({ mailchimpMembers, isShowForm }) => {
                     placeholder={data?.contentfulFooter.footerForm.emailPlaceholder}
                     defaultValue={formData?.email}
                   />
-                  <span className="error_message">{emailInputValue ? errors.email?.message || emailError : ""}</span>
+                  <ErrorMessage>{emailInputValue ? errors.email?.message || emailError : ""}</ErrorMessage>
                 </div>
                 <div className="form_item-wrapper">
                   <label className="form_label" htmlFor="serviceType0">{data?.contentfulFooter.footerForm.projectTypesTitle}</label>
@@ -207,7 +218,7 @@ const Footer = ({ mailchimpMembers, isShowForm }) => {
                           id={`label${index}`}
                           htmlFor={`serviceType${index}`}
                           key={`serviceTypeLabel${index}`}
-                          tabIndex="0"
+                          tabIndex={0}
                           aria-label={
                             `${index === 0 ? `${data?.contentfulFooter.footerForm.projectTypesTitle} List item with ${data?.contentfulFooter.footerForm.projectTypesLabel.length}items` : ''} List item ${item}`
                           }
@@ -239,7 +250,7 @@ const Footer = ({ mailchimpMembers, isShowForm }) => {
                           htmlFor={`budgetRange${index}`}
                           key={`budgetRangeLabel${index}`}
                           onKeyDown={event => keyDown(event)}
-                          tabIndex="0"
+                          tabIndex={0}
                           aria-label={
                             `${index === 0 ? `${data?.contentfulFooter.footerForm.budgetRangeTitle} List item with ${data?.contentfulFooter.footerForm.budgetRangeLabel.length}items` : ''} List item ${item.replace('$', ' dollars').replace('+', 'and more') }`
                           }
@@ -294,7 +305,7 @@ const Footer = ({ mailchimpMembers, isShowForm }) => {
             )}
           </menu>
           <div className="underfooter-menu__link underfooter_email">
-            <a href={`mailto:${data?.contentfulFooter.underfooter.email}`} className="tabIndexItem" tabIndex="0">{data?.contentfulFooter.underfooter.email}</a>
+            <a href={`mailto:${data?.contentfulFooter.underfooter.email}`} className="tabIndexItem" tabIndex={0}>{data?.contentfulFooter.underfooter.email}</a>
           </div>
           <SocialBlock SocialBlockClassName={"footer_social-links underfooter_social-links"} data={data?.contentfulFooter.socialLinks} />
           <p className="copyright mobile_copyright">{data?.contentfulFooter.underfooter.copyright}</p>

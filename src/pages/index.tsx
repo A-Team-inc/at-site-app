@@ -14,8 +14,16 @@ import CookieBanner from "../components/globals/CookieBanner/CookieBanner"
 import reportWebVitals from "../reportWebVitals"
 
 import "../App.scss"
+import { IAllMailchimpMembers } from '../types/index'
 
-export default function Home({ data }) {
+interface HomeData {
+  data: {
+    allMailchimpMembers: IAllMailchimpMembers
+  }
+}
+
+export default function Home({ data }: HomeData) {
+  console.log('index data', data)
   return (
     <>
       <SEO />

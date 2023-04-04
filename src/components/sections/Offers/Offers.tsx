@@ -3,11 +3,13 @@ import { GatsbyImage, getImage } from "gatsby-plugin-image"
 
 import useOfferQuery from "../../../graphql/offer"
 import "./Offers.scss"
-import BackgroundLogo from '../../../components/globals/BackgroundLogo/BackgroundLogo'
+import BackgroundLogo from '../../globals/BackgroundLogo/BackgroundLogo'
+
+import { IOffersData } from './OffersTypes'
 
 const Offers = () => {
-  const data = useOfferQuery()
-  const scrollContainer = useRef()
+  const data: IOffersData = useOfferQuery()
+  const scrollContainer = useRef<HTMLDivElement>(null);
 
   const handleMouseWheelScroll = (event) => {
     if (window.innerWidth < 1024) {

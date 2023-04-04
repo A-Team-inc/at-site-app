@@ -4,9 +4,11 @@ import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import useTechnologyQuery from "../../../graphql/technology"
 import "./Technology.scss"
 
+import { ITechnologyData } from './TechnologyTypes'
+
 const Technology = () => {
-  const data = useTechnologyQuery()
-  const scrollContainer = useRef()
+  const data: ITechnologyData = useTechnologyQuery()
+  const scrollContainer = useRef<HTMLDivElement>()
 
   const handleMouseWheelScroll = event => {
     if (window.innerWidth < 1024) {

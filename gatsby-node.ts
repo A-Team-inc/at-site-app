@@ -8,8 +8,8 @@ require('dotenv').config(
 
 exports.createPages = async function ({ actions, graphql }) {
   const { createPage } = actions
-  const projectPage = path.resolve(`./src/templates/Project/Project.js`)
-  const blogPage = path.resolve(`./src/templates/Post/Post.js`)
+  const projectPage = path.resolve(`./src/templates/Project/Project.tsx`)
+  const blogPage = path.resolve(`./src/templates/Post/Post.tsx`)
 
   return graphql(`
     {

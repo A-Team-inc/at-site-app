@@ -6,8 +6,36 @@ import Title from "../components/globals/Title/Title"
 import Layout from "../components/layout/Layout"
 import useProjectsQuery from "../graphql/projects"
 
-const Projects = ({ data }) => {
-  const projectsData = useProjectsQuery()
+import { IAllMailchimpMembers, IGatsbyImage } from '../types/index'
+
+interface IProjectsData {
+  contentfulProjectsPage: {
+    title: string
+    subtitle: string
+    cta: string
+    projects: IProject[]
+  }
+}
+
+interface IProject {
+  title: string
+  subtitle: string
+  slug: string
+  cover: {
+    url: string
+    placeholderUrl: string
+    gatsbyImageData: IGatsbyImage
+  }
+}
+
+interface IProjectsPropData {
+  data: {
+    allMailchimpMembers: IAllMailchimpMembers
+  }
+}
+
+const Projects = ({ data }: IProjectsPropData) => {
+  const projectsData: IProjectsData = useProjectsQuery()
   const projects = projectsData.contentfulProjectsPage.projects
   const [list, setList] = useState([...projects.slice(0, 4)])
   const [loadMore, setLoadMore] = useState(false)
@@ -79,7 +107,7 @@ const Card = ({ project }) => {
           className="projects_card__link tabIndexItem"
           to={`/projects${project.slug}`}
           aria-label={`${project.title} View the project`}
-          tabIndex="0"
+          tabIndex={0}
         >
           View the project
           <svg className="project-card__arrow" width="17" height="12" viewBox="0 0 17 12" fill="none" xmlns="http://www.w3.org/2000/svg">

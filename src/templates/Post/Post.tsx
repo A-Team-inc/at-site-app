@@ -7,6 +7,8 @@ import Title from "../../components/globals/Title/Title"
 import RichText from "../../components/globals/RichText/RichText"
 import "./Post.scss"
 
+import { IPostData } from './PostTypes'
+
 const VideoPoster = ({ image }) => {
   const posterImage = getImage(image)
 
@@ -59,7 +61,7 @@ const LazyVideo = ({ src, ...props }) => {
 };
 
 const Post = ({ data }) => {
-  const postData = data?.allContentfulPost.nodes[0]
+  const postData: IPostData = data?.allContentfulPost.nodes[0]
   const mediaType = postData.media?.media?.file.contentType
   const regExpYoutubeId = /youtu(?:.*\/v\/|.*v\=|\.be\/)([A-Za-z0-9_\-]{11})/
   const image = getImage(postData.media?.media)
@@ -108,7 +110,7 @@ const Post = ({ data }) => {
             <iframe
               className="youtube"
               src={`https://www.youtube.com/embed/${postData.media?.link.match(regExpYoutubeId)[1]}`}
-              allowFullScreen="allowfullscreen"
+              allowFullScreen
               width="100%"
               height="100%"
             />
